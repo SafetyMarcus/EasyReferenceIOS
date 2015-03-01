@@ -23,6 +23,12 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         super.init(coder: aDecoder)
     }
     
+    @IBAction func addReference(sender: UIButton)
+    {
+        referenceList.references.append(ReferenceItem())
+        self.tableView.reloadData()
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -39,7 +45,16 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
-        cell.textLabel!.text = self.referenceList.references[indexPath.row].getReferenceString()
+        var currentReference = self.referenceList.references[indexPath.row]
+        var labelText = currentReference.getReferenceString()
+        
+        if(labelText.isEmpty)
+        {
+            labelText = "Click to edit!"
+        }
+        
+        
+        cell.textLabel!.text = labelText
         
         return cell
     }
