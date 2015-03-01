@@ -150,7 +150,7 @@
         <!--APA Book Reference-->
         <scene sceneID="cht-kY-Heg">
             <objects>
-                <viewController title="APA Book Reference" id="WVM-fd-hz4" sceneMemberID="viewController">
+                <viewController title="APA Book Reference" id="WVM-fd-hz4" customClass="EditReferenceView" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Ep-Yd-YZT"/>
                         <viewControllerLayoutGuide type="bottom" id="cgi-SY-dO3"/>
@@ -238,6 +238,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="editAuthor" destination="rWw-ZE-dlm" id="tqd-gi-awr"/>
+                        <outlet property="editDate" destination="epx-OX-qUx" id="E6I-UB-LVf"/>
+                        <outlet property="editLocation" destination="Aj7-tU-qey" id="JcI-48-q42"/>
+                        <outlet property="editPublisher" destination="f7D-qf-yNg" id="qyE-ol-6hI"/>
+                        <outlet property="editSubtitle" destination="U4i-04-2C0" id="vVq-Zs-wvG"/>
+                        <outlet property="editTitle" destination="QYe-9D-9pX" id="iqL-Nm-RVE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hhg-Sf-GKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -37,6 +37,15 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         navBar.topItem?.title = referenceList.name
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "ShowReferenceItem")
+        {
+            let editReferenceView: EditReferenceView = segue.destinationViewController as EditReferenceView
+            editReferenceView.referenceItem = referenceList.references[selected]
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
         return referenceList.references.count;

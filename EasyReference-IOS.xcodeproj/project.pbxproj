@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */; };
 		2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FC1AA184F1006C199A /* AppDelegate.swift */; };
 		2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FE1AA184F2006C199A /* EasyReference_IOS.xcdatamodeld */; };
 		2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7011AA184F2006C199A /* MainViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditReferenceView.swift; sourceTree = "<group>"; };
 		2C51C6F71AA184F1006C199A /* EasyReference-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyReference-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C51C6FB1AA184F1006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C6FC1AA184F1006C199A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				2C51C7011AA184F2006C199A /* MainViewController.swift */,
 				2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */,
+				2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */,
 				2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */,
 				2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */,
+				2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */,
 				2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */,
 				2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */,
 			);
