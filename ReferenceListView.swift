@@ -25,8 +25,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        println("Name \(referenceList.name)")
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
