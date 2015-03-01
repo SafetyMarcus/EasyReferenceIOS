@@ -83,7 +83,7 @@
         <!--Reference List-->
         <scene sceneID="X01-e1-V2E">
             <objects>
-                <viewController title="Reference List" id="Dwq-RU-nS5" sceneMemberID="viewController">
+                <viewController title="Reference List" id="Dwq-RU-nS5" customClass="ReferenceListView" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bRS-Af-QKD"/>
                         <viewControllerLayoutGuide type="bottom" id="37b-M9-ciJ"/>
@@ -124,10 +124,17 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Dwq-RU-nS5" id="3jf-OO-WML"/>
+                                    <outlet property="delegate" destination="Dwq-RU-nS5" id="5wP-TS-E6O"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="QDb-7s-eIz" id="C2k-2W-en5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5E7-jf-1wx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

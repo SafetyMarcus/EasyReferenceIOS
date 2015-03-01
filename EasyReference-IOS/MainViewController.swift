@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var items: [ReferenceList] = (UIApplication.sharedApplication().delegate as AppDelegate).referenceLists
+    var selected = 0
     
     @IBOutlet
     var tableView: UITableView!
@@ -27,6 +28,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.reloadData()
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
+    {
+        if(segue.identifier == "ShowReferenceList")
+        {
+            let referenceListView: ReferenceListView = segue.destinationViewController as ReferenceListView
+            referenceListView.referenceList = items[selected]
+        }
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
@@ -38,7 +48,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        println("You selected cell #\(indexPath.row)!")
+        selected = indexPath.row
         self.performSegueWithIdentifier("ShowReferenceList", sender: self)
     }
     
