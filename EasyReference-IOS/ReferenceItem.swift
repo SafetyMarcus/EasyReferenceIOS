@@ -15,5 +15,10 @@ class ReferenceItem
     var title: String = ""
     var subTitle: String = ""
     var location: String = ""
-    var publication: String = ""
+    var publisher: String = ""
+    
+    func getReferenceString() -> String
+    {
+        return "\(author) (\(date)). \(title): \(subTitle). \(location): \(publisher)"
+    }
 }

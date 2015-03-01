@@ -11,7 +11,7 @@ import Foundation
 class ReferenceList
 {
     var name: String = ""
-    var reference: [ReferenceItem] = []
+    var references: [ReferenceItem] = []
     
     init(name: String)
     {

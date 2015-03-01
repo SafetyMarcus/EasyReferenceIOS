@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FC1AA184F1006C199A /* AppDelegate.swift */; };
 		2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FE1AA184F2006C199A /* EasyReference_IOS.xcdatamodeld */; };
-		2C51C7021AA184F2006C199A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7011AA184F2006C199A /* ViewController.swift */; };
+		2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7011AA184F2006C199A /* MainViewController.swift */; };
 		2C51C7051AA184F2006C199A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C51C7031AA184F2006C199A /* Main.storyboard */; };
 		2C51C7071AA184F2006C199A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C51C7061AA184F2006C199A /* Images.xcassets */; };
 		2C51C70A1AA184F2006C199A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C51C7081AA184F2006C199A /* LaunchScreen.xib */; };
 		2C51C7161AA184F2006C199A /* EasyReference_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7151AA184F2006C199A /* EasyReference_IOSTests.swift */; };
+		2CB5CFB91AA2A244003A808A /* ReferenceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */; };
 		2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */; };
 		2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */; };
 /* End PBXBuildFile section */
@@ -33,13 +34,14 @@
 		2C51C6FB1AA184F1006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C6FC1AA184F1006C199A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C51C6FF1AA184F2006C199A /* EasyReference_IOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyReference_IOS.xcdatamodel; sourceTree = "<group>"; };
-		2C51C7011AA184F2006C199A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2C51C7011AA184F2006C199A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2C51C7041AA184F2006C199A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C51C7061AA184F2006C199A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2C51C7091AA184F2006C199A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2C51C70F1AA184F2006C199A /* EasyReference-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EasyReference-IOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C51C7141AA184F2006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C7151AA184F2006C199A /* EasyReference_IOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyReference_IOSTests.swift; sourceTree = "<group>"; };
+		2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReferenceListView.swift; path = ../ReferenceListView.swift; sourceTree = "<group>"; };
 		2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceList.swift; sourceTree = "<group>"; };
 		2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,15 +85,14 @@
 		2C51C6F91AA184F1006C199A /* EasyReference-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				2CB5CFBB1AA2A348003A808A /* Models */,
+				2CB5CFBA1AA2A32D003A808A /* ViewControllers */,
 				2C51C6FC1AA184F1006C199A /* AppDelegate.swift */,
-				2C51C7011AA184F2006C199A /* ViewController.swift */,
 				2C51C7031AA184F2006C199A /* Main.storyboard */,
 				2C51C7061AA184F2006C199A /* Images.xcassets */,
 				2C51C7081AA184F2006C199A /* LaunchScreen.xib */,
 				2C51C6FE1AA184F2006C199A /* EasyReference_IOS.xcdatamodeld */,
 				2C51C6FA1AA184F1006C199A /* Supporting Files */,
-				2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */,
-				2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */,
 			);
 			path = "EasyReference-IOS";
 			sourceTree = "<group>";
@@ -119,6 +120,24 @@
 				2C51C7141AA184F2006C199A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CB5CFBA1AA2A32D003A808A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2C51C7011AA184F2006C199A /* MainViewController.swift */,
+				2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2CB5CFBB1AA2A348003A808A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */,
+				2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C51C7021AA184F2006C199A /* ViewController.swift in Sources */,
+				2CB5CFB91AA2A244003A808A /* ReferenceListView.swift in Sources */,
+				2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */,
 				2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */,
 				2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */,
 				2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */,

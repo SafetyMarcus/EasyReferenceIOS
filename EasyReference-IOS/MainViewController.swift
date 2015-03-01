@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
     var items: [ReferenceList] = (UIApplication.sharedApplication().delegate as AppDelegate).referenceLists
     
     @IBOutlet
