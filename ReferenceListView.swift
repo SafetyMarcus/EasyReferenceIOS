@@ -11,6 +11,7 @@ import UIKit
 class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     var referenceList: ReferenceList
+    var selected = 0
     
     @IBOutlet
     var navBar: UINavigationBar!
@@ -41,6 +42,12 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         return referenceList.references.count;
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        selected = indexPath.row
+        self.performSegueWithIdentifier("ShowReferenceItem", sender: self)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
@@ -52,7 +59,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             labelText = "Click to edit!"
         }
-        
         
         cell.textLabel!.text = labelText
         

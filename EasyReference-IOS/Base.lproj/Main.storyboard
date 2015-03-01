@@ -120,11 +120,14 @@
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rDq-0I-aqy">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="rDq-0I-aqy">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDq-0I-aqy" id="Vtf-GJ-2Ex">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="WVM-fd-hz4" kind="show" identifier="ShowReferenceItem" id="tih-me-B0q"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -144,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="991" y="234"/>
         </scene>
-        <!--View Controller-->
+        <!--APA Book Reference-->
         <scene sceneID="cht-kY-Heg">
             <objects>
-                <viewController id="WVM-fd-hz4" sceneMemberID="viewController">
+                <viewController title="APA Book Reference" id="WVM-fd-hz4" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Ep-Yd-YZT"/>
                         <viewControllerLayoutGuide type="bottom" id="cgi-SY-dO3"/>
@@ -163,21 +166,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Book Reference" id="cJS-Mv-88B">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="48K-ss-6Ba">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sld-SI-Fow">
-                                                <rect key="frame" x="-23" y="-15" width="133" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="New">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="addReferenceList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iPb-3w-y9e"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="APA Book Reference" id="cJS-Mv-88B"/>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7T-i2-A8K">
