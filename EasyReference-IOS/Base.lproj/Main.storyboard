@@ -133,6 +133,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="navBar" destination="oOh-em-bwa" id="KD7-lJ-Xx8"/>
                         <outlet property="tableView" destination="QDb-7s-eIz" id="C2k-2W-en5"/>
                     </connections>
                 </viewController>
@@ -159,7 +160,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="EasyReference" id="cJS-Mv-88B">
+                                    <navigationItem title="Book Reference" id="cJS-Mv-88B">
                                         <barButtonItem key="rightBarButtonItem" style="plain" id="48K-ss-6Ba">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sld-SI-Fow">
                                                 <rect key="frame" x="-23" y="-15" width="133" height="30"/>
@@ -182,11 +183,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter author" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rWw-ZE-dlm">
-                                <rect key="frame" x="16" y="103" width="568" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zt7-kG-2l0">
                                 <rect key="frame" x="23" y="141" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -239,6 +235,11 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter publisher" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7D-qf-yNg">
                                 <rect key="frame" x="16" y="438" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter author" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rWw-ZE-dlm">
+                                <rect key="frame" x="16" y="103" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>

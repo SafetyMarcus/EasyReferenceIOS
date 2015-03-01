@@ -13,6 +13,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     var referenceList: ReferenceList
     
     @IBOutlet
+    var navBar: UINavigationBar!
+    @IBOutlet
     var tableView: UITableView!
     
     required init(coder aDecoder: NSCoder)
@@ -25,6 +27,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        navBar.topItem?.title = referenceList.name
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
