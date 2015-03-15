@@ -55,6 +55,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="e1n-ne-mU2">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="RUN-aV-DsD"/>
                         <barButtonItem key="rightBarButtonItem" title="New" id="4nh-F3-hPp">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -112,6 +113,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vIW-rF-yKF">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="3S2-qs-QcK"/>
                         <barButtonItem key="rightBarButtonItem" title="New" id="xsD-jw-11A">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
