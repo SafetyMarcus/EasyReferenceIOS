@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return self.items.count;
     }
     
-    @IBAction func addReferenceList(sender: UIButton)
+    @IBAction func addReferenceList(sender: UIBarButtonItem)
     {
         var count = items.count + 1
         items.append(ReferenceList(name: "Reference List \(count)"))
@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         if(segue.identifier == "ShowReferenceList")
         {
-            let referenceListView: ReferenceListView = segue.destinationViewController as ReferenceListView
+            let referenceListView: ReferenceListView = segue.destinationViewController.topViewController as ReferenceListView
             referenceListView.referenceList = items[selected]
         }
     }
@@ -56,6 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.title = "EasyReference"
     }
 
     override func didReceiveMemoryWarning() {

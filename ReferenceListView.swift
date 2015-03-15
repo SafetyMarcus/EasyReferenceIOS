@@ -24,7 +24,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         super.init(coder: aDecoder)
     }
     
-    @IBAction func addReference(sender: UIButton)
+    @IBAction func addReference(sender: UIBarButtonItem)
     {
         referenceList.references.append(ReferenceItem())
         self.tableView.reloadData()
@@ -34,7 +34,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        navBar.topItem?.title = referenceList.name
+        self.title = referenceList.name
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
