@@ -11,6 +11,7 @@ import UIKit
 class EditReferenceView: UIViewController
 {
     var referenceItem: ReferenceItem
+    var saveReferenceDelegate: SaveReferenceDelegate! = nil
     
     @IBOutlet weak var editAuthor: UITextField!
     @IBOutlet weak var editDate: UITextField!
@@ -34,5 +35,19 @@ class EditReferenceView: UIViewController
         editSubtitle.text = referenceItem.subTitle
         editLocation.text = referenceItem.location
         editPublisher.text = referenceItem.publisher
+    }
+    
+    @IBAction func saveAndReturn(sender: UIBarButtonItem)
+    {
+        referenceItem.author = editAuthor.text
+        referenceItem.date = editDate.text
+        referenceItem.title = editTitle.text
+        referenceItem.subTitle = editSubtitle.text
+        referenceItem.location = editLocation.text
+        referenceItem.publisher = editPublisher.text
+        
+        saveReferenceDelegate.saveReference(referenceItem)
+        
+        performSegueWithIdentifier("UnwindToList", sender: sender)
     }
 }

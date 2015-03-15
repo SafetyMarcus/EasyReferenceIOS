@@ -93,7 +93,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="WVM-fd-hz4" kind="show" identifier="ShowReferenceItem" id="tih-me-B0q"/>
+                                            <segue destination="tk6-Rp-fo2" kind="show" identifier="ShowReferenceItem" id="tih-me-B0q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -261,6 +261,14 @@
                             <constraint firstItem="QYe-9D-9pX" firstAttribute="top" secondItem="Olh-mh-MwR" secondAttribute="top" constant="237" id="yAO-NG-HkA"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="ewG-Gp-Zzi">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="6FL-sF-Flq">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="saveAndReturn:" destination="WVM-fd-hz4" id="GN3-Eo-vOV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="editAuthor" destination="rWw-ZE-dlm" id="tqd-gi-awr"/>
                         <outlet property="editDate" destination="epx-OX-qUx" id="E6I-UB-LVf"/>
@@ -268,11 +276,13 @@
                         <outlet property="editPublisher" destination="f7D-qf-yNg" id="qyE-ol-6hI"/>
                         <outlet property="editSubtitle" destination="U4i-04-2C0" id="vVq-Zs-wvG"/>
                         <outlet property="editTitle" destination="QYe-9D-9pX" id="iqL-Nm-RVE"/>
+                        <segue destination="G3F-Ac-7Vk" kind="unwind" identifier="UnwindToList" unwindAction="unwindToList:" id="eFu-LK-AK6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hhg-Sf-GKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="G3F-Ac-7Vk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3067" y="234"/>
+            <point key="canvasLocation" x="3879" y="234"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9R8-xK-muK">
@@ -309,6 +319,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LTC-2L-kFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1824" y="234"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QAj-ea-9xW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tk6-Rp-fo2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jLt-Zh-fB5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WVM-fd-hz4" kind="relationship" relationship="rootViewController" id="Ms5-gA-pXc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCn-hs-t1G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3263" y="234"/>
         </scene>
     </scenes>
 </document>

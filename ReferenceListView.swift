@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource
+protocol SaveReferenceDelegate
+{
+    func saveReference(reference: ReferenceItem)
+}
+
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveReferenceDelegate
 {
     var referenceList: ReferenceList
     var selected = 0
@@ -30,19 +35,28 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
     
+    @IBAction func unwindToList(unwindSegue: UIStoryboardSegue){}
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.title = referenceList.name
     }
+
+    func saveReference(reference: ReferenceItem)
+    {
+        referenceList.references[selected] = reference
+        self.tableView.reloadData()
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if(segue.identifier == "ShowReferenceItem")
         {
-            let editReferenceView: EditReferenceView = segue.destinationViewController as EditReferenceView
+            let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as EditReferenceView
             editReferenceView.referenceItem = referenceList.references[selected]
+            editReferenceView.saveReferenceDelegate = self
         }
     }
     
