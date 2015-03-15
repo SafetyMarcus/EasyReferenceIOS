@@ -18,6 +18,8 @@
 		2CB5CFB91AA2A244003A808A /* ReferenceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */; };
 		2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */; };
 		2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */; };
+		2CCA0CAE1AB594FB005D3231 /* ReferenceListHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */; };
+		2CCA0CB01AB5969A005D3231 /* ReferenceListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReferenceListView.swift; path = ../ReferenceListView.swift; sourceTree = "<group>"; };
 		2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceList.swift; sourceTree = "<group>"; };
 		2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceItem.swift; sourceTree = "<group>"; };
+		2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceListHeaderCell.xib; sourceTree = "<group>"; };
+		2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceListHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 		2C51C6F91AA184F1006C199A /* EasyReference-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				2CCA0CAC1AB594CA005D3231 /* CustomCells */,
 				2CB5CFBB1AA2A348003A808A /* Models */,
 				2CB5CFBA1AA2A32D003A808A /* ViewControllers */,
 				2C51C6FC1AA184F1006C199A /* AppDelegate.swift */,
@@ -141,6 +146,15 @@
 				2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		2CCA0CAC1AB594CA005D3231 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */,
+				2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */,
+			);
+			name = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CCA0CAE1AB594FB005D3231 /* ReferenceListHeaderCell.xib in Resources */,
 				2C51C7051AA184F2006C199A /* Main.storyboard in Resources */,
 				2C51C70A1AA184F2006C199A /* LaunchScreen.xib in Resources */,
 				2C51C7071AA184F2006C199A /* Images.xcassets in Resources */,
@@ -247,6 +262,7 @@
 				2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */,
 				2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */,
 				2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */,
+				2CCA0CB01AB5969A005D3231 /* ReferenceListHeaderCell.swift in Sources */,
 				2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */,
 				2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */,
 				2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */,

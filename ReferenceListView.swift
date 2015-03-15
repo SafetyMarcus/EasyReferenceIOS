@@ -41,6 +41,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         super.viewDidLoad()
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.registerNib(UINib(nibName: "ReferenceListHeaderCell", bundle: nil), forCellReuseIdentifier: "ReferenceListHeader")
         self.title = referenceList.name
     }
 
@@ -62,29 +63,42 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
-        return referenceList.references.count;
+        return referenceList.references.count + 1;
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        selected = indexPath.row
-        self.performSegueWithIdentifier("ShowReferenceItem", sender: self)
+        selected = indexPath.row - 1
+        
+        if(selected != -1)
+        {
+            performSegueWithIdentifier("ShowReferenceItem", sender: self)
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
-        
-        var currentReference = self.referenceList.references[indexPath.row]
-        var labelText = currentReference.getReferenceString()
-        
-        if(labelText.isEmpty)
+        if(indexPath.row == 0)
         {
-            labelText = "Click to edit!"
+            var cell: ReferenceListHeaderCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as ReferenceListHeaderCell
+            cell.title.text = referenceList.name
+            
+            return cell
         }
+        else
+        {
+            var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         
-        cell.textLabel!.text = labelText
+            var currentReference = self.referenceList.references[indexPath.row - 1]
+            var labelText = currentReference.getReferenceString()
         
-        return cell
+            if(labelText.isEmpty)
+            {
+                labelText = "Click to edit!"
+            }
+        
+            cell.textLabel!.text = labelText
+            return cell
+        }
     }
 }
