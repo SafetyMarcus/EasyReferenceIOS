@@ -8,9 +8,14 @@
 
 import UIKit
 
-class EditReferenceView: UIViewController
+protocol AddAuthorDelegate
 {
-    var referenceItem: ReferenceItem
+    func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
+}
+
+class EditReferenceView: UIViewController, AddAuthorDelegate
+{
+    var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
     
     @IBOutlet weak var editAuthor: UITextField!
@@ -19,12 +24,9 @@ class EditReferenceView: UIViewController
     @IBOutlet weak var editSubtitle: UITextField!
     @IBOutlet weak var editLocation: UITextField!
     @IBOutlet weak var editPublisher: UITextField!
+    @IBOutlet weak var addAuthor: UIButton!
     
-    required init(coder aDecoder: NSCoder)
-    {
-        referenceItem = ReferenceItem()
-        super.init(coder: aDecoder)
-    }
+    @IBAction func unwindToEditReference(unwindSegue: UIStoryboardSegue){}
     
     override func viewDidLoad()
     {
@@ -35,6 +37,7 @@ class EditReferenceView: UIViewController
         editSubtitle.text = referenceItem.subTitle
         editLocation.text = referenceItem.location
         editPublisher.text = referenceItem.publisher
+        addAuthor.layer.cornerRadius = 2
     }
     
     @IBAction func saveAndReturn(sender: UIBarButtonItem)
@@ -49,5 +52,41 @@ class EditReferenceView: UIViewController
         saveReferenceDelegate.saveReference(referenceItem)
         
         performSegueWithIdentifier("UnwindToList", sender: sender)
+    }
+    
+    func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
+    {
+        var authors = ""
+        
+        if((editAuthor.text as NSString).length > 0)
+        {
+            authors = "\(editAuthor.text), "
+        }
+        
+        if(firstName.length > 0)
+        {
+            authors += "\(firstName.substringToIndex(1).uppercaseString). "
+        }
+        
+        if(middleName.length > 0)
+        {
+            authors += "\(middleName.substringToIndex(1).uppercaseString). "
+        }
+            
+        if(lastName.length > 0)
+        {
+            authors += "\(lastName.substringToIndex(1).uppercaseString)\(lastName.substringFromIndex(1))"
+        }
+        
+        editAuthor.text = authors
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if(segue.identifier == "ShowAddAuthor")
+        {
+            let addAuthorView: AddAuthorViewController = segue.destinationViewController.topViewController as AddAuthorViewController
+            addAuthorView.addAuthorDelegate = self
+        }
     }
 }
