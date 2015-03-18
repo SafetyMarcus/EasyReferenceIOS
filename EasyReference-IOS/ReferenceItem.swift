@@ -10,12 +10,26 @@ import Foundation
 
 class ReferenceItem
 {
+    enum ReferenceType
+    {
+        case Book
+        case Journal
+        case BookChapter
+        case WebPage
+    }
+    
+    var type: ReferenceType
     var author: String = ""
     var date: String = ""
     var title: String = ""
     var subTitle: String = ""
     var location: String = ""
     var publisher: String = ""
+    
+    init(type: ReferenceType)
+    {
+        self.type = type
+    }
     
     func getReferenceString() -> String
     {

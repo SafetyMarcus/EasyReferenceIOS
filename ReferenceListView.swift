@@ -12,8 +12,12 @@ protocol SaveReferenceDelegate
 {
     func saveReference(reference: ReferenceItem)
 }
+protocol AddReferenceDelegate
+{
+    func addReference(type: ReferenceItem.ReferenceType)
+}
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveReferenceDelegate
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveReferenceDelegate, AddReferenceDelegate
 {
     var referenceList: ReferenceList
     var selected = 0
@@ -29,9 +33,9 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         super.init(coder: aDecoder)
     }
     
-    @IBAction func addReference(sender: UIBarButtonItem)
+    func addReference(type: ReferenceItem.ReferenceType)
     {
-        referenceList.references.append(ReferenceItem())
+        referenceList.references.append(ReferenceItem(type: type))
         self.tableView.reloadData()
     }
     
