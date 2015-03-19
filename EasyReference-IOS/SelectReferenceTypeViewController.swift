@@ -11,8 +11,9 @@ import UIKit
 
 class SelectReferenceTypeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    
     @IBOutlet weak var tableView: UITableView!
+    
+    var delegate: AddReferenceDelegate! = nil
     
     override func viewDidLoad()
     {
@@ -58,5 +59,33 @@ class SelectReferenceTypeViewController: UIViewController, UITableViewDelegate, 
     {
         imageView.image = imageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         imageView.tintColor = UIColor.whiteColor()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        delegate.addReference(getTypeForPosition(indexPath.row))
+        performSegueWithIdentifier("UnwindToList", sender: self)
+    }
+    
+    func getTypeForPosition(position: NSInteger) -> ReferenceItem.ReferenceType
+    {
+        if(position == 0)
+        {
+            return ReferenceItem.ReferenceType.Book
+        }
+        else if(position == 1)
+        {
+            return ReferenceItem.ReferenceType.Journal
+        }
+        else if(position == 2)
+        {
+            return ReferenceItem.ReferenceType.BookChapter
+        }
+        else if(position == 3)
+        {
+            return ReferenceItem.ReferenceType.WebPage
+        }
+        
+        return ReferenceItem.ReferenceType.Book
     }
 }

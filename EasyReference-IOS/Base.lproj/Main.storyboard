@@ -118,7 +118,7 @@
                         <barButtonItem key="rightBarButtonItem" title="New" id="0r2-q9-E0K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="LjV-De-U6W" kind="show" id="kKT-8t-4fF"/>
+                                <segue destination="LjV-De-U6W" kind="show" identifier="SelectReferenceType" id="kKT-8t-4fF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -130,7 +130,7 @@
             </objects>
             <point key="canvasLocation" x="2452" y="234"/>
         </scene>
-        <!--Select Reference Type View Controller-->
+        <!--Select A Type-->
         <scene sceneID="phK-Kn-YaH">
             <objects>
                 <viewController id="UGj-RV-0YQ" customClass="SelectReferenceTypeViewController" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -153,12 +153,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UyO-6m-1vT"/>
+                    <navigationItem key="navigationItem" title="Select A Type" id="UyO-6m-1vT"/>
                     <connections>
                         <outlet property="tableView" destination="g2D-8f-8E5" id="dep-3b-DGg"/>
+                        <segue destination="iG4-SQ-JEe" kind="unwind" identifier="UnwindToList" unwindAction="unwindToList:" id="hOl-Yg-Xzh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSC-4L-aqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iG4-SQ-JEe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2912" y="908"/>
         </scene>

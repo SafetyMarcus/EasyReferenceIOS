@@ -63,6 +63,11 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             editReferenceView.referenceItem = referenceList.references[selected]
             editReferenceView.saveReferenceDelegate = self
         }
+        else if(segue.identifier == "SelectReferenceType")
+        {
+            let referenceTypeView: SelectReferenceTypeViewController = segue.destinationViewController.topViewController as SelectReferenceTypeViewController
+            referenceTypeView.delegate = self
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
