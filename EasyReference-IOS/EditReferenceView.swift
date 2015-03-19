@@ -22,8 +22,6 @@ class EditReferenceView: UIViewController, AddAuthorDelegate
     @IBOutlet weak var editDate: UITextField!
     @IBOutlet weak var editTitle: UITextField!
     @IBOutlet weak var editSubtitle: UITextField!
-    @IBOutlet weak var editLocation: UITextField!
-    @IBOutlet weak var editPublisher: UITextField!
     @IBOutlet weak var addAuthor: UIButton!
     
     @IBAction func unwindToEditReference(unwindSegue: UIStoryboardSegue){}
@@ -35,23 +33,16 @@ class EditReferenceView: UIViewController, AddAuthorDelegate
         editDate.text = referenceItem.date
         editTitle.text = referenceItem.title
         editSubtitle.text = referenceItem.subTitle
-        editLocation.text = referenceItem.location
-        editPublisher.text = referenceItem.publisher
         addAuthor.layer.cornerRadius = 2
     }
     
-    @IBAction func saveAndReturn(sender: UIBarButtonItem)
+    func save()
     {
         referenceItem.author = editAuthor.text
         referenceItem.date = editDate.text
         referenceItem.title = editTitle.text
         referenceItem.subTitle = editSubtitle.text
-        referenceItem.location = editLocation.text
-        referenceItem.publisher = editPublisher.text
-        
-        saveReferenceDelegate.saveReference(referenceItem)
-        
-        performSegueWithIdentifier("UnwindToList", sender: sender)
+
     }
     
     func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
@@ -63,6 +54,11 @@ class EditReferenceView: UIViewController, AddAuthorDelegate
             authors = "\(editAuthor.text), "
         }
         
+        if(lastName.length > 0)
+        {
+            authors += "\(lastName.substringToIndex(1).uppercaseString)\(lastName.substringFromIndex(1)), "
+        }
+        
         if(firstName.length > 0)
         {
             authors += "\(firstName.substringToIndex(1).uppercaseString). "
@@ -71,11 +67,6 @@ class EditReferenceView: UIViewController, AddAuthorDelegate
         if(middleName.length > 0)
         {
             authors += "\(middleName.substringToIndex(1).uppercaseString). "
-        }
-            
-        if(lastName.length > 0)
-        {
-            authors += "\(lastName.substringToIndex(1).uppercaseString)\(lastName.substringFromIndex(1))"
         }
         
         editAuthor.text = authors

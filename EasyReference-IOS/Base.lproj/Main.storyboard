@@ -167,7 +167,7 @@
         <!--APA Book Reference-->
         <scene sceneID="cht-kY-Heg">
             <objects>
-                <viewController title="APA Book Reference" id="WVM-fd-hz4" customClass="EditReferenceView" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="APA Book Reference" id="WVM-fd-hz4" customClass="EditBookReferenceView" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Ep-Yd-YZT"/>
                         <viewControllerLayoutGuide type="bottom" id="cgi-SY-dO3"/>
@@ -317,7 +317,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Done" id="6FL-sF-Flq">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="saveAndReturn:" destination="WVM-fd-hz4" id="GN3-Eo-vOV"/>
+                                <action selector="saveAndReturn:" destination="WVM-fd-hz4" id="Qil-On-ugA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
