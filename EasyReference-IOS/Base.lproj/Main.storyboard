@@ -112,12 +112,13 @@
                             <constraint firstItem="QDb-7s-eIz" firstAttribute="leading" secondItem="Oql-G0-vO7" secondAttribute="leading" id="zC9-ug-iK9"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="vIW-rF-yKF">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="3S2-qs-QcK"/>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="xsD-jw-11A">
+                        <barButtonItem key="rightBarButtonItem" title="New" id="0r2-q9-E0K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="Eqo-F4-mUP" kind="presentation" id="spg-Rq-cv0"/>
+                                <segue destination="LjV-De-U6W" kind="show" id="kKT-8t-4fF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -128,6 +129,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5E7-jf-1wx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2452" y="234"/>
+        </scene>
+        <!--Select Reference Type View Controller-->
+        <scene sceneID="phK-Kn-YaH">
+            <objects>
+                <viewController id="UGj-RV-0YQ" customClass="SelectReferenceTypeViewController" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q4Q-aa-a5g"/>
+                        <viewControllerLayoutGuide type="bottom" id="fhd-kG-e0s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kLb-D9-cce">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="g2D-8f-8E5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UGj-RV-0YQ" id="HSo-yN-oPf"/>
+                                    <outlet property="delegate" destination="UGj-RV-0YQ" id="Dwc-yR-Ggo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UyO-6m-1vT"/>
+                    <connections>
+                        <outlet property="tableView" destination="g2D-8f-8E5" id="dep-3b-DGg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TSC-4L-aqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2912" y="908"/>
         </scene>
         <!--APA Book Reference-->
         <scene sceneID="cht-kY-Heg">
@@ -427,83 +460,6 @@
             </objects>
             <point key="canvasLocation" x="1824" y="234"/>
         </scene>
-        <!--Select A Type-->
-        <scene sceneID="Jkl-g2-Qaq">
-            <objects>
-                <viewController id="10M-32-mCO" customClass="ReferenceTypeViewController" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6c4-BB-xPj"/>
-                        <viewControllerLayoutGuide type="bottom" id="XTu-fq-x6r"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XgL-BT-S1Z">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbt-Nd-pw9">
-                                <rect key="frame" x="16" y="72" width="60" height="60"/>
-                                <color key="backgroundColor" red="1" green="0.055564177690000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_book.png" translatesAutoresizingMaskIntoConstraints="NO" id="wti-77-t5O">
-                                <rect key="frame" x="26" y="81" width="40" height="41"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="wmk-Yn-lUJ"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8E-Dt-VDl">
-                                <rect key="frame" x="84" y="91" width="41" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ul-Kb-hna">
-                                <rect key="frame" x="16" y="135" width="568" height="1"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="9HW-17-TqG"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="xbt-Nd-pw9" firstAttribute="top" secondItem="6c4-BB-xPj" secondAttribute="bottom" constant="8" symbolic="YES" id="GcF-wl-ddj"/>
-                            <constraint firstItem="0ul-Kb-hna" firstAttribute="top" secondItem="wti-77-t5O" secondAttribute="bottom" constant="13" id="JIN-gk-11m"/>
-                            <constraint firstItem="wti-77-t5O" firstAttribute="leading" secondItem="XgL-BT-S1Z" secondAttribute="leadingMargin" constant="10" id="M9d-KK-Xf5"/>
-                            <constraint firstItem="wti-77-t5O" firstAttribute="centerY" secondItem="B8E-Dt-VDl" secondAttribute="centerY" id="OHy-FD-dZz"/>
-                            <constraint firstItem="XTu-fq-x6r" firstAttribute="top" secondItem="0ul-Kb-hna" secondAttribute="bottom" constant="464" id="QM8-EM-Pex"/>
-                            <constraint firstItem="wti-77-t5O" firstAttribute="centerX" secondItem="xbt-Nd-pw9" secondAttribute="centerX" id="RXl-Mm-4mu"/>
-                            <constraint firstItem="0ul-Kb-hna" firstAttribute="trailing" secondItem="XgL-BT-S1Z" secondAttribute="trailingMargin" id="SVz-K6-jfV"/>
-                            <constraint firstItem="wti-77-t5O" firstAttribute="top" secondItem="6c4-BB-xPj" secondAttribute="bottom" constant="17" id="eQo-d8-qGO"/>
-                            <constraint firstItem="0ul-Kb-hna" firstAttribute="top" secondItem="xbt-Nd-pw9" secondAttribute="bottom" constant="3" id="odS-kw-WyF"/>
-                            <constraint firstItem="B8E-Dt-VDl" firstAttribute="leading" secondItem="wti-77-t5O" secondAttribute="trailing" constant="18" id="sIi-a2-aCj"/>
-                            <constraint firstItem="0ul-Kb-hna" firstAttribute="leading" secondItem="XgL-BT-S1Z" secondAttribute="leadingMargin" id="wBg-Aw-Zgo"/>
-                            <constraint firstItem="0ul-Kb-hna" firstAttribute="leading" secondItem="xbt-Nd-pw9" secondAttribute="leading" id="yX9-5g-NmK"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Select A Type" id="7Ds-7h-1Ze">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nkq-Nc-T7s">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="JQE-9s-cF8" kind="unwind" identifier="UnwindToList" unwindAction="unwindToList:" id="Khs-cN-jiB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="bookImage" destination="wti-77-t5O" id="W4h-RL-Z8c"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nJS-Dz-Hu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="JQE-9s-cF8" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2514" y="1001"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="QAj-ea-9xW">
             <objects>
@@ -541,25 +497,22 @@
             <point key="canvasLocation" x="5333" y="234"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="jpa-r0-W7V">
+        <scene sceneID="7WM-E6-jgX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="euV-WN-AmI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eqo-F4-mUP" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LjV-De-U6W" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="F9N-0M-Kqj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Isu-Bq-CCV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="10M-32-mCO" kind="relationship" relationship="rootViewController" id="6uw-SN-D0b"/>
+                        <segue destination="UGj-RV-0YQ" kind="relationship" relationship="rootViewController" id="3O7-QU-cO8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CYm-Za-4aR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1630" y="996"/>
+            <point key="canvasLocation" x="2100" y="908"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="icon_book.png" width="72" height="72"/>
-    </resources>
 </document>

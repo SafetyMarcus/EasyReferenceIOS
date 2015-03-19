@@ -17,10 +17,15 @@
 		2C51C7161AA184F2006C199A /* EasyReference_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7151AA184F2006C199A /* EasyReference_IOSTests.swift */; };
 		2CB1B7C41AB6FFA40018E962 /* AddAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B7C31AB6FFA40018E962 /* AddAuthorViewController.swift */; };
 		2CB5CFB91AA2A244003A808A /* ReferenceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */; };
-		2CBE07FE1AB9A5C300379611 /* ReferenceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE07FD1AB9A5C300379611 /* ReferenceTypeViewController.swift */; };
+		2CBE07FE1AB9A5C300379611 /* ReferenceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE07FD1AB9A5C300379611 /* ReferenceTypeCell.swift */; };
 		2CBE08001AB9A8FA00379611 /* icon_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CBE07FF1AB9A8FA00379611 /* icon_book.png */; };
 		2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */; };
 		2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */; };
+		2CC966E01ABAE1F900087CA2 /* ReferenceTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CC966DF1ABAE1F900087CA2 /* ReferenceTypeCell.xib */; };
+		2CC966E51ABAE82000087CA2 /* SelectReferenceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC966E41ABAE82000087CA2 /* SelectReferenceTypeViewController.swift */; };
+		2CC966EF1ABAED5D00087CA2 /* icon_journal.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC966EE1ABAED5D00087CA2 /* icon_journal.png */; };
+		2CC966F11ABAED6700087CA2 /* icon_book_chapter.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC966F01ABAED6700087CA2 /* icon_book_chapter.png */; };
+		2CC966F31ABAED6E00087CA2 /* webpage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CC966F21ABAED6E00087CA2 /* webpage.png */; };
 		2CCA0CAE1AB594FB005D3231 /* ReferenceListHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */; };
 		2CCA0CB01AB5969A005D3231 /* ReferenceListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */; };
 /* End PBXBuildFile section */
@@ -50,10 +55,15 @@
 		2C51C7151AA184F2006C199A /* EasyReference_IOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyReference_IOSTests.swift; sourceTree = "<group>"; };
 		2CB1B7C31AB6FFA40018E962 /* AddAuthorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAuthorViewController.swift; sourceTree = "<group>"; };
 		2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReferenceListView.swift; path = ../ReferenceListView.swift; sourceTree = "<group>"; };
-		2CBE07FD1AB9A5C300379611 /* ReferenceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceTypeViewController.swift; sourceTree = "<group>"; };
+		2CBE07FD1AB9A5C300379611 /* ReferenceTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceTypeCell.swift; sourceTree = "<group>"; };
 		2CBE07FF1AB9A8FA00379611 /* icon_book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_book.png; path = ../../icon_book.png; sourceTree = "<group>"; };
 		2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceList.swift; sourceTree = "<group>"; };
 		2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceItem.swift; sourceTree = "<group>"; };
+		2CC966DF1ABAE1F900087CA2 /* ReferenceTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceTypeCell.xib; sourceTree = "<group>"; };
+		2CC966E41ABAE82000087CA2 /* SelectReferenceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectReferenceTypeViewController.swift; sourceTree = "<group>"; };
+		2CC966EE1ABAED5D00087CA2 /* icon_journal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_journal.png; path = "../../EasyReference/app/src/main/res/drawable-xxhdpi/icon_journal.png"; sourceTree = "<group>"; };
+		2CC966F01ABAED6700087CA2 /* icon_book_chapter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_book_chapter.png; path = "../../EasyReference/app/src/main/res/drawable-xxhdpi/icon_book_chapter.png"; sourceTree = "<group>"; };
+		2CC966F21ABAED6E00087CA2 /* webpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = webpage.png; path = "../../EasyReference/app/src/main/res/drawable-xxhdpi/webpage.png"; sourceTree = "<group>"; };
 		2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceListHeaderCell.xib; sourceTree = "<group>"; };
 		2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceListHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				2CBE07FF1AB9A8FA00379611 /* icon_book.png */,
+				2CC966F01ABAED6700087CA2 /* icon_book_chapter.png */,
+				2CC966EE1ABAED5D00087CA2 /* icon_journal.png */,
+				2CC966F21ABAED6E00087CA2 /* webpage.png */,
 				2C51C6FB1AA184F1006C199A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -143,7 +156,7 @@
 				2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */,
 				2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */,
 				2CB1B7C31AB6FFA40018E962 /* AddAuthorViewController.swift */,
-				2CBE07FD1AB9A5C300379611 /* ReferenceTypeViewController.swift */,
+				2CC966E41ABAE82000087CA2 /* SelectReferenceTypeViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -157,11 +170,29 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		2CCA0CAC1AB594CA005D3231 /* CustomCells */ = {
+		2CC966E21ABAE43800087CA2 /* ReferenceListHeader */ = {
 			isa = PBXGroup;
 			children = (
 				2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */,
 				2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */,
+			);
+			name = ReferenceListHeader;
+			sourceTree = "<group>";
+		};
+		2CC966E31ABAE44200087CA2 /* ReferenceType */ = {
+			isa = PBXGroup;
+			children = (
+				2CC966DF1ABAE1F900087CA2 /* ReferenceTypeCell.xib */,
+				2CBE07FD1AB9A5C300379611 /* ReferenceTypeCell.swift */,
+			);
+			name = ReferenceType;
+			sourceTree = "<group>";
+		};
+		2CCA0CAC1AB594CA005D3231 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				2CC966E21ABAE43800087CA2 /* ReferenceListHeader */,
+				2CC966E31ABAE44200087CA2 /* ReferenceType */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -247,10 +278,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CCA0CAE1AB594FB005D3231 /* ReferenceListHeaderCell.xib in Resources */,
+				2CC966F11ABAED6700087CA2 /* icon_book_chapter.png in Resources */,
+				2CC966E01ABAE1F900087CA2 /* ReferenceTypeCell.xib in Resources */,
 				2C51C7051AA184F2006C199A /* Main.storyboard in Resources */,
 				2C51C70A1AA184F2006C199A /* LaunchScreen.xib in Resources */,
 				2CBE08001AB9A8FA00379611 /* icon_book.png in Resources */,
+				2CC966EF1ABAED5D00087CA2 /* icon_journal.png in Resources */,
 				2C51C7071AA184F2006C199A /* Images.xcassets in Resources */,
+				2CC966F31ABAED6E00087CA2 /* webpage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,8 +307,9 @@
 				2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */,
 				2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */,
 				2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */,
-				2CBE07FE1AB9A5C300379611 /* ReferenceTypeViewController.swift in Sources */,
+				2CBE07FE1AB9A5C300379611 /* ReferenceTypeCell.swift in Sources */,
 				2CB1B7C41AB6FFA40018E962 /* AddAuthorViewController.swift in Sources */,
+				2CC966E51ABAE82000087CA2 /* SelectReferenceTypeViewController.swift in Sources */,
 				2CCA0CB01AB5969A005D3231 /* ReferenceListHeaderCell.swift in Sources */,
 				2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */,
 				2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */,
