@@ -113,7 +113,7 @@ class ReferenceItem
         
         if(type == ReferenceType.Book)
         {
-            getBookValueForPosition(position)
+            value = getBookValueForPosition(position)
         }
         
         return value
@@ -147,6 +147,43 @@ class ReferenceItem
         }
         
         return ""
+    }
+    
+    func saveValueForPosition(position: NSInteger, value: NSString)
+    {
+        if(type == ReferenceType.Book)
+        {
+            saveBookValueForPosition(position, value: value)
+        }
+    }
+    
+    private func saveBookValueForPosition(position: NSInteger, value: NSString)
+    {
+        if(position == 0)
+        {
+            self.author = value
+        }
+        else if(position == 1)
+        {
+            self.date = value
+        }
+        else if(position == 2)
+        {
+            self.title = value
+        }
+        else if(position == 3)
+        {
+            self.subTitle = value
+        }
+        else if(position == 4)
+        {
+            self.publisher = value
+        }
+        else if(position == 5)
+        {
+            self.location = value
+        }
+
     }
     
     func getAuthorForReference() -> String

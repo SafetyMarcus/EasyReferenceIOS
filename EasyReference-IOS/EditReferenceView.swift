@@ -26,12 +26,29 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
     {
         super.viewDidLoad()
         self.tableView.rowHeight = 80
+        self.tableView.allowsSelection = false
         self.tableView.registerNib(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
         self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
     }
     
     func save()
     {
+        for index in 0...self.tableView.numberOfRowsInSection(0)
+        {
+            var value = ""
+            
+            var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))
+            if let authorCell = cell as? EditReferenceAuthorCell
+            {
+                value = authorCell.referenceText.text
+            }
+            else if let referenceCell = cell as? EditReferenceCell
+            {
+                value = referenceCell.referenceText.text
+            }
+            
+            referenceItem.saveValueForPosition(index, value: value)
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
