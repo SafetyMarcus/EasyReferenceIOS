@@ -14,4 +14,12 @@ class EditReferenceAuthorCell: UITableViewCell
     @IBOutlet weak var referenceLabel: UILabel!
     @IBOutlet weak var referenceText: UITextField!
     @IBOutlet weak var addAuthor: UIButton!
+    
+    var delegate: AddAuthorListener! = nil
+    
+    
+    @IBAction func clickedAddAuthor(sender: UIButton)
+    {
+        self.delegate.clickedAddAuthor()
+    }
 }

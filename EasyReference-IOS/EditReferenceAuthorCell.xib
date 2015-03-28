@@ -42,6 +42,9 @@
                                 <integer key="value" value="2"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="clickedAddAuthor:" destination="IlG-oG-DCa" eventType="touchUpInside" id="GJV-pt-a3i"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

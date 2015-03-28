@@ -13,7 +13,12 @@ protocol AddAuthorDelegate
     func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
 }
 
-class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate
+protocol AddAuthorListener
+{
+    func clickedAddAuthor()
+}
+
+class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate, AddAuthorListener
 {
     var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
@@ -62,6 +67,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
         {
             var cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCellWithIdentifier("authorCell") as EditReferenceAuthorCell
             cell.referenceText.text = referenceItem.author
+            cell.delegate = self
             
             return cell
         }
@@ -81,8 +87,14 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
         return referenceItem.getLabelsForCells()[position]
     }
     
+    func clickedAddAuthor()
+    {
+        performSegueWithIdentifier("ShowAddAuthor", sender: self)
+    }
+    
     func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
     {
+        let authorCell: EditReferenceAuthorCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as EditReferenceAuthorCell
         var authors = ""
         
         if((referenceItem.author as NSString).length > 0)
@@ -105,7 +117,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
             authors += "\(middleName.substringToIndex(1).uppercaseString). "
         }
         
-        referenceItem.author = authors
+        authorCell.referenceText.text = authors
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
