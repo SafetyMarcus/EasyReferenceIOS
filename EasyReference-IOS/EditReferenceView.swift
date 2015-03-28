@@ -13,45 +13,63 @@ protocol AddAuthorDelegate
     func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
 }
 
-class EditReferenceView: UIViewController, AddAuthorDelegate
+class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate
 {
     var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
     
-    @IBOutlet weak var editAuthor: UITextField!
-    @IBOutlet weak var editDate: UITextField!
-    @IBOutlet weak var editTitle: UITextField!
-    @IBOutlet weak var editSubtitle: UITextField!
-    @IBOutlet weak var addAuthor: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     @IBAction func unwindToEditReference(unwindSegue: UIStoryboardSegue){}
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        editAuthor.text = referenceItem.author
-        editDate.text = referenceItem.date
-        editTitle.text = referenceItem.title
-        editSubtitle.text = referenceItem.subTitle
-        addAuthor.layer.cornerRadius = 2
+        self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
+        self.tableView.registerNib(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
     }
     
     func save()
     {
-        referenceItem.author = editAuthor.text
-        referenceItem.date = editDate.text
-        referenceItem.title = editTitle.text
-        referenceItem.subTitle = editSubtitle.text
-
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return referenceItem.getNumberOfCells()
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        if(indexPath.row == 0)
+        {
+            var cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCellWithIdentifier("authorCell") as EditReferenceAuthorCell
+            cell.referenceText.text = referenceItem.author
+            
+            return cell
+        }
+        else
+        {
+            var cell: EditReferenceCell = self.tableView.dequeueReusableCellWithIdentifier("referenceCell") as EditReferenceCell
+            cell.referenceLabel.text = referenceItem.getLabelsForCells()[indexPath.row]
+            cell.referenceText.placeholder = referenceItem.getHintsForCells()[indexPath.row]
+            cell.referenceText.text = referenceItem.getValueForPosition(indexPath.row)
+            
+            return cell
+        }
+    }
+    
+    func getLabelForPosition(position: NSInteger) -> String
+    {
+        return referenceItem.getLabelsForCells()[position]
     }
     
     func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
     {
         var authors = ""
         
-        if((editAuthor.text as NSString).length > 0)
+        if((referenceItem.author as NSString).length > 0)
         {
-            authors = "\(editAuthor.text), "
+            authors = "\(referenceItem.author), "
         }
         
         if(lastName.length > 0)
@@ -69,7 +87,7 @@ class EditReferenceView: UIViewController, AddAuthorDelegate
             authors += "\(middleName.substringToIndex(1).uppercaseString). "
         }
         
-        editAuthor.text = authors
+        referenceItem.author = authors
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
@@ -79,5 +97,12 @@ class EditReferenceView: UIViewController, AddAuthorDelegate
             let addAuthorView: AddAuthorViewController = segue.destinationViewController.topViewController as AddAuthorViewController
             addAuthorView.addAuthorDelegate = self
         }
+    }
+    
+    @IBAction func saveAndReturn(sender: AnyObject)
+    {
+        save()
+        saveReferenceDelegate.saveReference(referenceItem)
+        performSegueWithIdentifier("UnwindToList", sender: sender)
     }
 }

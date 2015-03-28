@@ -43,6 +43,112 @@ class ReferenceItem
         return fullString
     }
     
+    func getNumberOfCells() -> NSInteger
+    {
+        var cellCount = 0
+        
+        if(self.type == ReferenceType.Book)
+        {
+            cellCount = 6
+        }
+        
+        return cellCount
+    }
+    
+    func getLabelsForCells() -> [NSString]
+    {
+        var labels: [NSString] = [NSString]()
+        
+        if(self.type == ReferenceType.Book)
+        {
+            labels = self.getBookLabels()
+        }
+        
+        return labels
+    }
+    
+    private func getBookLabels() -> [NSString]
+    {
+        var labels: [NSString] = [NSString]()
+        
+        labels.append("Author")
+        labels.append("Date")
+        labels.append("Title")
+        labels.append("Subtitle")
+        labels.append("Publisher")
+        labels.append("Location")
+        
+        return labels
+    }
+    
+    func getHintsForCells() -> [NSString]
+    {
+        var hints: [NSString] = [NSString]()
+        
+        if(self.type == ReferenceType.Book)
+        {
+            hints = self.getBookHints()
+        }
+        
+        return hints
+    }
+    
+    private func getBookHints() -> [NSString]
+    {
+        var hints: [NSString] = [NSString]()
+        
+        hints.append("enter author")
+        hints.append("enter date")
+        hints.append("enter title")
+        hints.append("enter subtitle")
+        hints.append("enter publisher")
+        hints.append("enter location")
+        
+        return hints
+    }
+    
+    func getValueForPosition(position: NSInteger) -> NSString
+    {
+        var value = ""
+        
+        if(type == ReferenceType.Book)
+        {
+            getBookValueForPosition(position)
+        }
+        
+        return value
+    }
+    
+    private func getBookValueForPosition(position: NSInteger) -> NSString
+    {
+        if(position == 0)
+        {
+            return self.author
+        }
+        else if(position == 1)
+        {
+            return self.date
+        }
+        else if(position == 2)
+        {
+            return self.title
+        }
+        else if(position == 3)
+        {
+            return self.subTitle
+        }
+        else if(position == 4)
+        {
+            return self.publisher
+        }
+        else if(position == 5)
+        {
+            return self.location
+        }
+        
+        return ""
+    }
+    
     func getAuthorForReference() -> String
     {
         if(author.isEmpty)
