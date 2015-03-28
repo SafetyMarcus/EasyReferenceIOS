@@ -25,8 +25,9 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
+        self.tableView.rowHeight = 80
         self.tableView.registerNib(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
+        self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
     }
     
     func save()
