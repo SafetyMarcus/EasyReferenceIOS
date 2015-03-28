@@ -91,6 +91,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             var cell: ReferenceListHeaderCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as ReferenceListHeaderCell
             cell.title.text = referenceList.name
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             
             return cell
         }
