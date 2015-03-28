@@ -14,41 +14,31 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZc-cy-Ybb">
-                        <rect key="frame" x="8" y="20" width="36" height="20.5"/>
+                        <rect key="frame" x="8" y="20" width="36" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="zZV-Ih-CQO"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wdv-8u-JKk">
-                        <rect key="frame" x="8" y="49" width="86.5" height="30"/>
+                        <rect key="frame" x="8" y="48" width="284" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Krb-7g-ZLm"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="centerX" secondItem="wdv-8u-JKk" secondAttribute="centerX" id="8EU-wB-GLy"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="trailing" secondItem="BVF-Uw-sPd" secondAttribute="trailingMargin" id="8mM-2t-FMd"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="wdv-8u-JKk" secondAttribute="bottom" constant="12.5" id="AV5-6a-LTN"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="wdv-8u-JKk" secondAttribute="trailing" constant="197.5" id="AnF-eP-kih"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="leading" secondItem="GZc-cy-Ybb" secondAttribute="leading" id="B9K-VM-WDv"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="trailing" secondItem="BVF-Uw-sPd" secondAttribute="trailingMargin" id="BJz-PE-qz8"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="GZc-cy-Ybb" secondAttribute="trailing" constant="248" id="HJS-r0-lm6"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="top" secondItem="GZc-cy-Ybb" secondAttribute="bottom" constant="8" symbolic="YES" id="M1l-jv-hsu"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="trailing" secondItem="BVF-Uw-sPd" secondAttribute="trailingMargin" id="Mhk-WV-56q"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="trailing" secondItem="BVF-Uw-sPd" secondAttribute="trailingMargin" id="kEF-H7-YCP"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="trailing" secondItem="BVF-Uw-sPd" secondAttribute="trailingMargin" id="sXD-NV-LhA"/>
-                    <constraint firstItem="wdv-8u-JKk" firstAttribute="leading" secondItem="BVF-Uw-sPd" secondAttribute="leadingMargin" id="y2l-2o-Ndp"/>
+                    <constraint firstItem="wdv-8u-JKk" firstAttribute="top" secondItem="GZc-cy-Ybb" secondAttribute="bottom" constant="7.5" id="4Ff-Ii-7FA"/>
+                    <constraint firstItem="GZc-cy-Ybb" firstAttribute="leading" secondItem="wdv-8u-JKk" secondAttribute="leading" id="7cL-Gn-S70"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="wdv-8u-JKk" secondAttribute="bottom" constant="14" id="FWZ-2p-zhC"/>
+                    <constraint firstItem="GZc-cy-Ybb" firstAttribute="top" secondItem="BVF-Uw-sPd" secondAttribute="topMargin" constant="12" id="XbY-Ns-h15"/>
+                    <constraint firstItem="wdv-8u-JKk" firstAttribute="trailing" secondItem="BVF-Uw-sPd" secondAttribute="trailingMargin" id="n9S-GI-1mL"/>
+                    <constraint firstItem="wdv-8u-JKk" firstAttribute="leading" secondItem="BVF-Uw-sPd" secondAttribute="leadingMargin" id="nUO-51-jgX"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="8EU-wB-GLy"/>
-                        <exclude reference="8mM-2t-FMd"/>
-                        <exclude reference="BJz-PE-qz8"/>
-                        <exclude reference="Mhk-WV-56q"/>
-                        <exclude reference="kEF-H7-YCP"/>
-                        <exclude reference="sXD-NV-LhA"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="referenceLabel" destination="GZc-cy-Ybb" id="QmN-NN-h9M"/>
