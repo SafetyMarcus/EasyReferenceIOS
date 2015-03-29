@@ -377,11 +377,11 @@ class ReferenceItem
         {
             return self.issueNumber
         }
-        else if(position == 5)
+        else if(position == 7)
         {
             return self.pageNumber
         }
-        else if(position == 5)
+        else if(position == 8)
         {
             return self.doi
         }
