@@ -198,10 +198,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P4w-i0-ctI" firstAttribute="top" secondItem="3Ep-Yd-YZT" secondAttribute="bottom" constant="-64" id="4PF-Z4-KVa"/>
+                            <constraint firstItem="P4w-i0-ctI" firstAttribute="top" secondItem="Olh-mh-MwR" secondAttribute="top" id="E8T-EU-1V5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="P4w-i0-ctI" secondAttribute="trailing" constant="-16" id="Pcg-lX-tc3"/>
+                            <constraint firstAttribute="bottom" secondItem="P4w-i0-ctI" secondAttribute="bottom" id="Uvb-7p-Flf"/>
                             <constraint firstItem="P4w-i0-ctI" firstAttribute="leading" secondItem="Olh-mh-MwR" secondAttribute="leadingMargin" constant="-16" id="WRC-E4-KwE"/>
-                            <constraint firstItem="cgi-SY-dO3" firstAttribute="top" secondItem="P4w-i0-ctI" secondAttribute="bottom" constant="-44" id="d5l-XL-8S3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ewG-Gp-Zzi">

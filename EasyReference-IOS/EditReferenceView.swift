@@ -18,7 +18,7 @@ protocol AddAuthorListener
     func clickedAddAuthor()
 }
 
-class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate, AddAuthorListener
+class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate, AddAuthorListener, UITextFieldDelegate
 {
     var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
@@ -68,6 +68,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
             var cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCellWithIdentifier("authorCell") as EditReferenceAuthorCell
             cell.referenceText.text = referenceItem.author
             cell.delegate = self
+            cell.referenceText.delegate = self
             
             return cell
         }
@@ -77,9 +78,20 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
             cell.referenceLabel.text = referenceItem.getLabelsForCells()[indexPath.row]
             cell.referenceText.placeholder = referenceItem.getHintsForCells()[indexPath.row]
             cell.referenceText.text = referenceItem.getValueForPosition(indexPath.row)
+            cell.referenceText.delegate = self
             
             return cell
         }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField)
+    {
+        var cell: UITableViewCell = textField.superview?.superview as UITableViewCell
+        
+        var row = self.tableView.indexPathForCell(cell)
+        var position = row?.row
+        
+        referenceItem.saveValueForPosition(position!, value: textField.text)
     }
     
     func getLabelForPosition(position: NSInteger) -> String
