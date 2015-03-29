@@ -90,8 +90,9 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
         
         var row = self.tableView.indexPathForCell(cell)
         var position = row?.row
+        var value = textField.text
         
-        referenceItem.saveValueForPosition(position!, value: textField.text)
+        referenceItem.saveValueForPosition(position!, value: value)
     }
     
     func getLabelForPosition(position: NSInteger) -> String
