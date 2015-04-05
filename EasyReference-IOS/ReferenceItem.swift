@@ -40,6 +40,9 @@ class ReferenceItem
     var bookTitle = ""
     var bookSubtitle = ""
     
+    //Web page
+    var url = ""
+    
     init(type: ReferenceType)
     {
         self.type = type
@@ -58,6 +61,10 @@ class ReferenceItem
         else if(type == ReferenceType.BookChapter)
         {
             return getBookChapterReferenceString()
+        }
+        else if(type == ReferenceType.WebPage)
+        {
+            return getWebReferenceString()
         }
         
         return ""
@@ -102,6 +109,16 @@ class ReferenceItem
         fullString += getPageNumberForReference()
         fullString += getLocationForReference()
         fullString += getPublisherForReference()
+        
+        return fullString
+    }
+    
+    func getWebReferenceString() -> String
+    {
+        var fullString = getAuthorForReference()
+        fullString += getDateForReference()
+        fullString += getTitleForReference()
+        fullString += getUrlForReference()
         
         return fullString
     }
@@ -246,6 +263,16 @@ class ReferenceItem
         return " \(bookSubtitle), "
     }
     
+    func getUrlForReference() -> String
+    {
+        if(url.isEmpty)
+        {
+            return ""
+        }
+        
+        return " Retrieved from \(url)"
+    }
+    
     func getNumberOfCells() -> NSInteger
     {
         var cellCount = 0
@@ -261,6 +288,10 @@ class ReferenceItem
         else if(self.type == ReferenceType.BookChapter)
         {
             cellCount = 10
+        }
+        else if(self.type == ReferenceType.WebPage)
+        {
+            cellCount = 4;
         }
         
         return cellCount
@@ -281,6 +312,10 @@ class ReferenceItem
         else if(self.type == ReferenceType.BookChapter)
         {
             labels = self.getBookChapterLabels()
+        }
+        else if(self.type == ReferenceType.WebPage)
+        {
+            labels = self.getWebLabels()
         }
         
         return labels
@@ -335,6 +370,18 @@ class ReferenceItem
         return labels
     }
     
+    private func getWebLabels() -> [NSString]
+    {
+        var labels = [NSString]()
+        
+        labels.append("Author")
+        labels.append("Year")
+        labels.append("Title")
+        labels.append("URL")
+        
+        return labels
+    }
+    
     func getHintsForCells() -> [NSString]
     {
         var hints = [NSString]()
@@ -350,6 +397,10 @@ class ReferenceItem
         else if(self.type == ReferenceType.BookChapter)
         {
             hints = self.getBookChapterHints()
+        }
+        else if(self.type == ReferenceType.WebPage)
+        {
+            hints = self.getWebHints()
         }
         
         return hints
@@ -404,6 +455,18 @@ class ReferenceItem
         return hints
     }
     
+    private func getWebHints() -> [NSString]
+    {
+        var hints = [NSString]()
+        
+        hints.append("enter author")
+        hints.append("enter year")
+        hints.append("enter chapter title")
+        hints.append("enter url")
+        
+        return hints
+    }
+    
     func getValueForPosition(position: NSInteger) -> NSString
     {
         var value = ""
@@ -419,6 +482,10 @@ class ReferenceItem
         else if(type == ReferenceType.BookChapter)
         {
             value = getBookChapterValueForPosition(position)
+        }
+        else if(type == ReferenceType.WebPage)
+        {
+            value = getWebValueForPosition(position)
         }
         
         return value
@@ -542,6 +609,28 @@ class ReferenceItem
         return ""
     }
     
+    func getWebValueForPosition(position: NSInteger) -> NSString
+    {
+        if(position == 0)
+        {
+            return self.author
+        }
+        else if(position == 1)
+        {
+            return self.date
+        }
+        else if(position == 2)
+        {
+            return self.title
+        }
+        else if(position == 3)
+        {
+            return self.url
+        }
+        
+        return ""
+    }
+    
     func saveValueForPosition(position: NSInteger, value: NSString)
     {
         if(type == ReferenceType.Book)
@@ -555,6 +644,10 @@ class ReferenceItem
         else if(type == ReferenceType.BookChapter)
         {
             saveBookChapterValueForPosition(position, value: value)
+        }
+        else if(type == ReferenceType.WebPage)
+        {
+            saveWebReferenceValue(position, value: value)
         }
     }
     
@@ -667,6 +760,26 @@ class ReferenceItem
         else if(position == 9)
         {
             self.publisher = value
+        }
+    }
+    
+    private func saveWebReferenceValue(position: NSInteger, value: NSString)
+    {
+        if(position == 0)
+        {
+            self.author = value
+        }
+        else if(position == 1)
+        {
+            self.date = value
+        }
+        else if(position == 2)
+        {
+            self.title = value
+        }
+        else if(position == 3)
+        {
+            self.url = value
         }
     }
 }
