@@ -59,4 +59,28 @@ class ReferenceList
             references[i].save(context)
         }
     }
+    
+    func save(context: NSManagedObjectContext)
+    {
+        var error: NSError?
+        let fetchRequest = NSFetchRequest(entityName: "ReferenceList")
+        let predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = predicate
+        
+        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+        if(fetchResults == nil || fetchResults?.count == 0)
+        {
+            return
+        }
+        
+        if let results = fetchResults
+        {
+            if(results.count > 0)
+            {
+                var referenceList: AnyObject = results[0]
+                referenceList.setValue(id, forKey: "id")
+                referenceList.setValue(name, forKey: "name")
+            }
+        }
+    }
 }

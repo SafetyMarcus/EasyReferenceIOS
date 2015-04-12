@@ -19,6 +19,7 @@ protocol AddReferenceDelegate
 
 class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveReferenceDelegate, AddReferenceDelegate
 {
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceList = ReferenceList()
     var selected = 0
     
@@ -30,10 +31,20 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     func addReference(type: ReferenceItem.ReferenceType)
     {
         referenceList.references.append(ReferenceItem(parentId: referenceList.id, type: type))
+        referenceList.saveList(appDelegate.managedObjectContext!)
         self.tableView.reloadData()
     }
     
     @IBAction func unwindToList(unwindSegue: UIStoryboardSegue){}
+    
+    override func viewWillDisappear(animated: Bool)
+    {
+        var indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        var headerCell: ReferenceListHeaderCell = self.tableView.cellForRowAtIndexPath(indexPath) as! ReferenceListHeaderCell
+
+        referenceList.name = headerCell.title.text
+        referenceList.saveList(appDelegate.managedObjectContext!)
+    }
     
     override func viewDidLoad()
     {
@@ -45,8 +56,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
 
     func saveReference(reference: ReferenceItem)
     {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
         referenceList.references[selected] = reference
         referenceList.saveList(appDelegate.managedObjectContext!)
         self.tableView.reloadData()
