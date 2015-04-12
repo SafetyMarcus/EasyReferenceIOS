@@ -75,8 +75,23 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         {
             return 60
         }
+
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 9999))
         
-        return 40
+        var currentReference = self.referenceList.references[indexPath.row - 1]
+        var labelText = currentReference.getReferenceString()
+        
+        if(labelText.isEmpty)
+        {
+            labelText = "Click to edit!"
+        }
+        
+        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.numberOfLines = 0
+        
+        label.text = labelText
+        label.sizeToFit()
+        return label.frame.height + 20
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
@@ -116,6 +131,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
                 labelText = "Click to edit!"
             }
         
+            cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            cell.textLabel?.numberOfLines = 0
             cell.textLabel!.text = labelText
             return cell
         }
