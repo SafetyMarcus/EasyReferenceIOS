@@ -43,7 +43,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         var headerCell: ReferenceListHeaderCell = self.tableView.cellForRowAtIndexPath(indexPath) as! ReferenceListHeaderCell
 
         referenceList.name = headerCell.title.text
-        referenceList.saveList(appDelegate.managedObjectContext!)
+        referenceList.save(appDelegate.managedObjectContext!)
     }
     
     override func viewDidLoad()

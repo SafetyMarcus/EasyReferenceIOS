@@ -21,8 +21,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
-        getReferences()
         return referenceLists.count;
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        getReferences()
     }
     
     func getReferences()
@@ -48,6 +52,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 referenceLists.append(ReferenceList(reference: referenceObject, context: managedContext))
             }
         }
+        
+        self.tableView.reloadData()
     }
     
     @IBAction func addReferenceList(sender: UIBarButtonItem)
