@@ -19,6 +19,9 @@ class ReferenceItem
         case WebPage
     }
     
+    var id: String
+    var parentId: String
+    
     var type: ReferenceType
     var author = ""
     var date = ""
@@ -44,18 +47,23 @@ class ReferenceItem
     //Web page
     var url = ""
     
-    init(type: ReferenceType)
+    init(parentId: String, type: ReferenceType)
     {
+        self.id = NSUUID().UUIDString
+        self.parentId = parentId
         self.type = type
     }
     
     init(referenceItem: NSManagedObject)
     {
+        self.id = referenceItem.valueForKey("id") as! String
+        self.parentId = referenceItem.valueForKey("parent_id") as! String
+        
         var typeInt = referenceItem.valueForKey("type") as! NSInteger
         self.type = ReferenceType.Book
         
         self.author = referenceItem.valueForKey("author") as! String
-        self.date = referenceItem.valueForKey("year") as! String
+        self.date = referenceItem.valueForKey("date") as! String
         self.title = referenceItem.valueForKey("title") as! String
         self.subTitle = referenceItem.valueForKey("subtitle") as! String
         
@@ -65,7 +73,7 @@ class ReferenceItem
         self.journalTitle = referenceItem.valueForKey("journal_title") as! String
         self.volumeNumber = referenceItem.valueForKey("volume_number") as! String
         self.issueNumber = referenceItem.valueForKey("issue_number") as! String
-        self.pageNumber = referenceItem.valueForKey("pageNumber") as! String
+        self.pageNumber = referenceItem.valueForKey("page_number") as! String
         self.doi = referenceItem.valueForKey("doi") as! String
         
         self.editors = referenceItem.valueForKey("editors") as! String
@@ -75,6 +83,63 @@ class ReferenceItem
         self.url = referenceItem.valueForKey("url") as! String
         
         type = getTypeForInt(typeInt)
+    }
+    
+    func save(context: NSManagedObjectContext)
+    {
+        let entity = NSEntityDescription.entityForName("ReferenceItem", inManagedObjectContext: context)
+        let predicate = NSPredicate(format: "id == %@", id)
+
+        let fetchRequest = NSFetchRequest(entityName: "ReferenceItem")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+
+        var referenceItem: NSManagedObject?
+        
+        if let results = fetchResults
+        {
+            if(fetchResults?.count > 0)
+            {
+                referenceItem = results[0] as? NSManagedObject
+            }
+        }
+        
+        if(referenceItem == nil)
+        {
+            referenceItem = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
+        }
+        
+        saveToCoreData(referenceItem!)
+    }
+    
+    private func saveToCoreData(reference: NSManagedObject)
+    {
+        reference.setValue(id, forKey: "id")
+        reference.setValue(parentId, forKey: "parent_id")
+        
+        reference.setValue(getIntForType(type), forKey: "type")
+        
+        reference.setValue(author, forKey: "author")
+        reference.setValue(date, forKey: "date")
+        reference.setValue(title, forKey: "title")
+        reference.setValue(subTitle, forKey: "subtitle")
+
+        reference.setValue(publisher, forKey: "publisher")
+        reference.setValue(location, forKey: "location")
+        
+        reference.setValue(journalTitle, forKey: "journal_title")
+        reference.setValue(volumeNumber, forKey: "volume_number")
+        reference.setValue(issueNumber, forKey: "issue_number")
+        reference.setValue(pageNumber, forKey: "page_number")
+        reference.setValue(doi, forKey: "doi")
+        
+        reference.setValue(editors, forKey: "editors")
+        reference.setValue(bookTitle, forKey: "book_title")
+        reference.setValue(bookSubtitle, forKey: "book_subtitle")
+        
+        reference.setValue(url, forKey: "url")
     }
     
     func getTypeForInt(int: NSInteger) -> ReferenceType
@@ -97,6 +162,30 @@ class ReferenceItem
         }
         
         return ReferenceType.Book
+    }
+    
+    func getIntForType(type: ReferenceType) -> NSInteger
+    {
+        var type = 0
+        
+        if(self.type == ReferenceType.Book)
+        {
+            type = 0
+        }
+        else if(self.type == ReferenceType.Journal)
+        {
+            type = 1
+        }
+        else if(self.type == ReferenceType.BookChapter)
+        {
+            type = 2
+        }
+        else if(self.type == ReferenceType.WebPage)
+        {
+            type = 3
+        }
+
+        return type
     }
     
     func getReferenceString() -> String

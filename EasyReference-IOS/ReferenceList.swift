@@ -19,19 +19,25 @@ class ReferenceList
     {
     }
     
-    init(reference: NSManagedObject, NSManagedObjectContext)
+    init(reference: NSManagedObject, context: NSManagedObjectContext)
     {
         self.id = reference.valueForKey("id") as! String
         self.name = reference.valueForKey("name") as! String
+        
+        getAllReferences(context)
     }
     
     func getAllReferences(context: NSManagedObjectContext)
     {
+        references = [ReferenceItem]()
+        
         var error : NSError?
         let fetchRequest = NSFetchRequest(entityName: "ReferenceItem")
-        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+        let predicate = NSPredicate(format: "parent_id == %@", id)
+        fetchRequest.predicate = predicate
         
-        if(fetchResults?.count == 0)
+        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+        if(fetchResults == nil || fetchResults?.count == 0)
         {
             return
         }
@@ -41,13 +47,16 @@ class ReferenceList
             for index in 0...results.count - 1
             {
                 var referenceObject: NSManagedObject = results[index] as! NSManagedObject
-                
-                var parentId = referenceObject.valueForKey("parentId") as! String
-                if(parentId == self.id)
-                {
-                    references.append(ReferenceItem(referenceItem: referenceObject))
-                }
+                references.append(ReferenceItem(referenceItem: referenceObject))
             }
+        }
+    }
+    
+    func saveList(context: NSManagedObjectContext)
+    {
+        for i in 0...references.count - 1
+        {
+            references[i].save(context)
         }
     }
 }

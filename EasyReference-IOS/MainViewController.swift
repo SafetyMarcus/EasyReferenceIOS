@@ -27,6 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func getReferences()
     {
+        referenceLists = [ReferenceList]()
         let managedContext = appDelegate.managedObjectContext!
 
         var error : NSError?
@@ -44,7 +45,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             {
                 var referenceObject: NSManagedObject = results[index] as! NSManagedObject
                 
-                referenceLists.append(ReferenceList(reference: referenceObject, managedContext))
+                referenceLists.append(ReferenceList(reference: referenceObject, context: managedContext))
             }
         }
     }

@@ -29,7 +29,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func addReference(type: ReferenceItem.ReferenceType)
     {
-        referenceList.references.append(ReferenceItem(type: type))
+        referenceList.references.append(ReferenceItem(parentId: referenceList.id, type: type))
         self.tableView.reloadData()
     }
     
@@ -45,7 +45,10 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
 
     func saveReference(reference: ReferenceItem)
     {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         referenceList.references[selected] = reference
+        referenceList.saveList(appDelegate.managedObjectContext!)
         self.tableView.reloadData()
     }
     
@@ -70,7 +73,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             return 60
         }
 
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width, 9999))
+        let label:UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width - 40, 9999))
         
         var currentReference = self.referenceList.references[indexPath.row - 1]
         var labelText = currentReference.getReferenceString()
