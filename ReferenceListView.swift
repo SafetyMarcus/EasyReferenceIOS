@@ -70,6 +70,15 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if(indexPath.row == 0)
+        {
+            return 60
+        }
+        
+        return 40
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
         return referenceList.references.count + 1;

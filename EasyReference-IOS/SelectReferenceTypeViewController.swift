@@ -18,6 +18,7 @@ class SelectReferenceTypeViewController: UIViewController, UITableViewDelegate, 
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.tableView.rowHeight = 70
         self.tableView.registerNib(UINib(nibName: "ReferenceTypeCell", bundle: nil), forCellReuseIdentifier: "ReferenceTypeCell")
     }
     

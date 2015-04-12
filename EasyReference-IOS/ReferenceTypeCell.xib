@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -14,48 +14,58 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mq-ro-DrI">
-                        <rect key="frame" x="8" y="8" width="54" height="54"/>
+                        <rect key="frame" x="5" y="8" width="54" height="54"/>
                         <color key="backgroundColor" red="1" green="0.055564177690000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="54" id="su5-T8-RBW"/>
-                            <constraint firstAttribute="height" constant="54" id="t05-7W-kbM"/>
+                            <constraint firstAttribute="width" constant="54" id="HQM-Xf-BCm"/>
+                            <constraint firstAttribute="height" constant="54" id="LOK-bN-52l"/>
                         </constraints>
                         <state key="normal">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="20"/>
+                                <integer key="value" value="4"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_book.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rlk-X3-CkD">
-                        <rect key="frame" x="17" y="17" width="35" height="35"/>
+                        <rect key="frame" x="14" y="16" width="35" height="36"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="3jh-q2-7AX"/>
-                            <constraint firstAttribute="width" constant="35" id="BkL-um-bQ8"/>
-                            <constraint firstAttribute="height" constant="35" id="Ngn-pG-A6h"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="wk7-Cg-vvr"/>
+                            <constraint firstAttribute="height" constant="36" id="VnX-Yd-feq"/>
+                            <constraint firstAttribute="width" constant="35" id="rW5-M8-4Rf"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USd-Du-xuX">
-                        <rect key="frame" x="70" y="8" width="422" height="54"/>
+                        <rect key="frame" x="67" y="8" width="422" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="422" id="oSg-ys-7zn"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="9mq-ro-DrI" firstAttribute="leading" secondItem="fAD-AO-aGt" secondAttribute="leadingMargin" id="671-5s-HS9"/>
-                    <constraint firstItem="USd-Du-xuX" firstAttribute="trailing" secondItem="fAD-AO-aGt" secondAttribute="trailingMargin" id="I9e-Zw-qLs"/>
-                    <constraint firstItem="9mq-ro-DrI" firstAttribute="bottom" secondItem="fAD-AO-aGt" secondAttribute="bottomMargin" id="T3c-vF-Ryw"/>
-                    <constraint firstItem="USd-Du-xuX" firstAttribute="top" secondItem="fAD-AO-aGt" secondAttribute="topMargin" id="T88-qF-xWg"/>
-                    <constraint firstItem="USd-Du-xuX" firstAttribute="bottom" secondItem="fAD-AO-aGt" secondAttribute="bottomMargin" id="W2s-EB-13O"/>
-                    <constraint firstItem="Rlk-X3-CkD" firstAttribute="centerY" secondItem="fAD-AO-aGt" secondAttribute="centerY" id="XeE-bA-dDu"/>
-                    <constraint firstItem="9mq-ro-DrI" firstAttribute="top" secondItem="fAD-AO-aGt" secondAttribute="topMargin" id="XnF-BP-e8t"/>
-                    <constraint firstItem="Rlk-X3-CkD" firstAttribute="centerX" secondItem="9mq-ro-DrI" secondAttribute="centerX" id="iPc-H6-HOg"/>
-                    <constraint firstItem="USd-Du-xuX" firstAttribute="leading" secondItem="9mq-ro-DrI" secondAttribute="trailing" constant="8" id="y3U-Uo-CzH"/>
+                    <constraint firstItem="Rlk-X3-CkD" firstAttribute="centerY" secondItem="fAD-AO-aGt" secondAttribute="centerY" id="6q6-rQ-twi"/>
+                    <constraint firstItem="USd-Du-xuX" firstAttribute="leading" secondItem="9mq-ro-DrI" secondAttribute="trailing" constant="8" symbolic="YES" id="Fb4-9a-laZ"/>
+                    <constraint firstItem="9mq-ro-DrI" firstAttribute="leading" secondItem="fAD-AO-aGt" secondAttribute="leadingMargin" constant="-3" id="IEg-59-DAf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="USd-Du-xuX" secondAttribute="trailing" constant="-7" id="Lki-Su-EA1"/>
+                    <constraint firstItem="USd-Du-xuX" firstAttribute="top" secondItem="9mq-ro-DrI" secondAttribute="top" id="TDH-HB-OHl"/>
+                    <constraint firstItem="9mq-ro-DrI" firstAttribute="leading" secondItem="fAD-AO-aGt" secondAttribute="leadingMargin" id="TZS-CY-D7Q"/>
+                    <constraint firstItem="9mq-ro-DrI" firstAttribute="top" secondItem="fAD-AO-aGt" secondAttribute="topMargin" id="UQC-kj-lbs"/>
+                    <constraint firstItem="USd-Du-xuX" firstAttribute="leading" secondItem="9mq-ro-DrI" secondAttribute="trailing" constant="6" id="feA-qd-bAf"/>
+                    <constraint firstItem="USd-Du-xuX" firstAttribute="leading" secondItem="Rlk-X3-CkD" secondAttribute="trailing" constant="18" id="gt2-FZ-tq9"/>
+                    <constraint firstItem="USd-Du-xuX" firstAttribute="bottom" secondItem="9mq-ro-DrI" secondAttribute="bottom" id="nk8-bW-qdj"/>
+                    <constraint firstItem="Rlk-X3-CkD" firstAttribute="centerY" secondItem="9mq-ro-DrI" secondAttribute="centerY" constant="-1" id="qWk-u6-FsB"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="TZS-CY-D7Q"/>
+                        <exclude reference="Lki-Su-EA1"/>
+                        <exclude reference="feA-qd-bAf"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="title" destination="USd-Du-xuX" id="me3-Rx-cL3"/>
