@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class ReferenceItem
 {
@@ -46,6 +47,56 @@ class ReferenceItem
     init(type: ReferenceType)
     {
         self.type = type
+    }
+    
+    init(referenceItem: NSManagedObject)
+    {
+        var typeInt = referenceItem.valueForKey("type") as! NSInteger
+        self.type = ReferenceType.Book
+        
+        self.author = referenceItem.valueForKey("author") as! String
+        self.date = referenceItem.valueForKey("year") as! String
+        self.title = referenceItem.valueForKey("title") as! String
+        self.subTitle = referenceItem.valueForKey("subtitle") as! String
+        
+        self.location = referenceItem.valueForKey("location") as! String
+        self.publisher = referenceItem.valueForKey("publisher") as! String
+        
+        self.journalTitle = referenceItem.valueForKey("journal_title") as! String
+        self.volumeNumber = referenceItem.valueForKey("volume_number") as! String
+        self.issueNumber = referenceItem.valueForKey("issue_number") as! String
+        self.pageNumber = referenceItem.valueForKey("pageNumber") as! String
+        self.doi = referenceItem.valueForKey("doi") as! String
+        
+        self.editors = referenceItem.valueForKey("editors") as! String
+        self.bookTitle = referenceItem.valueForKey("book_title") as! String
+        self.bookSubtitle = referenceItem.valueForKey("book_subtitle") as! String
+        
+        self.url = referenceItem.valueForKey("url") as! String
+        
+        type = getTypeForInt(typeInt)
+    }
+    
+    func getTypeForInt(int: NSInteger) -> ReferenceType
+    {
+        if(int == 0)
+        {
+            return ReferenceType.Book
+        }
+        else if(int == 1)
+        {
+            return ReferenceType.Journal
+        }
+        else if(int == 2)
+        {
+            return ReferenceType.BookChapter
+        }
+        else if(int == 3)
+        {
+            return ReferenceType.WebPage
+        }
+        
+        return ReferenceType.Book
     }
     
     func getReferenceString() -> String

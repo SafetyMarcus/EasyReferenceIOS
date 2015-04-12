@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    var items: [ReferenceList] = (UIApplication.sharedApplication().delegate as! AppDelegate).referenceLists
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var referenceLists = [ReferenceList]()
+    
     var selected = 0
     
     @IBOutlet
@@ -18,13 +21,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
-        return self.items.count;
+        getReferences()
+        return referenceLists.count;
+    }
+    
+    func getReferences()
+    {
+        let managedContext = appDelegate.managedObjectContext!
+
+        var error : NSError?
+        let fetchRequest = NSFetchRequest(entityName: "ReferenceList")
+        let fetchResults = managedContext.executeFetchRequest(fetchRequest, error: &error)
+        
+        if(fetchResults?.count == 0)
+        {
+            return
+        }
+        
+        if let results = fetchResults
+        {
+            for index in 0...results.count - 1
+            {
+                var referenceObject: NSManagedObject = results[index] as! NSManagedObject
+                
+                referenceLists.append(ReferenceList(reference: referenceObject, managedContext))
+            }
+        }
     }
     
     @IBAction func addReferenceList(sender: UIBarButtonItem)
     {
-        var count = items.count + 1
-        items.append(ReferenceList(name: "Reference List \(count)"))
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let entity = NSEntityDescription.entityForName("ReferenceList", inManagedObjectContext: managedContext)
+        let referenceList = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        referenceList.setValue("New Reference List", forKey: "name")
+        referenceList.setValue(NSUUID().UUIDString, forKey: "id")
+        
+        var error : NSError?
+        managedContext.save(&error)
         self.tableView.reloadData()
     }
     
@@ -33,7 +69,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if(segue.identifier == "ShowReferenceList")
         {
             let referenceListView: ReferenceListView = segue.destinationViewController.topViewController as! ReferenceListView
-            referenceListView.referenceList = items[selected]
+            referenceListView.referenceList = referenceLists[selected]
         }
     }
     
@@ -41,7 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
-        cell.textLabel!.text = self.items[indexPath.row].name
+        cell.textLabel!.text = self.referenceLists[indexPath.row].name
         
         return cell
     }

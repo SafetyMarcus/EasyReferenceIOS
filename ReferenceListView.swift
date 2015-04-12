@@ -19,19 +19,13 @@ protocol AddReferenceDelegate
 
 class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveReferenceDelegate, AddReferenceDelegate
 {
-    var referenceList: ReferenceList
+    var referenceList = ReferenceList()
     var selected = 0
     
     @IBOutlet
     var navBar: UINavigationBar!
     @IBOutlet
     var tableView: UITableView!
-    
-    required init(coder aDecoder: NSCoder)
-    {
-        self.referenceList = ReferenceList(name: "empty")
-        super.init(coder: aDecoder)
-    }
     
     func addReference(type: ReferenceItem.ReferenceType)
     {
