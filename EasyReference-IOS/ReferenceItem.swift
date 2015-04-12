@@ -297,9 +297,9 @@ class ReferenceItem
         return cellCount
     }
     
-    func getLabelsForCells() -> [NSString]
+    func getLabelsForCells() -> [String]
     {
-        var labels = [NSString]()
+        var labels = [String]()
         
         if(self.type == ReferenceType.Book)
         {
@@ -321,9 +321,9 @@ class ReferenceItem
         return labels
     }
     
-    private func getBookLabels() -> [NSString]
+    private func getBookLabels() -> [String]
     {
-        var labels = [NSString]()
+        var labels = [String]()
         
         labels.append("Author")
         labels.append("Year")
@@ -335,9 +335,9 @@ class ReferenceItem
         return labels
     }
     
-    private func getJournalLabels() -> [NSString]
+    private func getJournalLabels() -> [String]
     {
-        var labels = [NSString]()
+        var labels = [String]()
         
         labels.append("Author")
         labels.append("Year")
@@ -352,9 +352,9 @@ class ReferenceItem
         return labels
     }
     
-    private func getBookChapterLabels() -> [NSString]
+    private func getBookChapterLabels() -> [String]
     {
-        var labels = [NSString]()
+        var labels = [String]()
         
         labels.append("Author")
         labels.append("Year")
@@ -370,9 +370,9 @@ class ReferenceItem
         return labels
     }
     
-    private func getWebLabels() -> [NSString]
+    private func getWebLabels() -> [String]
     {
-        var labels = [NSString]()
+        var labels = [String]()
         
         labels.append("Author")
         labels.append("Year")
@@ -382,9 +382,9 @@ class ReferenceItem
         return labels
     }
     
-    func getHintsForCells() -> [NSString]
+    func getHintsForCells() -> [String]
     {
-        var hints = [NSString]()
+        var hints = [String]()
         
         if(self.type == ReferenceType.Book)
         {
@@ -406,9 +406,9 @@ class ReferenceItem
         return hints
     }
     
-    private func getBookHints() -> [NSString]
+    private func getBookHints() -> [String]
     {
-        var hints = [NSString]()
+        var hints = [String]()
         
         hints.append("enter author")
         hints.append("enter year")
@@ -420,9 +420,9 @@ class ReferenceItem
         return hints
     }
 
-    private func getJournalHints() -> [NSString]
+    private func getJournalHints() -> [String]
     {
-        var hints = [NSString]()
+        var hints = [String]()
         
         hints.append("enter author")
         hints.append("enter year")
@@ -437,9 +437,9 @@ class ReferenceItem
         return hints
     }
     
-    private func getBookChapterHints() -> [NSString]
+    private func getBookChapterHints() -> [String]
     {
-        var hints = [NSString]()
+        var hints = [String]()
 
         hints.append("enter author")
         hints.append("enter year")
@@ -455,9 +455,9 @@ class ReferenceItem
         return hints
     }
     
-    private func getWebHints() -> [NSString]
+    private func getWebHints() -> [String]
     {
-        var hints = [NSString]()
+        var hints = [String]()
         
         hints.append("enter author")
         hints.append("enter year")
@@ -467,7 +467,7 @@ class ReferenceItem
         return hints
     }
     
-    func getValueForPosition(position: NSInteger) -> NSString
+    func getValueForPosition(position: NSInteger) -> String
     {
         var value = ""
         
@@ -491,7 +491,7 @@ class ReferenceItem
         return value
     }
     
-    private func getBookValueForPosition(position: NSInteger) -> NSString
+    private func getBookValueForPosition(position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -521,7 +521,7 @@ class ReferenceItem
         return ""
     }
     
-    private func getJournalValueForPosition(position: NSInteger) -> NSString
+    private func getJournalValueForPosition(position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -563,7 +563,7 @@ class ReferenceItem
         return ""
     }
     
-    private func getBookChapterValueForPosition(position: NSInteger) -> NSString
+    private func getBookChapterValueForPosition(position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -609,7 +609,7 @@ class ReferenceItem
         return ""
     }
     
-    func getWebValueForPosition(position: NSInteger) -> NSString
+    func getWebValueForPosition(position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -631,7 +631,7 @@ class ReferenceItem
         return ""
     }
     
-    func saveValueForPosition(position: NSInteger, value: NSString)
+    func saveValueForPosition(position: NSInteger, value: String)
     {
         if(type == ReferenceType.Book)
         {
@@ -647,11 +647,11 @@ class ReferenceItem
         }
         else if(type == ReferenceType.WebPage)
         {
-            saveWebReferenceValue(position, value: value)
+            saveWebReferenceValueForPosition(position, value: value)
         }
     }
     
-    private func saveBookValueForPosition(position: NSInteger, value: NSString)
+    private func saveBookValueForPosition(position: NSInteger, value: String)
     {
         if(position == 0)
         {
@@ -679,7 +679,7 @@ class ReferenceItem
         }
     }
     
-    private func saveJournalValueForPosition(position: NSInteger, value: NSString)
+    private func saveJournalValueForPosition(position: NSInteger, value: String)
     {
         if(position == 0)
         {
@@ -719,7 +719,7 @@ class ReferenceItem
         }
     }
     
-    private func saveBookChapterValueForPosition(position: NSInteger, value: NSString)
+    private func saveBookChapterValueForPosition(position: NSInteger, value: String)
     {
         if(position == 0)
         {
@@ -763,7 +763,7 @@ class ReferenceItem
         }
     }
     
-    private func saveWebReferenceValue(position: NSInteger, value: NSString)
+    private func saveWebReferenceValueForPosition(position: NSInteger, value: String)
     {
         if(position == 0)
         {

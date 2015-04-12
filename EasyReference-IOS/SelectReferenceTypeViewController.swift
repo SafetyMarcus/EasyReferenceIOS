@@ -28,7 +28,7 @@ class SelectReferenceTypeViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: ReferenceTypeCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceTypeCell") as ReferenceTypeCell
+        var cell: ReferenceTypeCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceTypeCell") as! ReferenceTypeCell
         
         if(indexPath.row == 0)
         {

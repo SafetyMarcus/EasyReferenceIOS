@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    var items: [ReferenceList] = (UIApplication.sharedApplication().delegate as AppDelegate).referenceLists
+    var items: [ReferenceList] = (UIApplication.sharedApplication().delegate as! AppDelegate).referenceLists
     var selected = 0
     
     @IBOutlet
@@ -32,14 +32,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         if(segue.identifier == "ShowReferenceList")
         {
-            let referenceListView: ReferenceListView = segue.destinationViewController.topViewController as ReferenceListView
+            let referenceListView: ReferenceListView = segue.destinationViewController.topViewController as! ReferenceListView
             referenceListView.referenceList = items[selected]
         }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+        var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
         cell.textLabel!.text = self.items[indexPath.row].name
         

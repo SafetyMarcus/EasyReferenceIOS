@@ -65,7 +65,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
     {
         if(indexPath.row == 0)
         {
-            var cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCellWithIdentifier("authorCell") as EditReferenceAuthorCell
+            var cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCellWithIdentifier("authorCell") as! EditReferenceAuthorCell
             cell.referenceText.text = referenceItem.author
             cell.delegate = self
             cell.referenceText.delegate = self
@@ -74,7 +74,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
         }
         else
         {
-            var cell: EditReferenceCell = self.tableView.dequeueReusableCellWithIdentifier("referenceCell") as EditReferenceCell
+            var cell: EditReferenceCell = self.tableView.dequeueReusableCellWithIdentifier("referenceCell") as! EditReferenceCell
             cell.referenceLabel.text = referenceItem.getLabelsForCells()[indexPath.row]
             cell.referenceText.placeholder = referenceItem.getHintsForCells()[indexPath.row]
             cell.referenceText.text = referenceItem.getValueForPosition(indexPath.row)
@@ -86,7 +86,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
     
     func textFieldDidEndEditing(textField: UITextField)
     {
-        var cell: UITableViewCell = textField.superview?.superview as UITableViewCell
+        var cell: UITableViewCell = textField.superview?.superview as! UITableViewCell
         
         var row = self.tableView.indexPathForCell(cell)
         var position = row?.row
@@ -107,7 +107,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
     
     func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
     {
-        let authorCell: EditReferenceAuthorCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as EditReferenceAuthorCell
+        let authorCell: EditReferenceAuthorCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! EditReferenceAuthorCell
         var authors = ""
         
         if((referenceItem.author as NSString).length > 0)
@@ -137,7 +137,7 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
     {
         if(segue.identifier == "ShowAddAuthor")
         {
-            let addAuthorView: AddAuthorViewController = segue.destinationViewController.topViewController as AddAuthorViewController
+            let addAuthorView: AddAuthorViewController = segue.destinationViewController.topViewController as! AddAuthorViewController
             addAuthorView.addAuthorDelegate = self
         }
     }

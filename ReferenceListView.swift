@@ -59,13 +59,13 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         if(segue.identifier == "ShowReferenceItem")
         {
-            let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as EditReferenceView
+            let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as! EditReferenceView
             editReferenceView.referenceItem = referenceList.references[selected]
             editReferenceView.saveReferenceDelegate = self
         }
         else if(segue.identifier == "SelectReferenceType")
         {
-            let referenceTypeView: SelectReferenceTypeViewController = segue.destinationViewController.topViewController as SelectReferenceTypeViewController
+            let referenceTypeView: SelectReferenceTypeViewController = segue.destinationViewController.topViewController as! SelectReferenceTypeViewController
             referenceTypeView.delegate = self
         }
     }
@@ -89,7 +89,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         if(indexPath.row == 0)
         {
-            var cell: ReferenceListHeaderCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as ReferenceListHeaderCell
+            var cell: ReferenceListHeaderCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as! ReferenceListHeaderCell
             cell.title.text = referenceList.name
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             
@@ -97,7 +97,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else
         {
-            var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+            var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
         
             var currentReference = self.referenceList.references[indexPath.row - 1]
             var labelText = currentReference.getReferenceString()
