@@ -54,6 +54,11 @@ class ReferenceList
     
     func saveList(context: NSManagedObjectContext)
     {
+        if(references.isEmpty)
+        {
+            return
+        }
+        
         for i in 0...references.count - 1
         {
             references[i].save(context)
