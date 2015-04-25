@@ -24,6 +24,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return referenceLists.count;
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if(editingStyle == UITableViewCellEditingStyle.Delete)
+        {
+            let managedContext = appDelegate.managedObjectContext!
+            
+            var error : NSError?
+            let fetchRequest = NSFetchRequest(entityName: "ReferenceList")
+            let fetchResults: [NSManagedObject] = (managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject])!
+            
+            let itemToDelete = fetchResults[indexPath.row]
+            managedContext.deleteObject(itemToDelete)
+            
+            referenceLists.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
     override func viewDidAppear(animated: Bool)
     {
         getReferences()
