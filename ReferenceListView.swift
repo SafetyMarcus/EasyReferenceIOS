@@ -76,6 +76,25 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        if(indexPath.row > 0)
+        {
+            return true
+        }
+        
+        return false
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if(editingStyle == UITableViewCellEditingStyle.Delete)
+        {
+            referenceList.deleteReference(appDelegate.managedObjectContext!, row: indexPath.row - 1)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.row == 0)
         {

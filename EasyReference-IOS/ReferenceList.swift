@@ -52,6 +52,12 @@ class ReferenceList
         }
     }
     
+    func deleteReference(context: NSManagedObjectContext, row: NSInteger)
+    {
+        references[row].delete(context)
+        references.removeAtIndex(row)
+    }
+    
     func saveList(context: NSManagedObjectContext)
     {
         if(references.isEmpty)

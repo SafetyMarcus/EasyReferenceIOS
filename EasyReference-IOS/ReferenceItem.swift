@@ -85,6 +85,21 @@ class ReferenceItem
         type = getTypeForInt(typeInt)
     }
     
+    func delete(context: NSManagedObjectContext)
+    {
+        let entity = NSEntityDescription.entityForName("ReferenceItem", inManagedObjectContext: context)
+        let predicate = NSPredicate(format: "id == %@", id)
+        
+        let fetchRequest = NSFetchRequest(entityName: "ReferenceItem")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        let fetchResults: [NSManagedObject] = (context.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject])!
+        
+        let itemToDelete = fetchResults[0]
+        context.deleteObject(itemToDelete)
+    }
+    
     func save(context: NSManagedObjectContext)
     {
         let entity = NSEntityDescription.entityForName("ReferenceItem", inManagedObjectContext: context)
