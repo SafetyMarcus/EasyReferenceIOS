@@ -26,9 +26,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        if(editingStyle == UITableViewCellEditingStyle.Delete)
-        {
-            let managedContext = appDelegate.managedObjectContext!
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?
+    {
+        var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        
+            let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
+            
+            let twitterAction = UIAlertAction(title: "Email", style: UIAlertActionStyle.Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            shareMenu.addAction(twitterAction)
+            shareMenu.addAction(cancelAction)
+            
+            self.presentViewController(shareMenu, animated: true, completion: nil)
+        })
+        shareAction.backgroundColor = UIColor(red: 33/255, green: 219/255, blue: 86/255, alpha: 1)
+        
+        var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: {(action:UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+        
+            let managedContext = self.appDelegate.managedObjectContext!
             
             var error : NSError?
             let fetchRequest = NSFetchRequest(entityName: "ReferenceList")
@@ -37,9 +55,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let itemToDelete = fetchResults[indexPath.row]
             managedContext.deleteObject(itemToDelete)
             
-            referenceLists.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
+            self.referenceLists.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+        
+        })
+            
+        return [deleteAction, shareAction]
     }
     
     override func viewDidAppear(animated: Bool)
@@ -86,6 +107,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var error : NSError?
         managedContext.save(&error)
+        getReferences()
         self.tableView.reloadData()
     }
     
