@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MessageUI
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -32,18 +33,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
         
-            PDFGenerator(listId: self.referenceLists[indexPath.row].id, context: self.appDelegate.managedObjectContext!).generate()
+            var pdfPath = PDFGenerator(listId: self.referenceLists[indexPath.row].id, context: self.appDelegate.managedObjectContext!).generate()
+
+            var picker = MFMailComposeViewController()
+            picker.setSubject("\(self.referenceLists[indexPath.row].name)")
+            picker.setMessageBody("Created in EasyReference", isHTML: false)
             
-//            let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
-//            
-//            let twitterAction = UIAlertAction(title: "Email", style: UIAlertActionStyle.Default, handler: nil)
-//            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-//            
-//            shareMenu.addAction(twitterAction)
-//            shareMenu.addAction(cancelAction)
-//            
-//            self.presentViewController(shareMenu, animated: true, completion: nil)
-        })
+            let fileData = NSData(contentsOfFile: pdfPath)
+            picker.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "\(self.referenceLists[indexPath.row].name).pdf")
+            
+            self.presentViewController(picker, animated: true, completion: nil)
+            })
+        
         shareAction.backgroundColor = UIColor(red: 33/255, green: 219/255, blue: 86/255, alpha: 1)
         
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: {(action:UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in

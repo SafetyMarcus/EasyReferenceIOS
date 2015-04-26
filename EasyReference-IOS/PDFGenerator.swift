@@ -22,9 +22,14 @@ class PDFGenerator
         self.context = context
     }
     
-    func generate()
+    func generate() -> String
     {
         var referenceList = getReferenceList()
+        let pdfName = "\(referenceList.name).pdf"
+        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomainMask.UserDomainMask, true);
+        let documentsDirectory: String = paths[0] as! String
+        
+        let pdfPath = "\(documentsDirectory)/\(pdfName)";
         
         var currentText: CFAttributedStringRef = CFAttributedStringCreate(nil, referenceList.getReferenceText(), nil)
 
@@ -33,10 +38,6 @@ class PDFGenerator
         {
             // Create the PDF context using the default page size of 612 x 792.
             let pageSize = CGRect(x: 0, y: 0, width: 612, height: 792)
-            
-            let pdfName = "\(referenceList.name).pdf"
-            let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomainMask.UserDomainMask, true);
-            let documentsDirectory: String = paths[0] as! String
             
             UIGraphicsBeginPDFContextToFile("\(documentsDirectory)/\(pdfName)", pageSize, nil);
                 
@@ -65,6 +66,8 @@ class PDFGenerator
         } else {
                 NSLog("Could not create the framesetter needed to lay out the atrributed string.");
         }
+        
+        return pdfPath
     }
     
     func getReferenceList() -> ReferenceList
