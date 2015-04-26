@@ -27,7 +27,7 @@ class ReferenceList
         getAllReferences(context)
     }
     
-    func getAllReferences(context: NSManagedObjectContext)
+    private func getAllReferences(context: NSManagedObjectContext)
     {
         references = [ReferenceItem]()
         
@@ -50,6 +50,11 @@ class ReferenceList
                 references.append(ReferenceItem(referenceItem: referenceObject))
             }
         }
+    }
+    
+    func getReferenceText() -> String
+    {
+        return ""
     }
     
     func deleteReference(context: NSManagedObjectContext, row: NSInteger)
