@@ -67,6 +67,7 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             cell.referenceText.text = referenceItem.author
             cell.delegate = self
             cell.referenceText.delegate = self
+            cell.referenceText.returnKeyType = .Done
             
             return cell
         }
@@ -77,6 +78,7 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             cell.referenceText.placeholder = referenceItem.getHintsForCells()[indexPath.row]
             cell.referenceText.text = referenceItem.getValueForPosition(indexPath.row)
             cell.referenceText.delegate = self
+            cell.referenceText.returnKeyType = .Done
             
             return cell
         }
@@ -91,6 +93,12 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         var value = textField.text
         
         referenceItem.saveValueForPosition(position!, value: value)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
     }
     
     func getLabelForPosition(position: NSInteger) -> String

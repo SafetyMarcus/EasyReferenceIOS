@@ -17,7 +17,7 @@ protocol AddReferenceDelegate
     func addReference(type: ReferenceItem.ReferenceType)
 }
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, SaveReferenceDelegate, AddReferenceDelegate
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SaveReferenceDelegate, AddReferenceDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceList = ReferenceList()
@@ -134,12 +134,20 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if(indexPath.row == 0)
         {
             var cell: ReferenceListHeaderCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as! ReferenceListHeaderCell
             cell.title.text = referenceList.name
+            cell.title.returnKeyType = .Done
+            cell.title.delegate = self
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             
             return cell

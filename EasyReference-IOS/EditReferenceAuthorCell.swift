@@ -17,7 +17,6 @@ class EditReferenceAuthorCell: UITableViewCell
     
     var delegate: AddAuthorListener! = nil
     
-    
     @IBAction func clickedAddAuthor(sender: UIButton)
     {
         self.delegate.clickedAddAuthor()
