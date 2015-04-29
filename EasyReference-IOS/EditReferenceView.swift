@@ -18,12 +18,10 @@ protocol AddAuthorListener
     func clickedAddAuthor()
 }
 
-class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate, AddAuthorListener, UITextFieldDelegate
+class EditReferenceView: UITableViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate, AddAuthorListener, UITextFieldDelegate
 {
     var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
-    
-    @IBOutlet weak var tableView: UITableView!
     
     @IBAction func unwindToEditReference(unwindSegue: UIStoryboardSegue){}
     
@@ -56,12 +54,12 @@ class EditReferenceView: UIViewController, UITableViewDataSource, UITableViewDel
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return referenceItem.getNumberOfCells()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if(indexPath.row == 0)
         {

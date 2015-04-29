@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()   
         return true
     }
 
