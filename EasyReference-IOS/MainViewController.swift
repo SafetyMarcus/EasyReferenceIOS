@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MessageUI
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceLists = [ReferenceList]()
@@ -35,14 +35,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
             var pdfPath = PDFGenerator(listId: self.referenceLists[indexPath.row].id, context: self.appDelegate.managedObjectContext!).generate()
 
-            var picker = MFMailComposeViewController()
-            picker.setSubject("\(self.referenceLists[indexPath.row].name)")
-            picker.setMessageBody("Created in EasyReference", isHTML: false)
+            var mail = MFMailComposeViewController()
+            mail.setSubject("\(self.referenceLists[indexPath.row].name)")
+            mail.setMessageBody("Created in EasyReference", isHTML: false)
+            mail.mailComposeDelegate = self
             
             let fileData = NSData(contentsOfFile: pdfPath)
-            picker.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "\(self.referenceLists[indexPath.row].name).pdf")
+            mail.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "\(self.referenceLists[indexPath.row].name).pdf")
             
-            self.presentViewController(picker, animated: true, completion: nil)
+            self.presentViewController(mail, animated: true, completion: nil)
             })
         
         shareAction.backgroundColor = UIColor(red: 33/255, green: 219/255, blue: 86/255, alpha: 1)
@@ -63,6 +64,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
             
         return [deleteAction, shareAction]
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!)
+    {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool)
