@@ -15,6 +15,7 @@
 		2C51C7071AA184F2006C199A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C51C7061AA184F2006C199A /* Images.xcassets */; };
 		2C51C70A1AA184F2006C199A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C51C7081AA184F2006C199A /* LaunchScreen.xib */; };
 		2C51C7161AA184F2006C199A /* EasyReference_IOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7151AA184F2006C199A /* EasyReference_IOSTests.swift */; };
+		2C66B6841AF4F39900C2EEA4 /* CellSlideInTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66B6831AF4F39900C2EEA4 /* CellSlideInTop.swift */; };
 		2CB1B7C41AB6FFA40018E962 /* AddAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB1B7C31AB6FFA40018E962 /* AddAuthorViewController.swift */; };
 		2CB5CFB91AA2A244003A808A /* ReferenceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */; };
 		2CBE07FE1AB9A5C300379611 /* ReferenceTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE07FD1AB9A5C300379611 /* ReferenceTypeCell.swift */; };
@@ -58,6 +59,7 @@
 		2C51C70F1AA184F2006C199A /* EasyReference-IOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EasyReference-IOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C51C7141AA184F2006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C7151AA184F2006C199A /* EasyReference_IOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyReference_IOSTests.swift; sourceTree = "<group>"; };
+		2C66B6831AF4F39900C2EEA4 /* CellSlideInTop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellSlideInTop.swift; sourceTree = "<group>"; };
 		2CB1B7C31AB6FFA40018E962 /* AddAuthorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAuthorViewController.swift; sourceTree = "<group>"; };
 		2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReferenceListView.swift; path = ../ReferenceListView.swift; sourceTree = "<group>"; };
 		2CBE07FD1AB9A5C300379611 /* ReferenceTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceTypeCell.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		2C51C6F91AA184F1006C199A /* EasyReference-IOS */ = {
 			isa = PBXGroup;
 			children = (
+				2C66B6801AF4F38200C2EEA4 /* Animations */,
 				2CCA0CAC1AB594CA005D3231 /* CustomCells */,
 				2CB5CFBB1AA2A348003A808A /* Models */,
 				2CB5CFBA1AA2A32D003A808A /* ViewControllers */,
@@ -158,6 +161,14 @@
 				2C51C7141AA184F2006C199A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C66B6801AF4F38200C2EEA4 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				2C66B6831AF4F39900C2EEA4 /* CellSlideInTop.swift */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		2CB5CFBA1AA2A32D003A808A /* ViewControllers */ = {
@@ -350,6 +361,7 @@
 				2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */,
 				2CE6F81D1AC65A62005FB573 /* EditReferenceAuthorCell.swift in Sources */,
 				2CDF53C91AEC78D800D0A4BB /* PDFGenerator.swift in Sources */,
+				2C66B6841AF4F39900C2EEA4 /* CellSlideInTop.swift in Sources */,
 				2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */,
 				2CBE07FE1AB9A5C300379611 /* ReferenceTypeCell.swift in Sources */,
 				2CB1B7C41AB6FFA40018E962 /* AddAuthorViewController.swift in Sources */,
