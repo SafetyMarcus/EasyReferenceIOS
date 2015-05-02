@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceLists = [ReferenceList]()
+    var addingList = false
     
     var selected = 0
     
@@ -116,7 +117,43 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var error : NSError?
         managedContext.save(&error)
         getReferences()
+        
+        addingList = true
         self.tableView.reloadData()
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        if(!addingList || indexPath.row == referenceLists.count - 1)
+        {
+            animateCell(cell)
+            addingList = false
+        }
+        
+        if(addingList)
+        {
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+    }
+    
+    func animateCell(cell: UITableViewCell)
+    {
+        let translation = CATransform3DMakeTranslation(0, -20, 1)
+        
+        cell.layer.shadowColor = UIColor.blackColor() as! CGColor
+        cell.layer.shadowOffset = CGSizeMake(10, 10);
+        cell.alpha = 0;
+        
+        cell.layer.transform = translation;
+        cell.layer.anchorPoint = CGPointMake(0, 0.5);
+        
+        UIView.beginAnimations("translation", context: nil)
+        UIView.setAnimationDuration(0.8)
+        
+        cell.layer.transform = CATransform3DIdentity;
+        cell.alpha = 1;
+        cell.layer.shadowOffset = CGSizeMake(0, 0);
+        UIView.commitAnimations()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!)
