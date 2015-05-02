@@ -32,6 +32,8 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         self.tableView.allowsSelection = false
         self.tableView.registerNib(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
         self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
+        
+        save()
     }
     
     func save()

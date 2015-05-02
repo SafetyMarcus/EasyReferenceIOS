@@ -114,6 +114,9 @@
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="3S2-qs-QcK"/>
                         <barButtonItem key="rightBarButtonItem" title="New" id="0r2-q9-E0K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="LjV-De-U6W" kind="show" identifier="SelectReferenceType" id="UFV-j7-r9w"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -158,7 +161,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSC-4L-aqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="iG4-SQ-JEe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2912" y="908"/>
+            <point key="canvasLocation" x="2790" y="908"/>
         </scene>
         <!--Add Author-->
         <scene sceneID="p3t-ly-2hI">

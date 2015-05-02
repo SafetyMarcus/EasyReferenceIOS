@@ -46,7 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.presentViewController(mail, animated: true, completion: nil)
             })
         
-        shareAction.backgroundColor = UIColor(red: 33/255, green: 219/255, blue: 86/255, alpha: 1)
+        shareAction.backgroundColor = UIColor(red: 255/255, green: 110/255, blue: 100/255, alpha: 1)
         
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: {(action:UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
         
