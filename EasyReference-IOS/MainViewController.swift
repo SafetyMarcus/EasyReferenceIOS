@@ -131,7 +131,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             var path = NSIndexPath(forRow: referenceLists.count - 1, inSection: 0)
             self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
-            addingList = false
+            
+            if(indexPath.row == referenceLists.count - 1)
+            {
+                CellSlideInTop.animate(cell)
+                addingList = false
+            }
         }
     }
     
