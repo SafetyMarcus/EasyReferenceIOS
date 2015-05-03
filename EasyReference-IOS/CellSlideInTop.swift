@@ -17,10 +17,9 @@ class CellSlideInTop
         
         cell.layer.shadowColor = UIColor.blackColor() as! CGColor
         cell.layer.shadowOffset = CGSizeMake(10, 10);
-        cell.alpha = 0;
+        cell.alpha = 0.2;
         
         cell.layer.transform = translation;
-        cell.layer.anchorPoint = CGPointMake(0, 0.5);
         
         UIView.beginAnimations("translation", context: nil)
         UIView.setAnimationDuration(0.8)
