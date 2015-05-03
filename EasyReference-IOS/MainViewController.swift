@@ -14,9 +14,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceLists = [ReferenceList]()
-    var addingList = false
     
     var selected = 0
+    var addingList = false
     
     @IBOutlet
     var tableView: UITableView!
@@ -116,23 +116,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var error : NSError?
         managedContext.save(&error)
-        getReferences()
-        
         addingList = true
-        self.tableView.reloadData()
+        getReferences()
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        if(!addingList || indexPath.row == referenceLists.count - 1)
+        if(tableView.dragging)
         {
             CellSlideInTop.animate(cell)
-            addingList = false
         }
         
         if(addingList)
         {
-            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            var path = NSIndexPath(forRow: referenceLists.count - 1, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(path, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            addingList = false
         }
     }
     

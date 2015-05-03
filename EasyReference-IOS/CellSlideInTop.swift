@@ -30,5 +30,4 @@ class CellSlideInTop
         cell.layer.shadowOffset = CGSizeMake(0, 0);
         UIView.commitAnimations()
     }
-
 }
