@@ -14,7 +14,7 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
 {
     var referenceList = ReferenceList()
     
-    var style = "<head><style>h1 {text-align: center; font-size: 30; font-weight: bold;}</style></head>"
+    var style = "<head><style>h1 {text-align: center; font-size: 30; font-weight: bold;} p {margin-left: 22px; margin-right: 5px; text-indent: -17px;}</style></head>"
     
     @IBOutlet var webview: UIWebView!
     
