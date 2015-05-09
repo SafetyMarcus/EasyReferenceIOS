@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */; };
 		2C09D2AB1AFDCF820005485E /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09D2AA1AFDCF820005485E /* PDFViewController.swift */; };
+		2C09D2B61AFE235D0005485E /* ReferenceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */; };
 		2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FC1AA184F1006C199A /* AppDelegate.swift */; };
 		2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FE1AA184F2006C199A /* EasyReference_IOS.xcdatamodeld */; };
 		2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7011AA184F2006C199A /* MainViewController.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditReferenceView.swift; sourceTree = "<group>"; };
 		2C09D2AA1AFDCF820005485E /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceListCell.swift; sourceTree = "<group>"; };
 		2C51C6F71AA184F1006C199A /* EasyReference-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyReference-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C51C6FB1AA184F1006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C6FC1AA184F1006C199A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				2CC966E21ABAE43800087CA2 /* ReferenceListHeader */,
 				2CC966E31ABAE44200087CA2 /* ReferenceType */,
 				2CE6F8191AC653AC005FB573 /* EditReferenceCells */,
+				2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				2C09D2AB1AFDCF820005485E /* PDFViewController.swift in Sources */,
 				2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */,
 				2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */,
+				2C09D2B61AFE235D0005485E /* ReferenceListCell.swift in Sources */,
 				2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */,
 				2CE6F81B1AC658B1005FB573 /* EditReferenceCell.swift in Sources */,
 			);
