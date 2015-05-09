@@ -285,7 +285,7 @@ class ReferenceItem
             return ""
         }
         
-        return author
+        return getCapitalisedString(author)
     }
     
     func getDateForReference() -> String
@@ -305,7 +305,7 @@ class ReferenceItem
             return ""
         }
         
-        return " \(title)"
+        return " \(getCapitalisedString(title))"
     }
     
     func getSubtitleForReference() -> String
@@ -315,7 +315,7 @@ class ReferenceItem
             return ""
         }
         
-        return ": \(subTitle)."
+        return ": \(getCapitalisedString(subTitle))."
     }
     
     func getLocationForReference() -> String
@@ -325,7 +325,7 @@ class ReferenceItem
             return ""
         }
         
-        return " \(location)"
+        return " \(getCapitalisedString(location))"
     }
     
     func getPublisherForReference() -> String
@@ -335,7 +335,7 @@ class ReferenceItem
             return ""
         }
         
-        return ": \(publisher)"
+        return ": \(getCapitalisedString(publisher))"
     }
     
     func getJournalTitleForReference() -> String
@@ -345,7 +345,7 @@ class ReferenceItem
             return ""
         }
         
-        return " \(journalTitle), "
+        return " \(getCapitalisedString(journalTitle)), "
     }
     
     func getVolumeNumberForReference() -> String
@@ -405,7 +405,7 @@ class ReferenceItem
             return ""
         }
         
-        return " \(bookTitle), "
+        return " \(getCapitalisedString(bookTitle)), "
     }
     
     func getBookSubtitleForReference() -> String
@@ -415,7 +415,7 @@ class ReferenceItem
             return ""
         }
         
-        return " \(bookSubtitle), "
+        return " \(getCapitalisedString(bookSubtitle)), "
     }
     
     func getUrlForReference() -> String
@@ -426,6 +426,17 @@ class ReferenceItem
         }
         
         return " Retrieved from \(url)"
+    }
+    
+    private func getCapitalisedString(stringToCapitalise: String) -> String
+    {
+        var start: String = (stringToCapitalise as NSString).substringToIndex(1)
+        start = start.capitalizedString
+        
+        let end = (stringToCapitalise as NSString).substringFromIndex(1)
+        let result = "\(start)\(end)"
+        
+        return result
     }
     
     func getNumberOfCells() -> NSInteger
