@@ -19,7 +19,11 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        var html = "<p text-align\"center\">\(referenceList.name)</p>"
+        var html = "<h><b>References</b></h></br></br>"
+        for index in 0...referenceList.references.count - 1
+        {
+            html = "\(html)<p>\(referenceList.references[index].getReferenceString())</p></br>"
+        }
         webview.loadHTMLString(html, baseURL: nil)
     }
     
