@@ -203,6 +203,106 @@ class ReferenceItem
         return type
     }
     
+    func getHtmlReferenceString() -> String
+    {
+        if(type == ReferenceType.Book)
+        {
+            return getHtmlBookReference()
+        }
+        else if(type == ReferenceType.Journal)
+        {
+            return getHtmlJournalReference()
+        }
+        else if(type == ReferenceType.BookChapter)
+        {
+            return getHtmlBookChapterReference()
+        }
+        else if(type == ReferenceType.WebPage)
+        {
+            return getHtmlWebReference()
+        }
+        
+        return getReferenceString()
+    }
+    
+    private func getHtmlBookReference() -> String
+    {
+        var fullString = getAuthorForReference()
+        fullString += getDateForReference()
+        fullString += "<i>"
+        fullString += getTitleForReference()
+        fullString += getSubtitleForReference()
+        fullString += "</i>"
+        fullString += getLocationForReference()
+        fullString += getPublisherForReference()
+        
+        return fullString
+    }
+    
+    private func getHtmlJournalReference() -> String
+    {
+        var fullString = getAuthorForReference()
+        fullString += getDateForReference()
+        fullString += getTitleForReference()
+        fullString += getSubtitleForReference()
+        fullString += "<i>"
+        fullString += getJournalTitleForReference()
+        fullString += getVolumeNumberForReference()
+        fullString += "</i>"
+        fullString += getIssueNumberForReference()
+        fullString += getPageNumberForReference()
+        fullString += getDoiForReference()
+        
+        return fullString
+    }
+    
+    private func getHtmlBookChapterReference() -> String
+    {
+        var fullString = getAuthorForReference()
+        fullString += getDateForReference()
+        fullString += getTitleForReference()
+        fullString += getSubtitleForReference()
+        fullString += getEditorsForReference()
+        fullString += "<i>"
+        fullString += getBookTitleForReference()
+        fullString += getBookSubtitleForReference()
+        fullString += "</i>"
+        fullString += getPageNumberForReference()
+        fullString += getLocationForReference()
+        fullString += getPublisherForReference()
+        
+        return fullString
+    }
+    
+    private func getHtmlWebReference() -> String
+    {
+        var italicize = false
+        if(getReferenceString().rangeOfString(".html") == nil)
+        {
+            italicize = true
+        }
+        
+        var fullString = getAuthorForReference()
+        
+        fullString += getDateForReference()
+        if italicize
+        {
+            fullString += "<i>"
+        }
+        
+        fullString += getTitleForReference()
+        
+        if italicize
+        {
+            fullString += "</i>"
+        }
+        
+        fullString += getUrlForReference()
+        
+        return fullString
+    }
+
+    
     func getReferenceString() -> String
     {
         if(type == ReferenceType.Book)
