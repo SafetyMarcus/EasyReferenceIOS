@@ -54,7 +54,13 @@ class ReferenceList
     
     func getReferenceText() -> String
     {
-        return ""
+        var reference = ""
+        
+        for index in 0...references.count - 1
+        {
+            reference = "\(reference)\n\(references[index].getReferenceString())"
+        }
+        return reference
     }
     
     func deleteReference(context: NSManagedObjectContext, row: NSInteger)

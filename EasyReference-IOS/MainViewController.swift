@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MessageUI
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceLists = [ReferenceList]()
@@ -34,18 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
         
-            var pdfPath = PDFGenerator(listId: self.referenceLists[indexPath.row].id, context: self.appDelegate.managedObjectContext!).generate()
-
-            var mail = MFMailComposeViewController()
-            mail.setSubject("\(self.referenceLists[indexPath.row].name)")
-            mail.setMessageBody("Created in EasyReference", isHTML: false)
-            mail.mailComposeDelegate = self
-            
-            let fileData = NSData(contentsOfFile: pdfPath)
-            mail.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "\(self.referenceLists[indexPath.row].name).pdf")
-            
-            self.presentViewController(mail, animated: true, completion: nil)
-            })
+            self.performSegueWithIdentifier("ShowPDF", sender: self.tableView)
+        })
         
         shareAction.backgroundColor = UIColor(red: 255/255, green: 110/255, blue: 100/255, alpha: 1)
         
@@ -65,11 +55,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
             
         return [deleteAction, shareAction]
-    }
-    
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!)
-    {
-        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidAppear(animated: Bool)
@@ -146,6 +131,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             let referenceListView: ReferenceListView = segue.destinationViewController.topViewController as! ReferenceListView
             referenceListView.referenceList = referenceLists[selected]
+        }
+        else if(segue.identifier == "ShowPDF")
+        {
+            let pdfController: PDFViewController = segue.destinationViewController.topViewController as! PDFViewController
+            pdfController.referenceList = referenceLists[selected]
         }
     }
     
