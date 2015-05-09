@@ -120,7 +120,8 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         
         if((referenceItem.author as NSString).length > 0)
         {
-            authors = "\(referenceItem.author), "
+            authors = referenceItem.author.stringByReplacingOccurrencesOfString(" &", withString: "")
+            authors = "\(authors), & "
         }
         
         if(lastName.length > 0)
@@ -130,15 +131,16 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         
         if(firstName.length > 0)
         {
-            authors += "\(firstName.substringToIndex(1).uppercaseString). "
+            authors += "\(firstName.substringToIndex(1).uppercaseString)."
         }
         
         if(middleName.length > 0)
         {
-            authors += "\(middleName.substringToIndex(1).uppercaseString). "
+            authors += " \(middleName.substringToIndex(1).uppercaseString)."
         }
         
         authorCell.referenceText.text = authors
+        referenceItem.author = authors
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
