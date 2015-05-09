@@ -14,12 +14,14 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
 {
     var referenceList = ReferenceList()
     
+    var style = "<head><style>h1 {text-align: center; font-size: 30; font-weight: bold;}</style></head>"
+    
     @IBOutlet var webview: UIWebView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        var html = "<h><b>References</b></h></br></br>"
+        var html = "\(style) <h1>References</h1>"
         for index in 0...referenceList.references.count - 1
         {
             html = "\(html)<p>\(referenceList.references[index].getReferenceString())</p></br>"
