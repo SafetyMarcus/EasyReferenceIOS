@@ -62,6 +62,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         getReferences()
     }
     
+    @IBAction func unwindToMain(unwindSegue: UIStoryboardSegue){}
+    
     func getReferences()
     {
         referenceLists = [ReferenceList]()

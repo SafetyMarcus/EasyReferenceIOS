@@ -52,6 +52,7 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!)
     {
         controller.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("UnwindToMain", sender: self.webview)
     }
     
     func createPDFfromUIView(fileName: String)
