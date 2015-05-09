@@ -24,8 +24,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     var selected = 0
     
     @IBOutlet
-    var navBar: UINavigationBar!
-    @IBOutlet
     var tableView: UITableView!
     
     func addReference(type: ReferenceItem.ReferenceType)
