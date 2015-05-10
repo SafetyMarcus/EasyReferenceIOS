@@ -133,6 +133,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             let referenceListView: ReferenceListView = segue.destinationViewController.topViewController as! ReferenceListView
             referenceListView.referenceList = referenceLists[selected]
+            referenceListView.animateList = true
         }
         else if(segue.identifier == "ShowPDF")
         {

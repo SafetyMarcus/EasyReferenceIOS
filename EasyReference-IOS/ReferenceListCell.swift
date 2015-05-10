@@ -22,7 +22,8 @@ class ReferenceListCell: UITableViewCell
         title = UILabel(frame: CGRectMake(10, 10, tableView.frame.width - 10, 50))
         title.textColor = UIColor.blackColor()
         title.backgroundColor = UIColor.whiteColor()
-        title.setTranslatesAutoresizingMaskIntoConstraints(false)
+        title.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        title.numberOfLines = 0
         self.contentView.addSubview(title)
         
         divider = UILabel(frame: CGRectMake(20, 59, tableView.frame.width, 1))
