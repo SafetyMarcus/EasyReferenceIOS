@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceLists = [ReferenceList]()
     
-    var selected = 0
+    var selected = -1
     var addingList = false
     
     @IBOutlet
@@ -145,7 +145,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         var cell: ReferenceListCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ReferenceListCell
         cell.setUpView(self.tableView)
-        
         cell.title.text = self.referenceLists[indexPath.row].name
         
         return cell
@@ -153,9 +152,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        return self.tableView.frame.width/3 + 50
+        return 50
     }
-    
+
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
     {
         self.tableView.reloadData()
@@ -164,6 +163,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         selected = indexPath.row
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         self.performSegueWithIdentifier("ShowReferenceList", sender: self)
     }
     
