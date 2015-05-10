@@ -17,11 +17,12 @@ protocol AddReferenceDelegate
     func addReference(type: ReferenceItem.ReferenceType)
 }
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, SaveReferenceDelegate, AddReferenceDelegate
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, AddReferenceDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceList = ReferenceList()
     var selected = 0
+    var stretchyHeader = UIView()
     
     @IBOutlet
     var tableView: UITableView!
@@ -47,11 +48,31 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        stretchyHeader = UIView(frame: CGRectMake(0, 0, self.tableView.frame.width, 4))
+        stretchyHeader.backgroundColor = UIColor.redColor()
+        
+        tableView.addSubview(stretchyHeader)
+        tableView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+        tableView.contentOffset = CGPoint(x: 0, y: -60)
+        
+        self.tableView.registerClass(ReferenceListCell.self, forCellReuseIdentifier: "cell")
         self.tableView.registerNib(UINib(nibName: "ReferenceListHeaderCell", bundle: nil), forCellReuseIdentifier: "ReferenceListHeader")
         self.title = referenceList.name
     }
 
+    func updateStretchyHeader()
+    {
+        var stretchyRect = CGRect(x: 0, y: -4, width: self.tableView.bounds.width, height: 4)
+        if(self.tableView.contentOffset.y < -4)
+        {
+            stretchyRect.origin.y = self.tableView.contentOffset.y
+            stretchyRect.size.height = -tableView.contentOffset.y
+        }
+        
+        self.stretchyHeader.frame = stretchyRect
+    }
+    
     func saveReference(reference: ReferenceItem)
     {
         referenceList.references[selected] = reference
@@ -114,7 +135,14 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         
         label.text = labelText
         label.sizeToFit()
-        return label.frame.height + 20
+        
+        var size = label.frame.height + 20
+        if(size < 60)
+        {
+            size = 50
+        }
+        
+        return size
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
@@ -124,6 +152,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
         selected = indexPath.row - 1
         
         if(selected != -1)
@@ -137,12 +166,22 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         textField.resignFirstResponder()
         return true
     }
+
+    func scrollViewDidScroll(scrollView: UIScrollView)
+    {
+       updateStretchyHeader()
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
+    {
+        updateStretchyHeader()
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         if(indexPath.row == 0)
         {
-            var cell: ReferenceListHeaderCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as! ReferenceListHeaderCell
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as! ReferenceListHeaderCell
             cell.title.text = referenceList.name
             cell.title.returnKeyType = .Done
             cell.title.delegate = self
@@ -152,8 +191,9 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else
         {
-            var cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
-        
+            var cell: ReferenceListCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ReferenceListCell
+            cell.setUpView(tableView)
+            
             var currentReference = self.referenceList.references[indexPath.row - 1]
             var labelText = currentReference.getReferenceString()
         
@@ -162,9 +202,9 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
                 labelText = "Click to edit!"
             }
         
-            cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel!.text = labelText
+            cell.title.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            cell.title.numberOfLines = 0
+            cell.title.text = labelText
             return cell
         }
     }

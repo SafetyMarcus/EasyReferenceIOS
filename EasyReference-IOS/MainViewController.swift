@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.performSegueWithIdentifier("ShowPDF", sender: self.tableView)
         })
         
-        shareAction.backgroundColor = UIColor(red: 255/255, green: 110/255, blue: 100/255, alpha: 1)
+        shareAction.backgroundColor = UIColor.orangeColor()
         
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: {(action:UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
         
@@ -152,7 +152,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     {
-        return 50
+        return 60
     }
 
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
