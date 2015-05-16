@@ -44,14 +44,14 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Yh9-JR-h2Q"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No References!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-0s-tvA">
-                                <rect key="frame" x="0.0" y="242" width="600" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No References!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-0s-tvA">
+                                <rect key="frame" x="229" y="242" width="142" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-oe-ri3">
-                                <rect key="frame" x="0.0" y="278" width="600" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-oe-ri3">
+                                <rect key="frame" x="168" y="278" width="264" height="44"/>
                                 <string key="text">You don't have any references yet.
 Press "New" to get started.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -62,9 +62,15 @@ Press "New" to get started.</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="drR-ww-cUx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0VT-ht-Zu3"/>
+                            <constraint firstItem="G81-0s-tvA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="178" id="4Ag-27-6Qy"/>
                             <constraint firstItem="drR-ww-cUx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="4pQ-D8-fX4"/>
+                            <constraint firstAttribute="centerX" secondItem="lgk-oe-ri3" secondAttribute="centerX" id="Djs-Gj-wbi"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="G81-0s-tvA" secondAttribute="bottom" constant="270" id="ItL-t8-2i3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lgk-oe-ri3" secondAttribute="bottom" constant="234" id="T2T-JX-YxB"/>
+                            <constraint firstItem="lgk-oe-ri3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="214" id="cpn-BY-ZTU"/>
                             <constraint firstAttribute="width" secondItem="drR-ww-cUx" secondAttribute="width" id="fy2-F3-8Qf"/>
                             <constraint firstItem="drR-ww-cUx" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="uQP-wM-uod"/>
+                            <constraint firstAttribute="centerX" secondItem="G81-0s-tvA" secondAttribute="centerX" id="vvE-gx-F9u"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
