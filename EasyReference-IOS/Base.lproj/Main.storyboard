@@ -44,6 +44,20 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Yh9-JR-h2Q"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No References!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-0s-tvA">
+                                <rect key="frame" x="0.0" y="242" width="600" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-oe-ri3">
+                                <rect key="frame" x="0.0" y="278" width="600" height="44"/>
+                                <string key="text">You don't have any references yet.
+Press "New" to get started.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -65,6 +79,8 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="emptySubtitle" destination="lgk-oe-ri3" id="c57-1d-cJ9"/>
+                        <outlet property="emptyTitle" destination="G81-0s-tvA" id="ObM-RT-1hi"/>
                         <outlet property="tableView" destination="drR-ww-cUx" id="zid-EB-xAY"/>
                         <segue destination="YQp-g3-61a" kind="show" identifier="ShowPDF" id="r17-ck-dQl"/>
                     </connections>

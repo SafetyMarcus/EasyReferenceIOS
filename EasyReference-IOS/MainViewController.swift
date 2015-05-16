@@ -18,12 +18,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var selected = -1
     var addingList = false
     
+    @IBOutlet weak var emptyTitle: UILabel!
+    @IBOutlet weak var emptySubtitle: UILabel!
+    
     @IBOutlet
     var tableView: UITableView!
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
-        return referenceLists.count;
+        var count = referenceLists.count
+        
+        if(count == 0)
+        {
+            emptyTitle.hidden = false
+            emptySubtitle.hidden = false
+        }
+        else
+        {
+            emptyTitle.hidden = true
+            emptySubtitle.hidden = true
+        }
+        
+        return count
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
