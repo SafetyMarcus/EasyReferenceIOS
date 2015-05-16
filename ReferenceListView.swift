@@ -25,6 +25,9 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     var stretchyHeader = UIView()
     var animateList = false
     
+    @IBOutlet weak var emptyTitle: UILabel!
+    @IBOutlet weak var emptySubtitle: UILabel!
+    
     @IBOutlet
     var tableView: UITableView!
     
@@ -184,7 +187,24 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
         var references = referenceList.getReferences()
-        return references.count + 1;
+        var count = references.count + 1;
+        
+        if(count <= 1)
+        {
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.emptyTitle.alpha = 1
+                self.emptySubtitle.alpha = 1
+            })
+        }
+        else
+        {
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.emptyTitle.alpha = 0
+                self.emptySubtitle.alpha = 0
+            })
+        }
+        
+        return count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)

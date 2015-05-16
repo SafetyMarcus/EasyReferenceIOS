@@ -44,15 +44,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Yh9-JR-h2Q"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No References!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-0s-tvA">
-                                <rect key="frame" x="229" y="242" width="142" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no reference lists!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-0s-tvA">
+                                <rect key="frame" x="174" y="242" width="253" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgk-oe-ri3">
-                                <rect key="frame" x="168" y="278" width="264" height="44"/>
-                                <string key="text">You don't have any references yet.
+                                <rect key="frame" x="155" y="278" width="291" height="44"/>
+                                <string key="text">You don't have any reference lists yet.
 Press "New" to get started.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -150,12 +150,32 @@ Press "New" to get started.</string>
                                     <outlet property="delegate" destination="Dwq-RU-nS5" id="5wP-TS-E6O"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No references added" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iN-Bc-bgo">
+                                <rect key="frame" x="204" y="256" width="193" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTj-CN-dXb" userLabel="You don't have any references yet. Press &quot;New&quot; to get started.">
+                                <rect key="frame" x="168" y="289" width="264" height="44"/>
+                                <string key="text">You don't have any references yet.
+Press "New" to get started.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QDb-7s-eIz" firstAttribute="bottom" secondItem="37b-M9-ciJ" secondAttribute="top" id="E96-wH-9B5"/>
+                            <constraint firstAttribute="centerX" secondItem="gTj-CN-dXb" secondAttribute="centerX" id="MkV-NS-mGW"/>
                             <constraint firstItem="QDb-7s-eIz" firstAttribute="width" secondItem="Oql-G0-vO7" secondAttribute="width" id="Zha-dL-9I9"/>
+                            <constraint firstItem="gTj-CN-dXb" firstAttribute="top" secondItem="bRS-Af-QKD" secondAttribute="bottom" constant="225" id="a8F-Ye-252"/>
+                            <constraint firstItem="37b-M9-ciJ" firstAttribute="top" secondItem="gTj-CN-dXb" secondAttribute="bottom" constant="223" id="bQN-fe-hel"/>
+                            <constraint firstItem="37b-M9-ciJ" firstAttribute="top" secondItem="6iN-Bc-bgo" secondAttribute="bottom" constant="256" id="p4M-l4-IFx"/>
                             <constraint firstItem="QDb-7s-eIz" firstAttribute="top" secondItem="Oql-G0-vO7" secondAttribute="top" id="udp-fE-uNj"/>
+                            <constraint firstItem="6iN-Bc-bgo" firstAttribute="top" secondItem="bRS-Af-QKD" secondAttribute="bottom" constant="192" id="ufn-CW-2xP"/>
+                            <constraint firstAttribute="centerX" secondItem="6iN-Bc-bgo" secondAttribute="centerX" constant="-0.5" id="wL5-p5-VT4"/>
                             <constraint firstItem="QDb-7s-eIz" firstAttribute="leading" secondItem="Oql-G0-vO7" secondAttribute="leading" id="zC9-ug-iK9"/>
                         </constraints>
                     </view>
@@ -170,6 +190,8 @@ Press "New" to get started.</string>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptySubtitle" destination="gTj-CN-dXb" id="xcF-U2-xjj"/>
+                        <outlet property="emptyTitle" destination="6iN-Bc-bgo" id="wRv-CZ-C3J"/>
                         <outlet property="tableView" destination="QDb-7s-eIz" id="C2k-2W-en5"/>
                         <segue destination="F9n-YU-PAS" kind="show" identifier="ShowReferenceItem" id="uXw-mX-aH6"/>
                     </connections>
