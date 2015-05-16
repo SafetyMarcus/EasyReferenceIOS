@@ -30,13 +30,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if(count == 0)
         {
-            emptyTitle.hidden = false
-            emptySubtitle.hidden = false
+            UIView.animateWithDuration(1, animations: { () -> Void in
+                self.emptyTitle.alpha = 1
+                self.emptySubtitle.alpha = 1
+                self.tableView.alpha = 0
+            })
         }
         else
         {
-            emptyTitle.hidden = true
-            emptySubtitle.hidden = true
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.emptyTitle.alpha = 0
+                self.emptySubtitle.alpha = 0
+                self.tableView.alpha = 1
+            })
         }
         
         return count
@@ -191,6 +197,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         self.tableView.registerClass(ReferenceListCell.self, forCellReuseIdentifier: "cell")
         self.title = "EasyReference"
     }
