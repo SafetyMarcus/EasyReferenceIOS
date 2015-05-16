@@ -30,7 +30,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func addReference(type: ReferenceItem.ReferenceType)
     {
-        referenceList.references.append(ReferenceItem(parentId: referenceList.id, type: type))
+        referenceList.addReference(ReferenceItem(parentId: referenceList.id, type: type))
         referenceList.saveList(appDelegate.managedObjectContext!)
         self.tableView.reloadData()
     }
@@ -108,7 +108,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func saveReference(reference: ReferenceItem)
     {
-        referenceList.references[selected] = reference
+        var references = referenceList.getReferences()
+        references[selected] = reference
         referenceList.saveList(appDelegate.managedObjectContext!)
         self.tableView.reloadData()
     }
@@ -118,7 +119,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         if(segue.identifier == "ShowReferenceItem")
         {
             let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as! EditReferenceView
-            editReferenceView.referenceItem = referenceList.references[selected]
+            var references = referenceList.getReferences()
+            editReferenceView.referenceItem = references[selected]
             editReferenceView.saveReferenceDelegate = self
         }
         else if(segue.identifier == "SelectReferenceType")
@@ -155,7 +157,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
 
         let label:UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width - 40, 9999))
         
-        var currentReference = self.referenceList.references[indexPath.row - 1]
+        var references = referenceList.getReferences()
+        var currentReference = references[indexPath.row - 1]
         var labelText = currentReference.getReferenceString()
         
         if(labelText.isEmpty)
@@ -180,7 +183,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
-        return referenceList.references.count + 1;
+        var references = referenceList.getReferences()
+        return references.count + 1;
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
@@ -227,7 +231,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             var cell: ReferenceListCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ReferenceListCell
             cell.setUpView(tableView)
             
-            var currentReference = self.referenceList.references[indexPath.row - 1]
+            var references = referenceList.getReferences()
+            var currentReference = references[indexPath.row - 1]
             var labelText = currentReference.getReferenceString()
         
             if(labelText.isEmpty)

@@ -32,6 +32,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?
     {
+        selected = indexPath.row
+        
         var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
         
             self.performSegueWithIdentifier("ShowPDF", sender: self.tableView)
@@ -87,6 +89,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 referenceLists.append(ReferenceList(reference: referenceObject, context: managedContext))
             }
         }
+        
+        referenceLists.sort({ $0.name > $1.name})
         
         self.tableView.reloadData()
     }

@@ -14,7 +14,7 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
 {
     var referenceList = ReferenceList()
     
-    var style = "<head><style>h1 {text-align: center; font-size: 30; font-weight: bold;} p {margin-left: 22px; margin-right: 5px; text-indent: -17px;}</style></head>"
+    var style = "<head><style>h1 {text-align: center; font-size: 30; font-weight: bold;} p {margin-left: 22px; margin-right: 5px; text-indent: -17px; word-wrap: break-word;}</style></head><body>"
     
     @IBOutlet var webview: UIWebView!
     
@@ -22,10 +22,14 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
     {
         super.viewDidLoad()
         var html = "\(style) <h1>References</h1>"
-        for index in 0...referenceList.references.count - 1
+        
+        var references = referenceList.getReferences()
+        for index in 0...references.count - 1
         {
-            html = "\(html)<p>\(referenceList.references[index].getHtmlReferenceString())</p></br>"
+            html = "\(html)<p>\(references[index].getHtmlReferenceString())</p>"
         }
+        
+        html = "\(html)</body>"
         webview.loadHTMLString(html, baseURL: nil)
     }
     

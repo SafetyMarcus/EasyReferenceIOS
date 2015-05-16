@@ -13,7 +13,7 @@ class ReferenceList
 {
     var id = ""
     var name = ""
-    var references: [ReferenceItem] = []
+    private var references: [ReferenceItem] = []
     
     init()
     {
@@ -50,6 +50,19 @@ class ReferenceList
                 references.append(ReferenceItem(referenceItem: referenceObject))
             }
         }
+        
+        getReferences()
+    }
+    
+    func getReferences() -> [ReferenceItem]
+    {
+        references.sort({$0.author < $1.author})
+        return references
+    }
+    
+    func addReference(reference: ReferenceItem)
+    {
+        references.append(reference)
     }
     
     func getReferenceText() -> String
