@@ -196,6 +196,17 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?
+    {
+        var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (UITableViewRowAction, indexPath: NSIndexPath!) -> Void in
+                self.referenceList.deleteReference(self.appDelegate.managedObjectContext!, row: indexPath.row - 1)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+        deleteAction.backgroundColor = UIColor.redColor()
+        
+        return [deleteAction]
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if(indexPath.row == 0)
         {

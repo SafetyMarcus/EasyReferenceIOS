@@ -29,9 +29,7 @@ class ReferenceListCell: UITableViewCell
     private func setUpView()
     {
         setUpTitle()
-        divider = UILabel(frame: CGRectMake(self.frame.origin.y + 20, self.frame.height + 15, self.frame.width + 35, 1))
-        divider.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        self.contentView.addSubview(divider)
+        setUpDivider()
     }
     
     private func setUpTitle()
@@ -42,6 +40,13 @@ class ReferenceListCell: UITableViewCell
         title.lineBreakMode = NSLineBreakMode.ByWordWrapping
         title.numberOfLines = 0
         self.contentView.addSubview(title)
+    }
+    
+    private func setUpDivider()
+    {
+        divider = UILabel(frame: CGRectMake(self.frame.origin.y + 20, self.frame.height + 15, self.frame.width + 35, 1))
+        divider.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        self.contentView.addSubview(divider)
     }
     
     func showHint()
