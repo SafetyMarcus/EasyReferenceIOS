@@ -136,6 +136,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         if(segue.identifier == "ShowReferenceItem")
         {
+            self.navigationItem.title = "Save"
             let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as! EditReferenceView
             var references = referenceList.getReferences()
             editReferenceView.referenceItem = references[selected]
@@ -143,6 +144,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         else if(segue.identifier == "SelectReferenceType")
         {
+            self.navigationItem.title = "Cancel"
             let referenceTypeView: SelectReferenceTypeViewController = segue.destinationViewController.topViewController as! SelectReferenceTypeViewController
             referenceTypeView.delegate = self
         }
