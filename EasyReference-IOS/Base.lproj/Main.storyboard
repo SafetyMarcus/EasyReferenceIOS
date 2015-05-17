@@ -181,7 +181,6 @@ Press "New" to get started.</string>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vIW-rF-yKF">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="3S2-qs-QcK"/>
                         <barButtonItem key="rightBarButtonItem" title="New" id="0r2-q9-E0K">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -382,12 +381,7 @@ Press "New" to get started.</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="obp-Gu-WNv">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="cv4-dk-eEu">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="saveAndReturn:" destination="xrd-vV-wSS" id="7oH-A6-ict"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="kRh-E6-rkZ"/>
                     </navigationItem>
                     <connections>
                         <segue destination="1ud-5Y-tzJ" kind="show" identifier="ShowAddAuthor" id="lwO-rM-Ieg"/>

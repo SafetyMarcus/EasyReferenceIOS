@@ -54,6 +54,8 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             
             referenceItem.saveValueForPosition(index, value: value)
         }
+        
+        saveReferenceDelegate.saveReference(referenceItem)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -84,6 +86,10 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             
             return cell
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        save()
     }
     
     func textFieldDidEndEditing(textField: UITextField)
@@ -150,12 +156,5 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             let addAuthorView: AddAuthorViewController = segue.destinationViewController.topViewController as! AddAuthorViewController
             addAuthorView.addAuthorDelegate = self
         }
-    }
-    
-    @IBAction func saveAndReturn(sender: AnyObject)
-    {
-        save()
-        saveReferenceDelegate.saveReference(referenceItem)
-        performSegueWithIdentifier("UnwindToList", sender: sender)
     }
 }
