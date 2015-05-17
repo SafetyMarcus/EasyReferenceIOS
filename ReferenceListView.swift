@@ -24,6 +24,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     var selected = 0
     var stretchyHeader = UIView()
     var animateList = false
+    var didAddReference = false
     
     @IBOutlet weak var emptyTitle: UILabel!
     @IBOutlet weak var emptySubtitle: UILabel!
@@ -33,9 +34,14 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func addReference(type: ReferenceItem.ReferenceType)
     {
-        referenceList.addReference(ReferenceItem(parentId: referenceList.id, type: type))
+        var newReference = ReferenceItem(parentId: referenceList.id, type: type)
+        
+        referenceList.addReference(newReference)
         referenceList.saveList(appDelegate.managedObjectContext!)
         self.tableView.reloadData()
+        
+        selected = (referenceList.getReferences() as NSArray).indexOfObject(newReference)
+        didAddReference = true
     }
     
     @IBAction func unwindToList(unwindSegue: UIStoryboardSegue){}
@@ -95,6 +101,15 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.registerClass(ReferenceListCell.self, forCellReuseIdentifier: "cell")
         self.tableView.registerNib(UINib(nibName: "ReferenceListHeaderCell", bundle: nil), forCellReuseIdentifier: "ReferenceListHeader")
         self.title = referenceList.name
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        if(didAddReference)
+        {
+            didAddReference = false
+            performSegueWithIdentifier("ShowReferenceItem", sender: self.tableView)
+        }
     }
 
     func updateStretchyHeader()
