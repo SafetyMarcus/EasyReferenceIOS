@@ -22,6 +22,7 @@ class Shadow: UILabel
     {
         super.init(frame: frame)
         
+        self.numberOfLines = 2
         self.text = "Slide left to delete references!"
         self.textColor = UIColor.whiteColor()
         self.textAlignment = NSTextAlignment.Center
@@ -45,6 +46,10 @@ class Shadow: UILabel
     func tappedShadow()
     {
         self.removeFromSuperview()
-        finishDelegate.finishedShowing()
+        
+        if finishDelegate != nil
+        {
+            finishDelegate.finishedShowing()
+        }
     }
 }

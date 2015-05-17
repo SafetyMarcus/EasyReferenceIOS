@@ -45,8 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let results = fetchResults
             {
                 var appSettings: AnyObject = results[0]
-                seenMainHint = appSettings.valueForKey("seenMainHint") as! Bool
-                seenMainHint = appSettings.valueForKey("seenReferenceHint") as! Bool
+
+                var mainHint: AnyObject? = appSettings.valueForKey("seenMainHint")
+                if mainHint != nil
+                {
+                    seenMainHint = mainHint as! Bool
+                }
+                
+                var referenceHint: AnyObject? = appSettings.valueForKey("seenReferenceHint")
+                if referenceHint != nil
+                {
+                    seenReferenceHint = referenceHint as! Bool
+                }
             }
         }
         

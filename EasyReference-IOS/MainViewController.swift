@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var selected = -1
     var addingList = false
+    var showHint = false
     
     @IBOutlet weak var emptyTitle: UILabel!
     @IBOutlet weak var emptySubtitle: UILabel!
@@ -76,6 +77,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.referenceLists.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            self.appDelegate.saveContext()
         })
             
         return [deleteAction, sendAction]
@@ -84,9 +86,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidAppear(animated: Bool)
     {
         getReferences()
+        
+        if(showHint && !appDelegate.seenMainHint)
+        {
+            showHint = false
+            appDelegate.seenMainHint = true
+            appDelegate.saveSettings()
+            
+            showSendHint()
+        }
     }
     
-    @IBAction func unwindToMain(unwindSegue: UIStoryboardSegue){}
+    func showSendHint()
+    {
+        var view = self.navigationController?.view
+        var shadow = Shadow(frame: CGRectMake(0, 0, view!.frame.width, view!.frame.height))
+        shadow.text = "Slide left to send your list\nas a PDF or remove it"
+        view!.addSubview(shadow)
+    }
     
     func getReferences()
     {
@@ -131,6 +148,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         managedContext.save(&error)
         addingList = true
         getReferences()
+        appDelegate.saveContext()
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
@@ -190,6 +208,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         selected = indexPath.row
         tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        showHint = true
+        
         self.performSegueWithIdentifier("ShowReferenceList", sender: self)
     }
     

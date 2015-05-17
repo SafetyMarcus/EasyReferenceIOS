@@ -105,6 +105,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
 
         referenceList.name = headerCell.title.text
         referenceList.save(appDelegate.managedObjectContext!)
+        appDelegate.saveContext()
     }
     
     override func viewDidLoad()
@@ -121,6 +122,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.registerClass(ReferenceListCell.self, forCellReuseIdentifier: "cell")
         self.tableView.registerNib(UINib(nibName: "ReferenceListHeaderCell", bundle: nil), forCellReuseIdentifier: "ReferenceListHeader")
         self.title = referenceList.name
+        appDelegate.saveContext()
     }
     
     override func viewDidAppear(animated: Bool)
