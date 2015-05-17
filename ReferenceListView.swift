@@ -131,8 +131,11 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             performSegueWithIdentifier("ShowReferenceItem", sender: self.tableView)
         }
         
-        if(showHint)
+        if(showHint && !appDelegate.seenReferenceHint)
         {
+            appDelegate.seenReferenceHint = true
+            appDelegate.saveSettings()
+            
             showHint = false
             showDeleteHint()
         }

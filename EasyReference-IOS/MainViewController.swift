@@ -56,12 +56,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         selected = indexPath.row
         
-        var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        var sendAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Send" , handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
         
             self.performSegueWithIdentifier("ShowPDF", sender: self.tableView)
         })
         
-        shareAction.backgroundColor = UIColor.orangeColor()
+        sendAction.backgroundColor = UIColor.orangeColor()
         
         var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler: {(action:UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
         
@@ -78,7 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
         })
             
-        return [deleteAction, shareAction]
+        return [deleteAction, sendAction]
     }
     
     override func viewDidAppear(animated: Bool)

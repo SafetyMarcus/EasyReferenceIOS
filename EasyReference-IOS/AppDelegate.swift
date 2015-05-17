@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var referenceLists: [ReferenceList] = []
+    var seenMainHint = false
+    var seenReferenceHint = false
     
     func uiColorFromHex(rgbValue:UInt32) -> UIColor
     {
@@ -24,16 +26,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    {
         var navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.tintColor = uiColorFromHex(0xF20505)
         navigationBarAppearance.barTintColor = uiColorFromHex(0xF20505)
         navigationBarAppearance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()   
+        UIBarButtonItem.appearance().tintColor = UIColor.whiteColor()
+        
+        var error : NSError?
+        let fetchRequest = NSFetchRequest(entityName: "AppSettings")
+        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)
+        
+        if fetchResults != nil && fetchResults?.count > 0
+        {
+            if let results = fetchResults
+            {
+                var appSettings: AnyObject = results[0]
+                seenMainHint = appSettings.valueForKey("seenMainHint") as! Bool
+                seenMainHint = appSettings.valueForKey("seenReferenceHint") as! Bool
+            }
+        }
+        
         return true
+    }
+    
+    func saveSettings()
+    {
+        var error : NSError?
+        let fetchRequest = NSFetchRequest(entityName: "AppSettings")
+        let fetchResults = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)
+        
+        if fetchResults != nil && fetchResults?.count > 0
+        {
+            if let results = fetchResults
+            {
+                var appSettings: AnyObject = results[0]
+                appSettings.setValue(seenMainHint, forKey: "seenMainHint")
+                appSettings.setValue(seenReferenceHint, forKey: "seenReferenceHint")
+            }
+        }
+        else
+        {
+            var entity = NSEntityDescription.entityForName("AppSettings", inManagedObjectContext: managedObjectContext!)
+            NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedObjectContext)
+        }
     }
 
     func applicationWillResignActive(application: UIApplication) {
