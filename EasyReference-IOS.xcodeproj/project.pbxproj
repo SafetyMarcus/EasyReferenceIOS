@@ -10,7 +10,6 @@
 		2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */; };
 		2C09D2AB1AFDCF820005485E /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09D2AA1AFDCF820005485E /* PDFViewController.swift */; };
 		2C09D2B61AFE235D0005485E /* ReferenceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */; };
-		2C09D2B81AFE30FD0005485E /* icon_edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C09D2B71AFE30FD0005485E /* icon_edit.png */; };
 		2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FC1AA184F1006C199A /* AppDelegate.swift */; };
 		2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FE1AA184F2006C199A /* EasyReference_IOS.xcdatamodeld */; };
 		2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7011AA184F2006C199A /* MainViewController.swift */; };
@@ -52,7 +51,6 @@
 		2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditReferenceView.swift; sourceTree = "<group>"; };
 		2C09D2AA1AFDCF820005485E /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceListCell.swift; sourceTree = "<group>"; };
-		2C09D2B71AFE30FD0005485E /* icon_edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_edit.png; path = Images/icon_edit.png; sourceTree = SOURCE_ROOT; };
 		2C51C6F71AA184F1006C199A /* EasyReference-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyReference-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C51C6FB1AA184F1006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C6FC1AA184F1006C199A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 		2C51C6FA1AA184F1006C199A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2C09D2B71AFE30FD0005485E /* icon_edit.png */,
 				2CD304181AD0D47100F5536A /* webpage.png */,
 				2CD304161AD0D46A00F5536A /* icon_journal.png */,
 				2CD304141AD0D46300F5536A /* icon_book.png */,
@@ -344,7 +341,6 @@
 				2CD304191AD0D47100F5536A /* webpage.png in Resources */,
 				2C51C7071AA184F2006C199A /* Images.xcassets in Resources */,
 				2CE6F8181AC65140005FB573 /* EditReferenceAuthorCell.xib in Resources */,
-				2C09D2B81AFE30FD0005485E /* icon_edit.png in Resources */,
 				2CE6F8161AC65130005FB573 /* EditReferenceCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
