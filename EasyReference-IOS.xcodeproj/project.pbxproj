@@ -10,6 +10,7 @@
 		2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */; };
 		2C09D2AB1AFDCF820005485E /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09D2AA1AFDCF820005485E /* PDFViewController.swift */; };
 		2C09D2B61AFE235D0005485E /* ReferenceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */; };
+		2C4F63E51B08793200348039 /* Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4F63E41B08793200348039 /* Shadow.swift */; };
 		2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FC1AA184F1006C199A /* AppDelegate.swift */; };
 		2C51C7001AA184F2006C199A /* EasyReference_IOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C6FE1AA184F2006C199A /* EasyReference_IOS.xcdatamodeld */; };
 		2C51C7021AA184F2006C199A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C51C7011AA184F2006C199A /* MainViewController.swift */; };
@@ -51,6 +52,7 @@
 		2C0624711AA2FB4400C902D6 /* EditReferenceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditReferenceView.swift; sourceTree = "<group>"; };
 		2C09D2AA1AFDCF820005485E /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceListCell.swift; sourceTree = "<group>"; };
+		2C4F63E41B08793200348039 /* Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shadow.swift; sourceTree = "<group>"; };
 		2C51C6F71AA184F1006C199A /* EasyReference-IOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EasyReference-IOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C51C6FB1AA184F1006C199A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C51C6FC1AA184F1006C199A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -122,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				2C66B6801AF4F38200C2EEA4 /* Animations */,
-				2CCA0CAC1AB594CA005D3231 /* CustomCells */,
+				2CCA0CAC1AB594CA005D3231 /* CustomViews */,
 				2CB5CFBB1AA2A348003A808A /* Models */,
 				2CB5CFBA1AA2A32D003A808A /* ViewControllers */,
 				2C51C6FC1AA184F1006C199A /* AppDelegate.swift */,
@@ -212,15 +214,16 @@
 			name = ReferenceType;
 			sourceTree = "<group>";
 		};
-		2CCA0CAC1AB594CA005D3231 /* CustomCells */ = {
+		2CCA0CAC1AB594CA005D3231 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				2CC966E21ABAE43800087CA2 /* ReferenceListHeader */,
 				2CC966E31ABAE44200087CA2 /* ReferenceType */,
 				2CE6F8191AC653AC005FB573 /* EditReferenceCells */,
 				2C09D2B51AFE235D0005485E /* ReferenceListCell.swift */,
+				2C4F63E41B08793200348039 /* Shadow.swift */,
 			);
-			name = CustomCells;
+			name = CustomViews;
 			sourceTree = "<group>";
 		};
 		2CE6F8191AC653AC005FB573 /* EditReferenceCells */ = {
@@ -375,6 +378,7 @@
 				2C09D2B61AFE235D0005485E /* ReferenceListCell.swift in Sources */,
 				2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */,
 				2CE6F81B1AC658B1005FB573 /* EditReferenceCell.swift in Sources */,
+				2C4F63E51B08793200348039 /* Shadow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

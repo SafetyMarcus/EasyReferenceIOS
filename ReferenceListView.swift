@@ -17,7 +17,7 @@ protocol AddReferenceDelegate
     func addReference(type: ReferenceItem.ReferenceType)
 }
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, AddReferenceDelegate
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, AddReferenceDelegate, ShowingDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceList = ReferenceList()
@@ -25,6 +25,9 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     var stretchyHeader = UIView()
     var animateList = false
     var didAddReference = false
+    
+    var showHint = false
+    var hintCell: ReferenceListCell!
     
     @IBOutlet weak var emptyTitle: UILabel!
     @IBOutlet weak var emptySubtitle: UILabel!
@@ -78,6 +81,21 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func showDeleteHint()
+    {
+        var view = self.navigationController?.view
+        var shadow = Shadow(frame: CGRectMake(0, 0, view!.frame.width, view!.frame.height))
+        shadow.finishDelegate = self
+        view!.addSubview(shadow)
+        
+        hintCell.showHint(self.tableView)
+    }
+    
+    func finishedShowing()
+    {
+        hintCell.hideHint(self.tableView)
+    }
+    
     override func viewWillDisappear(animated: Bool)
     {
         var indexPath = NSIndexPath(forRow: 0, inSection: 0)
@@ -110,6 +128,12 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             didAddReference = false
             performSegueWithIdentifier("ShowReferenceItem", sender: self.tableView)
         }
+        
+        if(showHint)
+        {
+            showHint = false
+            showDeleteHint()
+        }
     }
 
     func updateStretchyHeader()
@@ -126,6 +150,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func saveReference(reference: ReferenceItem)
     {
+        showHint = true
         var references = referenceList.getReferences()
         references[selected] = reference
         referenceList.saveList(appDelegate.managedObjectContext!)
@@ -195,7 +220,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         var size = label.frame.height + 20
         if(size < 60)
         {
-            size = 50
+            size = 60
         }
         
         return size
@@ -278,6 +303,12 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             }
         
             cell.title.text = labelText
+            
+            if(showHint && hintCell == nil)
+            {
+                hintCell = cell
+            }
+            
             return cell
         }
     }
