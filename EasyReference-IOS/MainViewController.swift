@@ -180,7 +180,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         return 60
     }
-
+    
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
     {
         self.tableView.reloadData()
