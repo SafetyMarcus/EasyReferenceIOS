@@ -71,12 +71,14 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         
             for a in cells
             {
-                let cell: UITableViewCell = a as! UITableViewCell
-                UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options:    nil, animations: {
-                        cell.transform = CGAffineTransformMakeTranslation(0, 0);
-                    }, completion: nil)
+                if let cell: ReferenceListCell = a as? ReferenceListCell
+                {
+                    UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options:        nil, animations: {
+                            cell.transform = CGAffineTransformMakeTranslation(0, 0);},
+                        completion: nil)
             
-                index += 1
+                    index += 1
+                }
             }
         }
     }
@@ -88,12 +90,12 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         shadow.finishDelegate = self
         view!.addSubview(shadow)
         
-        hintCell.showHint(self.tableView)
+        hintCell.showHint()
     }
     
     func finishedShowing()
     {
-        hintCell.hideHint(self.tableView)
+        hintCell.hideHint()
     }
     
     override func viewWillDisappear(animated: Bool)
@@ -291,7 +293,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         else
         {
             var cell: ReferenceListCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ReferenceListCell
-            cell.setUpView(tableView)
             
             var references = referenceList.getReferences()
             var currentReference = references[indexPath.row - 1]

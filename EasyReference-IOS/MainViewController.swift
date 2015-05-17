@@ -171,7 +171,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: ReferenceListCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ReferenceListCell
-        cell.setUpView(self.tableView)
         cell.title.text = self.referenceLists[indexPath.row].name
         
         return cell
