@@ -172,6 +172,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as! EditReferenceView
             var references = referenceList.getReferences()
             editReferenceView.referenceItem = references[selected]
+            editReferenceView.animateIn = true
             editReferenceView.saveReferenceDelegate = self
         }
         else if(segue.identifier == "SelectReferenceType")

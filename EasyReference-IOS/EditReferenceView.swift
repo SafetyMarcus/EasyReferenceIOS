@@ -22,6 +22,7 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
 {
     var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
+    var animateIn = false
     
     @IBAction func unwindToEditReference(unwindSegue: UIStoryboardSegue){}
     
@@ -88,7 +89,42 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
+        if(animateIn)
+        {
+            animateIn = false
+            tableView.reloadData()
+        
+            let cells = tableView.visibleCells()
+            let tableWidth: CGFloat = tableView.bounds.size.width
+        
+            for i in cells
+            {
+                if let cell: UITableViewCell = i as? UITableViewCell
+                {
+                    cell.transform = CGAffineTransformMakeTranslation(tableWidth, 0)
+                }
+            }
+        
+            var index = 0
+        
+            for a in cells
+            {
+                if let cell: UITableViewCell = a as? UITableViewCell
+                {
+                    UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options:       nil, animations: {
+                        cell.transform = CGAffineTransformMakeTranslation(0, 0);},
+                        completion: nil)
+                
+                    index += 1
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool)
+    {
         save()
     }
     
