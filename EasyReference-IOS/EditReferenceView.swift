@@ -191,6 +191,12 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         }
         
         authorCell.referenceText.text = authors
+        
+        if((authors as NSString).length > 0)
+        {
+            authorCell.referenceText.enabled = true
+        }
+
         referenceItem.author = authors
     }
     
