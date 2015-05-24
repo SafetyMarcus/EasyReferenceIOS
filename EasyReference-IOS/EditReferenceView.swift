@@ -100,6 +100,8 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
     
     override func viewWillAppear(animated: Bool)
     {
+        super.viewWillAppear(animated)
+        
         if(animateIn)
         {
             animateIn = false
