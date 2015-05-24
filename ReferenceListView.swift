@@ -303,6 +303,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             cell.title.text = referenceList.name
             cell.title.returnKeyType = .Done
             cell.title.delegate = self
+            cell.title.autocapitalizationType = .Words
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             
             return cell

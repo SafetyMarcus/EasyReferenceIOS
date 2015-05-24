@@ -93,6 +93,7 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             cell.referenceText.text = referenceItem.getValueForPosition(indexPath.row)
             cell.referenceText.delegate = self
             cell.referenceText.returnKeyType = .Done
+            cell.referenceText.autocapitalizationType = referenceItem.getTextInputForCell(indexPath.row)
             
             return cell
         }

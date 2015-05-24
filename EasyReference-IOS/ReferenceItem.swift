@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class ReferenceItem
 {
@@ -563,6 +564,34 @@ class ReferenceItem
         return cellCount
     }
     
+    func getTextInputForCell(position: Int) -> UITextAutocapitalizationType
+    {
+        if(position == 0 || position == 1)
+        {
+            return .None
+        }
+        else if(position == 2)
+        {
+            return .Sentences
+        }
+        else if(self.type == .Journal && (position == 3 || position == 4))
+        {
+            return .Sentences
+        }
+        else if(self.type == .BookChapter && (position == 3 || position == 5 || position == 6))
+        {
+            return .Sentences
+        }
+        else if(self.type == .WebPage || position == 3)
+        {
+            return .None
+        }
+        else
+        {
+            return .Words
+        }
+    }
+    
     func getLabelsForCells() -> [String]
     {
         var labels = [String]()
@@ -679,7 +708,7 @@ class ReferenceItem
         hints.append("enter author")
         hints.append("enter year")
         hints.append("enter title")
-        hints.append("enter subtitle")
+        hints.append("(optional) enter subtitle")
         hints.append("enter location")
         hints.append("enter publisher")
         
@@ -693,7 +722,7 @@ class ReferenceItem
         hints.append("enter author")
         hints.append("enter year")
         hints.append("enter title")
-        hints.append("enter subtitle")
+        hints.append("(optional) enter subtitle")
         hints.append("enter journal title")
         hints.append("enter volume number")
         hints.append("enter issue number")
@@ -710,10 +739,10 @@ class ReferenceItem
         hints.append("enter author")
         hints.append("enter year")
         hints.append("enter chapter title")
-        hints.append("enter chapter subtitle")
+        hints.append("(optional) enter chapter subtitle")
         hints.append("enter editors")
         hints.append("enter book title")
-        hints.append("enter book subtitle")
+        hints.append("(optional) enter book subtitle")
         hints.append("enter pages of chapter")
         hints.append("enter location")
         hints.append("enter publisher")
