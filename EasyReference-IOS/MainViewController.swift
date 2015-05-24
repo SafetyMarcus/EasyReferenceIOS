@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import MessageUI
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ShowingDelegate
 {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var referenceLists = [ReferenceList]()
@@ -105,7 +105,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         var view = self.navigationController?.view
         var shadow = Shadow(frame: CGRectMake(0, 0, view!.frame.width, view!.frame.height))
         shadow.text = "Slide left to send your list\nas a PDF or remove it"
+        shadow.finishDelegate = self
         view!.addSubview(shadow)
+        
+        if(self.tableView.numberOfRowsInSection(0) > 0)
+        {
+            (self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as! ReferenceListCell).showHint()
+        }
+    }
+    
+    func finishedShowing()
+    {
+        (self.tableView.cellForRowAtIndexPath(NSIndexPath(forItem: 0, inSection: 0)) as! ReferenceListCell).hideHint()
     }
     
     func getReferences()
