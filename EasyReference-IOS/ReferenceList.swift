@@ -27,6 +27,11 @@ class ReferenceList
         getAllReferences(context)
     }
     
+    func getLowercaseName() -> String
+    {
+        return name.lowercaseString
+    }
+    
     private func getAllReferences(context: NSManagedObjectContext)
     {
         references = [ReferenceItem]()

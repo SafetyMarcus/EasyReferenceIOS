@@ -70,9 +70,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             var error : NSError?
             let fetchRequest = NSFetchRequest(entityName: "ReferenceList")
+            let predicate = NSPredicate(format: "id == %@", self.referenceLists[indexPath.row].id)
+            fetchRequest.predicate = predicate
+            
             let fetchResults: [NSManagedObject] = (managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject])!
             
-            let itemToDelete = fetchResults[indexPath.row]
+            let itemToDelete = fetchResults[0]
             managedContext.deleteObject(itemToDelete)
             
             self.referenceLists.removeAtIndex(indexPath.row)
@@ -129,7 +132,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         
-        referenceLists.sort({ $0.name > $1.name})
+        referenceLists.sort({ $0.getLowercaseName() < $1.getLowercaseName()})
         
         self.tableView.reloadData()
     }
