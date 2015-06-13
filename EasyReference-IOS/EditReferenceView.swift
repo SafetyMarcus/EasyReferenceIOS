@@ -33,29 +33,11 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         self.tableView.allowsSelection = false
         self.tableView.registerNib(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
         self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
-        
-        save()
     }
     
     func save()
     {
-        for index in 0...self.tableView.numberOfRowsInSection(0)
-        {
-            var value = ""
-            
-            var cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0))
-            if let authorCell = cell as? EditReferenceAuthorCell
-            {
-                value = authorCell.referenceText.text
-            }
-            else if let referenceCell = cell as? EditReferenceCell
-            {
-                value = referenceCell.referenceText.text
-            }
-            
-            referenceItem.saveValueForPosition(index, value: value)
-        }
-        
+        referenceItem.save((UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!)
         saveReferenceDelegate.saveReference(referenceItem)
     }
     
@@ -148,15 +130,16 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         {
             var cell: UITableViewCell = textField.superview?.superview as! UITableViewCell
             
-            var row = self.tableView.indexPathForCell(cell)
-            var position = row?.row
-            var value = textField.text
+            var row: NSIndexPath = (self.tableView.indexPathForCell(cell) as NSIndexPath?)!
+            var position = row.row
             
-            if(position != nil)
-            {
-                referenceItem.saveValueForPosition(position!, value: value)
-            }
+            var textFieldText: NSString = textField.text
+            var total = "\(textFieldText.substringToIndex(range.location))"
+            total += "\(replacement)"
+            total += "\(textFieldText.substringFromIndex(range.location + range.length))"
             
+            referenceItem.saveValueForPosition(position, value: total)
+
             return true
         }
         
@@ -212,7 +195,7 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             authorCell.referenceText.enabled = true
         }
 
-        referenceItem.author = authors
+        referenceItem.saveValueForPosition(0, value: authors)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
