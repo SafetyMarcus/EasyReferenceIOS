@@ -140,15 +140,27 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         save()
     }
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString replacement: String) -> Bool
     {
-        var cell: UITableViewCell = textField.superview?.superview as! UITableViewCell
+        let original = (textField.text as NSString).substringWithRange(range)
+        let new = replacement
+        if(original != new)
+        {
+            var cell: UITableViewCell = textField.superview?.superview as! UITableViewCell
+            
+            var row = self.tableView.indexPathForCell(cell)
+            var position = row?.row
+            var value = textField.text
+            
+            if(position != nil)
+            {
+                referenceItem.saveValueForPosition(position!, value: value)
+            }
+            
+            return true
+        }
         
-        var row = self.tableView.indexPathForCell(cell)
-        var position = row?.row
-        var value = textField.text
-        
-        referenceItem.saveValueForPosition(position!, value: value)
+        return false
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
