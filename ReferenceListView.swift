@@ -231,7 +231,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         }
         
         label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         
         label.text = labelText
         label.sizeToFit()

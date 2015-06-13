@@ -37,8 +37,8 @@ class ReferenceListCell: UITableViewCell
         title = UILabel(frame: CGRectMake(self.frame.origin.x + 10, self.frame.origin.y + 10, self.frame.width - 10, self.frame.height))
         title.textColor = UIColor.blackColor()
         title.backgroundColor = UIColor.whiteColor()
-        title.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        title.numberOfLines = 0
+        title.lineBreakMode = .ByTruncatingTail
+        title.numberOfLines = 2
         self.contentView.addSubview(title)
     }
     
