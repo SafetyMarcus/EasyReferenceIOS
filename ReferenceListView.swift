@@ -178,7 +178,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         else if(segue.identifier == "SelectReferenceType")
         {
             self.navigationItem.title = "Cancel"
-            let referenceTypeView: SelectReferenceTypeViewController = (segue.destination as! UINavigationController) as! SelectReferenceTypeViewController
+            let referenceTypeView: SelectReferenceTypeViewController = (segue.destination as! UINavigationController).topViewController as! SelectReferenceTypeViewController
             referenceTypeView.delegate = self
         }
     }
