@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
     }
     
-    private func tableView(_ tableView: UITableView, editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]?
+    func tableView(_ tableView: UITableView, editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]?
     {
         selected = (indexPath as NSIndexPath).row
         
@@ -191,7 +191,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         else if(segue.identifier == "ShowPDF")
         {
-            let pdfController: PDFViewController = (segue.destination as! UINavigationController).topViewController as! PDFViewController
+            let pdfController: PDFViewController = segue.destination as! PDFViewController
             pdfController.referenceList = referenceLists[selected]
         }
     }

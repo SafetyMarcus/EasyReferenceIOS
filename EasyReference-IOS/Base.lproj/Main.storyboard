@@ -90,7 +90,7 @@ Press "New" to get started.</string>
                         <outlet property="emptySubtitle" destination="lgk-oe-ri3" id="c57-1d-cJ9"/>
                         <outlet property="emptyTitle" destination="G81-0s-tvA" id="ObM-RT-1hi"/>
                         <outlet property="tableView" destination="drR-ww-cUx" id="zid-EB-xAY"/>
-                        <segue destination="YQp-g3-61a" kind="show" identifier="ShowPDF" id="r17-ck-dQl"/>
+                        <segue destination="Jhb-wx-vae" kind="show" identifier="ShowPDF" id="F95-Mm-hRv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -377,24 +377,6 @@ Press "New" to get started.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zek-pQ-KyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3947" y="234"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="pCC-j1-Z5P">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YQp-g3-61a" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HT7-rj-7T8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Jhb-wx-vae" kind="relationship" relationship="rootViewController" id="EJN-ha-BFB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X5i-Kb-GeS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="375" y="933"/>
         </scene>
     </scenes>
 </document>
