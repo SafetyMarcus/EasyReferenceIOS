@@ -198,7 +198,7 @@ class EditReferenceView: UITableViewController, AddAuthorDelegate, AddAuthorList
     {
         if(segue.identifier == "ShowAddAuthor")
         {
-            let addAuthorView: AddAuthorViewController = (segue.destination as! UINavigationController).topViewController as! AddAuthorViewController
+            let addAuthorView: AddAuthorViewController = segue.destination as! AddAuthorViewController
             addAuthorView.addAuthorDelegate = self
         }
     }
