@@ -19,34 +19,34 @@ class SelectReferenceTypeViewController: UIViewController, UITableViewDelegate, 
     {
         super.viewDidLoad()
         self.tableView.rowHeight = 70
-        self.tableView.registerNib(UINib(nibName: "ReferenceTypeCell", bundle: nil), forCellReuseIdentifier: "ReferenceTypeCell")
+        self.tableView.register(UINib(nibName: "ReferenceTypeCell", bundle: nil), forCellReuseIdentifier: "ReferenceTypeCell")
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return 4
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        var cell: ReferenceTypeCell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceTypeCell") as! ReferenceTypeCell
+        let cell: ReferenceTypeCell = self.tableView.dequeueReusableCell(withIdentifier: "ReferenceTypeCell") as! ReferenceTypeCell
         
-        if(indexPath.row == 0)
+        if((indexPath as NSIndexPath).row == 0)
         {
             cell.title.text = "Book"
             cell.typeImage.image = UIImage(named: "icon_book")
         }
-        else if(indexPath.row == 1)
+        else if((indexPath as NSIndexPath).row == 1)
         {
             cell.title.text = "Journal"
             cell.typeImage.image = UIImage(named: "icon_journal")
         }
-        else if(indexPath.row == 2)
+        else if((indexPath as NSIndexPath).row == 2)
         {
             cell.title.text = "Book Chapter"
             cell.typeImage.image = UIImage(named: "icon_book_chapter")
         }
-        else if(indexPath.row == 3)
+        else if((indexPath as NSIndexPath).row == 3)
         {
             cell.title.text = "Web Page"
             cell.typeImage.image = UIImage(named: "webpage")
@@ -56,37 +56,37 @@ class SelectReferenceTypeViewController: UIViewController, UITableViewDelegate, 
         return cell
     }
     
-    func tintImageWhite(imageView: UIImageView)
+    func tintImageWhite(_ imageView: UIImageView)
     {
-        imageView.image = imageView.image!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        imageView.tintColor = UIColor.whiteColor()
+        imageView.image = imageView.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        imageView.tintColor = UIColor.white
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        delegate.addReference(getTypeForPosition(indexPath.row))
-        performSegueWithIdentifier("UnwindToList", sender: self)
+        delegate.addReference(getTypeForPosition((indexPath as NSIndexPath).row))
+        performSegue(withIdentifier: "UnwindToList", sender: self)
     }
     
-    func getTypeForPosition(position: NSInteger) -> ReferenceItem.ReferenceType
+    func getTypeForPosition(_ position: NSInteger) -> ReferenceItem.ReferenceType
     {
         if(position == 0)
         {
-            return ReferenceItem.ReferenceType.Book
+            return ReferenceItem.ReferenceType.book
         }
         else if(position == 1)
         {
-            return ReferenceItem.ReferenceType.Journal
+            return ReferenceItem.ReferenceType.journal
         }
         else if(position == 2)
         {
-            return ReferenceItem.ReferenceType.BookChapter
+            return ReferenceItem.ReferenceType.bookChapter
         }
         else if(position == 3)
         {
-            return ReferenceItem.ReferenceType.WebPage
+            return ReferenceItem.ReferenceType.webPage
         }
         
-        return ReferenceItem.ReferenceType.Book
+        return ReferenceItem.ReferenceType.book
     }
 }

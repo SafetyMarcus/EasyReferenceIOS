@@ -9,6 +9,26 @@
 import Foundation
 import UIKit
 import MessageUI
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
 {
@@ -33,37 +53,37 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
         webview.loadHTMLString(html, baseURL: nil)
     }
     
-    @IBAction func Send(sender: AnyObject)
+    @IBAction func Send(_ sender: AnyObject)
     {
         let pdfName = "\(referenceList.name).pdf"
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.LibraryDirectory, NSSearchPathDomainMask.UserDomainMask, true);
-        let documentsDirectory: String = paths[0] as! String
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory, FileManager.SearchPathDomainMask.userDomainMask, true);
+        let documentsDirectory: String = paths[0] 
         
         let pdfPath = "\(documentsDirectory)/\(pdfName)";
         createPDFfromUIView(pdfPath)
 
-        var mail = MFMailComposeViewController()
+        let mail = MFMailComposeViewController()
         mail.setSubject("\(referenceList.name)")
         mail.setMessageBody("Created in EasyReference", isHTML: false)
         mail.mailComposeDelegate = self
         
-        let fileData = NSData(contentsOfFile: pdfPath)
-        mail.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "\(referenceList.name).pdf")
+        let fileData = try? Data(contentsOf: URL(fileURLWithPath: pdfPath))
+        mail.addAttachmentData(fileData!, mimeType: "application/pdf", fileName: "\(referenceList.name).pdf")
         
-        self.presentViewController(mail, animated: true, completion: nil)
+        self.present(mail, animated: true, completion: nil)
     }
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        performSegueWithIdentifier("UnwindToMain", sender: self.webview)
+        controller.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "UnwindToMain", sender: self.webview)
     }
     
-    func createPDFfromUIView(fileName: String)
+    func createPDFfromUIView(_ fileName: String)
     {
         // Creates a mutable data object for updating with binary data, like a byte array
-        let heightStr = webview.stringByEvaluatingJavaScriptFromString("document.body.scrollHeight;")
-        let height = heightStr?.toInt()
+        let heightStr = webview.stringByEvaluatingJavaScript(from: "document.body.scrollHeight;")
+        let height = heightStr?.characters.count
         let webHeight = Int(webview.bounds.height)
         
         let pages = height!/webHeight
@@ -90,14 +110,14 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
             let currentContext = UIGraphicsGetCurrentContext()
     
             let y = Float(webHeight) * Float(i)
-            let point = CGPointMake(0, CGFloat(y))
+            let point = CGPoint(x: 0, y: CGFloat(y))
             
-            webview.subviews.last?.setContentOffset(point, animated: false)
-            webview.layer.renderInContext(currentContext)
+            (webview.subviews.last as! UIScrollView).setContentOffset(point, animated: false)
+            webview.layer.render(in: currentContext!)
         }
     
         UIGraphicsEndPDFContext()
-        pdfData.writeToFile(fileName, atomically: true)
+        pdfData.write(toFile: fileName, atomically: true)
         webview.frame = frame
     }
 }

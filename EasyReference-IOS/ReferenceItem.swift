@@ -14,10 +14,10 @@ class ReferenceItem
 {
     enum ReferenceType
     {
-        case Book
-        case Journal
-        case BookChapter
-        case WebPage
+        case book
+        case journal
+        case bookChapter
+        case webPage
     }
     
     var id: String
@@ -50,73 +50,71 @@ class ReferenceItem
     
     init(parentId: String, type: ReferenceType)
     {
-        self.id = NSUUID().UUIDString
+        self.id = UUID().uuidString
         self.parentId = parentId
         self.type = type
     }
     
     init(referenceItem: NSManagedObject)
     {
-        self.id = referenceItem.valueForKey("id") as! String
-        self.parentId = referenceItem.valueForKey("parent_id") as! String
+        self.id = referenceItem.value(forKey: "id") as! String
+        self.parentId = referenceItem.value(forKey: "parent_id") as! String
         
-        var typeInt = referenceItem.valueForKey("type") as! NSInteger
-        self.type = ReferenceType.Book
+        let typeInt = referenceItem.value(forKey: "type") as! NSInteger
+        self.type = ReferenceType.book
         
-        self.author = referenceItem.valueForKey("author") as! String
-        self.date = referenceItem.valueForKey("date") as! String
-        self.title = referenceItem.valueForKey("title") as! String
-        self.subTitle = referenceItem.valueForKey("subtitle") as! String
+        self.author = referenceItem.value(forKey: "author") as! String
+        self.date = referenceItem.value(forKey: "date") as! String
+        self.title = referenceItem.value(forKey: "title") as! String
+        self.subTitle = referenceItem.value(forKey: "subtitle") as! String
         
-        self.location = referenceItem.valueForKey("location") as! String
-        self.publisher = referenceItem.valueForKey("publisher") as! String
+        self.location = referenceItem.value(forKey: "location") as! String
+        self.publisher = referenceItem.value(forKey: "publisher") as! String
         
-        self.journalTitle = referenceItem.valueForKey("journal_title") as! String
-        self.volumeNumber = referenceItem.valueForKey("volume_number") as! String
-        self.issueNumber = referenceItem.valueForKey("issue_number") as! String
-        self.pageNumber = referenceItem.valueForKey("page_number") as! String
-        self.doi = referenceItem.valueForKey("doi") as! String
+        self.journalTitle = referenceItem.value(forKey: "journal_title") as! String
+        self.volumeNumber = referenceItem.value(forKey: "volume_number") as! String
+        self.issueNumber = referenceItem.value(forKey: "issue_number") as! String
+        self.pageNumber = referenceItem.value(forKey: "page_number") as! String
+        self.doi = referenceItem.value(forKey: "doi") as! String
         
-        self.editors = referenceItem.valueForKey("editors") as! String
-        self.bookTitle = referenceItem.valueForKey("book_title") as! String
-        self.bookSubtitle = referenceItem.valueForKey("book_subtitle") as! String
+        self.editors = referenceItem.value(forKey: "editors") as! String
+        self.bookTitle = referenceItem.value(forKey: "book_title") as! String
+        self.bookSubtitle = referenceItem.value(forKey: "book_subtitle") as! String
         
-        self.url = referenceItem.valueForKey("url") as! String
+        self.url = referenceItem.value(forKey: "url") as! String
         
         type = getTypeForInt(typeInt)
     }
     
-    func delete(context: NSManagedObjectContext)
+    func delete(_ context: NSManagedObjectContext)
     {
-        let entity = NSEntityDescription.entityForName("ReferenceItem", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entity(forEntityName: "ReferenceItem", in: context)
         let predicate = NSPredicate(format: "id == %@", id)
         
-        let fetchRequest = NSFetchRequest(entityName: "ReferenceItem")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ReferenceItem")
         fetchRequest.predicate = predicate
         
-        var error: NSError?
-        let fetchResults: [NSManagedObject] = (context.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject])!
+        let fetchResults: [NSManagedObject] = try! (context.fetch(fetchRequest) as? [NSManagedObject])!
         
         let itemToDelete = fetchResults[0]
-        context.deleteObject(itemToDelete)
+        context.delete(itemToDelete)
     }
     
-    func save(context: NSManagedObjectContext)
+    func save(_ context: NSManagedObjectContext)
     {
-        let entity = NSEntityDescription.entityForName("ReferenceItem", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entity(forEntityName: "ReferenceItem", in: context)
         let predicate = NSPredicate(format: "id == %@", id)
 
-        let fetchRequest = NSFetchRequest(entityName: "ReferenceItem")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ReferenceItem")
         fetchRequest.predicate = predicate
         
-        var error: NSError?
-        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+        let fetchResults = try? context.fetch(fetchRequest)
 
         var referenceItem: NSManagedObject?
         
         if let results = fetchResults
         {
-            if(fetchResults?.count > 0)
+            if((fetchResults?.count)! > 0)
             {
                 referenceItem = results[0] as? NSManagedObject
             }
@@ -124,13 +122,13 @@ class ReferenceItem
         
         if(referenceItem == nil)
         {
-            referenceItem = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
+            referenceItem = NSManagedObject(entity: entity!, insertInto: context)
         }
         
         saveToCoreData(referenceItem!)
     }
     
-    private func saveToCoreData(reference: NSManagedObject)
+    fileprivate func saveToCoreData(_ reference: NSManagedObject)
     {
         reference.setValue(id, forKey: "id")
         reference.setValue(parentId, forKey: "parent_id")
@@ -158,45 +156,45 @@ class ReferenceItem
         reference.setValue(url, forKey: "url")
     }
     
-    func getTypeForInt(int: NSInteger) -> ReferenceType
+    func getTypeForInt(_ int: NSInteger) -> ReferenceType
     {
         if(int == 0)
         {
-            return ReferenceType.Book
+            return ReferenceType.book
         }
         else if(int == 1)
         {
-            return ReferenceType.Journal
+            return ReferenceType.journal
         }
         else if(int == 2)
         {
-            return ReferenceType.BookChapter
+            return ReferenceType.bookChapter
         }
         else if(int == 3)
         {
-            return ReferenceType.WebPage
+            return ReferenceType.webPage
         }
         
-        return ReferenceType.Book
+        return ReferenceType.book
     }
     
-    func getIntForType(type: ReferenceType) -> NSInteger
+    func getIntForType(_ type: ReferenceType) -> NSInteger
     {
         var type = 0
         
-        if(self.type == ReferenceType.Book)
+        if(self.type == ReferenceType.book)
         {
             type = 0
         }
-        else if(self.type == ReferenceType.Journal)
+        else if(self.type == ReferenceType.journal)
         {
             type = 1
         }
-        else if(self.type == ReferenceType.BookChapter)
+        else if(self.type == ReferenceType.bookChapter)
         {
             type = 2
         }
-        else if(self.type == ReferenceType.WebPage)
+        else if(self.type == ReferenceType.webPage)
         {
             type = 3
         }
@@ -206,19 +204,19 @@ class ReferenceItem
     
     func getHtmlReferenceString() -> String
     {
-        if(type == ReferenceType.Book)
+        if(type == ReferenceType.book)
         {
             return getHtmlBookReference()
         }
-        else if(type == ReferenceType.Journal)
+        else if(type == ReferenceType.journal)
         {
             return getHtmlJournalReference()
         }
-        else if(type == ReferenceType.BookChapter)
+        else if(type == ReferenceType.bookChapter)
         {
             return getHtmlBookChapterReference()
         }
-        else if(type == ReferenceType.WebPage)
+        else if(type == ReferenceType.webPage)
         {
             return getHtmlWebReference()
         }
@@ -226,7 +224,7 @@ class ReferenceItem
         return getReferenceString()
     }
     
-    private func getHtmlBookReference() -> String
+    fileprivate func getHtmlBookReference() -> String
     {
         var fullString = getAuthorForReference()
         fullString += getDateForReference()
@@ -240,7 +238,7 @@ class ReferenceItem
         return fullString
     }
     
-    private func getHtmlJournalReference() -> String
+    fileprivate func getHtmlJournalReference() -> String
     {
         var fullString = getAuthorForReference()
         fullString += getDateForReference()
@@ -257,7 +255,7 @@ class ReferenceItem
         return fullString
     }
     
-    private func getHtmlBookChapterReference() -> String
+    fileprivate func getHtmlBookChapterReference() -> String
     {
         var fullString = getAuthorForReference()
         fullString += getDateForReference()
@@ -275,10 +273,10 @@ class ReferenceItem
         return fullString
     }
     
-    private func getHtmlWebReference() -> String
+    fileprivate func getHtmlWebReference() -> String
     {
         var italicize = false
-        if(getReferenceString().rangeOfString(".html") == nil)
+        if(getReferenceString().range(of: ".html") == nil)
         {
             italicize = true
         }
@@ -306,19 +304,19 @@ class ReferenceItem
     
     func getReferenceString() -> String
     {
-        if(type == ReferenceType.Book)
+        if(type == ReferenceType.book)
         {
             return getBookReferenceString()
         }
-        else if(type == ReferenceType.Journal)
+        else if(type == ReferenceType.journal)
         {
             return getJournalReferenceString()
         }
-        else if(type == ReferenceType.BookChapter)
+        else if(type == ReferenceType.bookChapter)
         {
             return getBookChapterReferenceString()
         }
-        else if(type == ReferenceType.WebPage)
+        else if(type == ReferenceType.webPage)
         {
             return getWebReferenceString()
         }
@@ -529,12 +527,12 @@ class ReferenceItem
         return " Retrieved from \(url)"
     }
     
-    private func getCapitalisedString(stringToCapitalise: String) -> String
+    fileprivate func getCapitalisedString(_ stringToCapitalise: String) -> String
     {
-        var start: String = (stringToCapitalise as NSString).substringToIndex(1)
-        start = start.capitalizedString
+        var start: String = (stringToCapitalise as NSString).substring(to: 1)
+        start = start.capitalized
         
-        let end = (stringToCapitalise as NSString).substringFromIndex(1)
+        let end = (stringToCapitalise as NSString).substring(from: 1)
         let result = "\(start)\(end)"
         
         return result
@@ -544,19 +542,19 @@ class ReferenceItem
     {
         var cellCount = 0
         
-        if(self.type == ReferenceType.Book)
+        if(self.type == ReferenceType.book)
         {
             cellCount = 6
         }
-        else if(self.type == ReferenceType.Journal)
+        else if(self.type == ReferenceType.journal)
         {
             cellCount = 9
         }
-        else if(self.type == ReferenceType.BookChapter)
+        else if(self.type == ReferenceType.bookChapter)
         {
             cellCount = 10
         }
-        else if(self.type == ReferenceType.WebPage)
+        else if(self.type == ReferenceType.webPage)
         {
             cellCount = 4;
         }
@@ -564,31 +562,31 @@ class ReferenceItem
         return cellCount
     }
     
-    func getTextInputForCell(position: Int) -> UITextAutocapitalizationType
+    func getTextInputForCell(_ position: Int) -> UITextAutocapitalizationType
     {
         if(position == 0 || position == 1)
         {
-            return .None
+            return .none
         }
         else if(position == 2)
         {
-            return .Sentences
+            return .sentences
         }
-        else if(self.type == .Journal && (position == 3 || position == 4))
+        else if(self.type == .journal && (position == 3 || position == 4))
         {
-            return .Sentences
+            return .sentences
         }
-        else if(self.type == .BookChapter && (position == 3 || position == 5 || position == 6))
+        else if(self.type == .bookChapter && (position == 3 || position == 5 || position == 6))
         {
-            return .Sentences
+            return .sentences
         }
-        else if(self.type == .WebPage || position == 3)
+        else if(self.type == .webPage || position == 3)
         {
-            return .None
+            return .none
         }
         else
         {
-            return .Words
+            return .words
         }
     }
     
@@ -596,19 +594,19 @@ class ReferenceItem
     {
         var labels = [String]()
         
-        if(self.type == ReferenceType.Book)
+        if(self.type == ReferenceType.book)
         {
             labels = self.getBookLabels()
         }
-        else if(self.type == ReferenceType.Journal)
+        else if(self.type == ReferenceType.journal)
         {
             labels = self.getJournalLabels()
         }
-        else if(self.type == ReferenceType.BookChapter)
+        else if(self.type == ReferenceType.bookChapter)
         {
             labels = self.getBookChapterLabels()
         }
-        else if(self.type == ReferenceType.WebPage)
+        else if(self.type == ReferenceType.webPage)
         {
             labels = self.getWebLabels()
         }
@@ -616,7 +614,7 @@ class ReferenceItem
         return labels
     }
     
-    private func getBookLabels() -> [String]
+    fileprivate func getBookLabels() -> [String]
     {
         var labels = [String]()
         
@@ -630,7 +628,7 @@ class ReferenceItem
         return labels
     }
     
-    private func getJournalLabels() -> [String]
+    fileprivate func getJournalLabels() -> [String]
     {
         var labels = [String]()
         
@@ -647,7 +645,7 @@ class ReferenceItem
         return labels
     }
     
-    private func getBookChapterLabels() -> [String]
+    fileprivate func getBookChapterLabels() -> [String]
     {
         var labels = [String]()
         
@@ -665,7 +663,7 @@ class ReferenceItem
         return labels
     }
     
-    private func getWebLabels() -> [String]
+    fileprivate func getWebLabels() -> [String]
     {
         var labels = [String]()
         
@@ -681,19 +679,19 @@ class ReferenceItem
     {
         var hints = [String]()
         
-        if(self.type == ReferenceType.Book)
+        if(self.type == ReferenceType.book)
         {
             hints = self.getBookHints()
         }
-        else if(self.type == ReferenceType.Journal)
+        else if(self.type == ReferenceType.journal)
         {
             hints = self.getJournalHints()
         }
-        else if(self.type == ReferenceType.BookChapter)
+        else if(self.type == ReferenceType.bookChapter)
         {
             hints = self.getBookChapterHints()
         }
-        else if(self.type == ReferenceType.WebPage)
+        else if(self.type == ReferenceType.webPage)
         {
             hints = self.getWebHints()
         }
@@ -701,7 +699,7 @@ class ReferenceItem
         return hints
     }
     
-    private func getBookHints() -> [String]
+    fileprivate func getBookHints() -> [String]
     {
         var hints = [String]()
         
@@ -715,7 +713,7 @@ class ReferenceItem
         return hints
     }
 
-    private func getJournalHints() -> [String]
+    fileprivate func getJournalHints() -> [String]
     {
         var hints = [String]()
         
@@ -732,7 +730,7 @@ class ReferenceItem
         return hints
     }
     
-    private func getBookChapterHints() -> [String]
+    fileprivate func getBookChapterHints() -> [String]
     {
         var hints = [String]()
 
@@ -750,7 +748,7 @@ class ReferenceItem
         return hints
     }
     
-    private func getWebHints() -> [String]
+    fileprivate func getWebHints() -> [String]
     {
         var hints = [String]()
         
@@ -762,23 +760,23 @@ class ReferenceItem
         return hints
     }
     
-    func getValueForPosition(position: NSInteger) -> String
+    func getValueForPosition(_ position: NSInteger) -> String
     {
         var value = ""
         
-        if(type == ReferenceType.Book)
+        if(type == ReferenceType.book)
         {
             value = getBookValueForPosition(position)
         }
-        else if(type == ReferenceType.Journal)
+        else if(type == ReferenceType.journal)
         {
             value = getJournalValueForPosition(position)
         }
-        else if(type == ReferenceType.BookChapter)
+        else if(type == ReferenceType.bookChapter)
         {
             value = getBookChapterValueForPosition(position)
         }
-        else if(type == ReferenceType.WebPage)
+        else if(type == ReferenceType.webPage)
         {
             value = getWebValueForPosition(position)
         }
@@ -786,7 +784,7 @@ class ReferenceItem
         return value
     }
     
-    private func getBookValueForPosition(position: NSInteger) -> String
+    fileprivate func getBookValueForPosition(_ position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -816,7 +814,7 @@ class ReferenceItem
         return ""
     }
     
-    private func getJournalValueForPosition(position: NSInteger) -> String
+    fileprivate func getJournalValueForPosition(_ position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -858,7 +856,7 @@ class ReferenceItem
         return ""
     }
     
-    private func getBookChapterValueForPosition(position: NSInteger) -> String
+    fileprivate func getBookChapterValueForPosition(_ position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -904,7 +902,7 @@ class ReferenceItem
         return ""
     }
     
-    func getWebValueForPosition(position: NSInteger) -> String
+    func getWebValueForPosition(_ position: NSInteger) -> String
     {
         if(position == 0)
         {
@@ -926,27 +924,27 @@ class ReferenceItem
         return ""
     }
     
-    func saveValueForPosition(position: NSInteger, value: String)
+    func saveValueForPosition(_ position: NSInteger, value: String)
     {
-        if(type == ReferenceType.Book)
+        if(type == ReferenceType.book)
         {
             saveBookValueForPosition(position, value: value)
         }
-        else if(type == ReferenceType.Journal)
+        else if(type == ReferenceType.journal)
         {
             saveJournalValueForPosition(position, value: value)
         }
-        else if(type == ReferenceType.BookChapter)
+        else if(type == ReferenceType.bookChapter)
         {
             saveBookChapterValueForPosition(position, value: value)
         }
-        else if(type == ReferenceType.WebPage)
+        else if(type == ReferenceType.webPage)
         {
             saveWebReferenceValueForPosition(position, value: value)
         }
     }
     
-    private func saveBookValueForPosition(position: NSInteger, value: String)
+    fileprivate func saveBookValueForPosition(_ position: NSInteger, value: String)
     {
         if(position == 0)
         {
@@ -974,7 +972,7 @@ class ReferenceItem
         }
     }
     
-    private func saveJournalValueForPosition(position: NSInteger, value: String)
+    fileprivate func saveJournalValueForPosition(_ position: NSInteger, value: String)
     {
         if(position == 0)
         {
@@ -1014,7 +1012,7 @@ class ReferenceItem
         }
     }
     
-    private func saveBookChapterValueForPosition(position: NSInteger, value: String)
+    fileprivate func saveBookChapterValueForPosition(_ position: NSInteger, value: String)
     {
         if(position == 0)
         {
@@ -1058,7 +1056,7 @@ class ReferenceItem
         }
     }
     
-    private func saveWebReferenceValueForPosition(position: NSInteger, value: String)
+    fileprivate func saveWebReferenceValueForPosition(_ position: NSInteger, value: String)
     {
         if(position == 0)
         {

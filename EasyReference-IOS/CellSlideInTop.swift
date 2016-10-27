@@ -11,12 +11,12 @@ import UIKit
 
 class CellSlideInTop
 {
-    class func animate(cell: UITableViewCell)
+    class func animate(_ cell: UITableViewCell)
     {
         let translation = CATransform3DMakeTranslation(0, -20, 1)
         
-        cell.layer.shadowColor = UIColor.blackColor() as! CGColor
-        cell.layer.shadowOffset = CGSizeMake(10, 10);
+        cell.layer.shadowColor = UIColor.black.cgColor
+        cell.layer.shadowOffset = CGSize(width: 10, height: 10);
         cell.alpha = 0.2;
         
         cell.layer.transform = translation;
@@ -26,7 +26,7 @@ class CellSlideInTop
         
         cell.layer.transform = CATransform3DIdentity;
         cell.alpha = 1;
-        cell.layer.shadowOffset = CGSizeMake(0, 0);
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0);
         UIView.commitAnimations()
     }
 }
