@@ -39,7 +39,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Mwv-49-wV5" kind="show" identifier="ShowReferenceList" id="fmn-BX-V58"/>
+                                            <segue destination="Dwq-RU-nS5" kind="show" identifier="ShowReferenceList" id="L1l-jC-Aob"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -95,7 +95,7 @@ Press "New" to get started.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005" y="234"/>
+            <point key="canvasLocation" x="1231" y="233"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ANZ-oV-vh5">
@@ -336,24 +336,6 @@ Press "New" to get started.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aj6-RV-goB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="375" y="234"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5ku-T3-sCf">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mwv-49-wV5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zQY-dW-fSn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Dwq-RU-nS5" kind="relationship" relationship="rootViewController" id="WJ6-5A-VbH"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LTC-2L-kFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1824" y="234"/>
         </scene>
         <!--Edit Reference View-->
         <scene sceneID="h0f-wq-3fx">

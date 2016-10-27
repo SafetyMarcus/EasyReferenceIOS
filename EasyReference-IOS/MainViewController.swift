@@ -185,7 +185,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     {
         if(segue.identifier == "ShowReferenceList")
         {
-            let referenceListView: ReferenceListView = (segue.destination as! UINavigationController).topViewController as! ReferenceListView
+            let referenceListView: ReferenceListView = segue.destination as! ReferenceListView
             referenceListView.referenceList = referenceLists[selected]
             referenceListView.animateList = true
         }
