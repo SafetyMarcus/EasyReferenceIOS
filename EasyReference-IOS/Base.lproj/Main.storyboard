@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="315-WO-CPm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="315-WO-CPm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -188,7 +188,7 @@ Press "New" to get started.</string>
                         <barButtonItem key="rightBarButtonItem" title="New" id="0r2-q9-E0K">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="UGj-RV-0YQ" kind="show" identifier="SelectReferenceType" id="8Uv-gZ-0Hx"/>
+                                <action selector="newReference:" destination="Dwq-RU-nS5" id="PHn-9d-J9n"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -202,45 +202,6 @@ Press "New" to get started.</string>
                 <exit id="xOC-CA-hev" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2452" y="234"/>
-        </scene>
-        <!--Select A Type-->
-        <scene sceneID="phK-Kn-YaH">
-            <objects>
-                <viewController id="UGj-RV-0YQ" customClass="SelectReferenceTypeViewController" customModule="EasyReference_IOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Q4Q-aa-a5g"/>
-                        <viewControllerLayoutGuide type="bottom" id="fhd-kG-e0s"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kLb-D9-cce">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="g2D-8f-8E5">
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="UGj-RV-0YQ" id="HSo-yN-oPf"/>
-                                    <outlet property="delegate" destination="UGj-RV-0YQ" id="Dwc-yR-Ggo"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="g2D-8f-8E5" secondAttribute="leading" constant="16" id="4CE-X0-oPi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="g2D-8f-8E5" secondAttribute="trailing" constant="-16" id="Bho-9g-V8P"/>
-                            <constraint firstItem="g2D-8f-8E5" firstAttribute="top" secondItem="Q4Q-aa-a5g" secondAttribute="bottom" constant="-64" id="vXC-HP-Xrw"/>
-                            <constraint firstItem="fhd-kG-e0s" firstAttribute="top" secondItem="g2D-8f-8E5" secondAttribute="bottom" id="xhW-24-3A7"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Select A Type" id="UyO-6m-1vT"/>
-                    <connections>
-                        <outlet property="tableView" destination="g2D-8f-8E5" id="dep-3b-DGg"/>
-                        <segue destination="iG4-SQ-JEe" kind="unwind" identifier="UnwindToList" unwindAction="unwindToList:" id="hOl-Yg-Xzh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TSC-4L-aqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="iG4-SQ-JEe" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="3608.8000000000002" y="979.16041979010504"/>
         </scene>
         <!--Add Author-->
         <scene sceneID="p3t-ly-2hI">

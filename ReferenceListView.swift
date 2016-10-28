@@ -12,19 +12,14 @@ protocol SaveReferenceDelegate
 {
     func saveReference(_ reference: ReferenceItem)
 }
-protocol AddReferenceDelegate
-{
-    func addReference(_ type: ReferenceItem.ReferenceType)
-}
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, AddReferenceDelegate, ShowingDelegate
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, ShowingDelegate
 {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var referenceList = ReferenceList()
     var selected = 0
     var stretchyHeader = UIView()
     var animateList = false
-    var didAddReference = false
     
     var showHint = false
     var hintCell: ReferenceListCell!
@@ -41,10 +36,47 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         
         referenceList.addReference(newReference)
         referenceList.saveList(appDelegate.managedObjectContext!)
-        self.tableView.reloadData()
+        self.tableView.insertRows(at: [IndexPath(row: referenceList.getReferences().count, section: 0)], with: .automatic)
         
         selected = (referenceList.getReferences() as NSArray).index(of: newReference)
-        didAddReference = true
+        performSegue(withIdentifier: "ShowReferenceItem", sender: self.tableView)
+    }
+    
+    @IBAction func newReference(_ sender: AnyObject)
+    {
+        let optionMenu = UIAlertController(title: nil, message: "Reference Type", preferredStyle: .actionSheet)
+        
+        let optionBook = UIAlertAction(title: "Book", style: .default) {
+            (alert: UIAlertAction) in
+            self.addReference(.book)
+        }
+        
+        let optionJournal = UIAlertAction(title: "Journal", style: .default){
+            (alert: UIAlertAction) in
+            self.addReference(.journal)
+        }
+        
+        let optionBookChapter = UIAlertAction(title: "Book Chapter", style: .default){
+            (alert: UIAlertAction) in
+            self.addReference(.bookChapter)
+        }
+        
+        let optionWeb = UIAlertAction(title: "Web Page", style: .default){
+            (alert: UIAlertAction) in
+            self.addReference(.webPage)
+        }
+        
+        optionMenu.addAction(optionBook)
+        optionMenu.addAction(optionJournal)
+        optionMenu.addAction(optionBookChapter)
+        optionMenu.addAction(optionWeb)
+        
+        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        optionMenu.popoverPresentationController?.sourceView = sender as? UIView
+        optionMenu.popoverPresentationController?.sourceRect = (sender as! UIView).bounds
+        
+        self.present(optionMenu, animated: true, completion: nil)
+
     }
     
     @IBAction func unwindToList(_ unwindSegue: UIStoryboardSegue){}
@@ -127,12 +159,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidAppear(_ animated: Bool)
     {
-        if(didAddReference)
-        {
-            didAddReference = false
-            performSegue(withIdentifier: "ShowReferenceItem", sender: self.tableView)
-        }
-        
         if(showHint && !appDelegate.seenReferenceHint)
         {
             appDelegate.seenReferenceHint = true
@@ -174,12 +200,6 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             editReferenceView.referenceItem = references[selected]
             editReferenceView.animateIn = true
             editReferenceView.saveReferenceDelegate = self
-        }
-        else if(segue.identifier == "SelectReferenceType")
-        {
-            self.navigationItem.title = "Cancel"
-            let referenceTypeView: SelectReferenceTypeViewController = segue.destination as! SelectReferenceTypeViewController
-            referenceTypeView.delegate = self
         }
     }
     
