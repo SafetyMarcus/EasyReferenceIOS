@@ -23,51 +23,51 @@ class ReferenceListCell: UITableViewCell
 
     required init(coder aDecoder: NSCoder)
     {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
-    private func setUpView()
+    fileprivate func setUpView()
     {
         setUpTitle()
         setUpDivider()
     }
     
-    private func setUpTitle()
+    fileprivate func setUpTitle()
     {
-        title = UILabel(frame: CGRectMake(self.frame.origin.x + 10, self.frame.origin.y + 10, self.frame.width - 10, self.frame.height))
-        title.textColor = UIColor.blackColor()
-        title.backgroundColor = UIColor.whiteColor()
-        title.lineBreakMode = .ByTruncatingTail
+        title = UILabel(frame: CGRect(x: self.frame.origin.x + 10, y: self.frame.origin.y + 10, width: self.frame.width - 10, height: self.frame.height))
+        title.textColor = UIColor.black
+        title.backgroundColor = UIColor.white
+        title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
         self.contentView.addSubview(title)
     }
     
-    private func setUpDivider()
+    fileprivate func setUpDivider()
     {
-        divider = UILabel(frame: CGRectMake(self.frame.origin.y + 20, self.frame.height + 15, self.frame.width + 35, 1))
+        divider = UILabel(frame: CGRect(x: self.frame.origin.y + 20, y: self.frame.height + 15, width: self.frame.width + 35, height: 1))
         divider.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         self.contentView.addSubview(divider)
     }
     
     func showHint()
     {
-        swipeLabel = UILabel(frame: CGRectMake(self.bounds.width, 0, 200, self.bounds.height))
+        swipeLabel = UILabel(frame: CGRect(x: self.bounds.width, y: 0, width: 200, height: self.bounds.height))
         swipeLabel.text = "Swipe me!"
-        swipeLabel.textAlignment = .Center
-        swipeLabel.backgroundColor = UIColor.redColor()
-        swipeLabel.textColor = UIColor.whiteColor()
+        swipeLabel.textAlignment = .center
+        swipeLabel.backgroundColor = UIColor.red
+        swipeLabel.textColor = UIColor.white
         self.contentView.addSubview(swipeLabel)
         
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.frame = CGRectMake(self.frame.origin.x - 200, self.frame.origin.y, self.bounds.size.width, self.bounds.size.height)
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.frame = CGRect(x: self.frame.origin.x - 200, y: self.frame.origin.y, width: self.bounds.size.width, height: self.bounds.size.height)
             self.title.alpha = 0.5
         })
     }
     
     func hideHint()
     {
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.frame = CGRectMake(self.frame.origin.x + 200, self.frame.origin.y, self.bounds.width, self.bounds.height)
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.frame = CGRect(x: self.frame.origin.x + 200, y: self.frame.origin.y, width: self.bounds.width, height: self.bounds.height)
             self.title.alpha = 1
             self.swipeLabel.removeFromSuperview()
             self.swipeLabel = nil

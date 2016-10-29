@@ -10,21 +10,16 @@ import UIKit
 
 protocol SaveReferenceDelegate
 {
-    func saveReference(reference: ReferenceItem)
-}
-protocol AddReferenceDelegate
-{
-    func addReference(type: ReferenceItem.ReferenceType)
+    func saveReference(_ reference: ReferenceItem)
 }
 
-class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, AddReferenceDelegate, ShowingDelegate
+class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIScrollViewDelegate, SaveReferenceDelegate, ShowingDelegate
 {
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var referenceList = ReferenceList()
     var selected = 0
     var stretchyHeader = UIView()
     var animateList = false
-    var didAddReference = false
     
     var showHint = false
     var hintCell: ReferenceListCell!
@@ -35,35 +30,72 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet
     var tableView: UITableView!
     
-    func addReference(type: ReferenceItem.ReferenceType)
+    func addReference(_ type: ReferenceItem.ReferenceType)
     {
-        var newReference = ReferenceItem(parentId: referenceList.id, type: type)
+        let newReference = ReferenceItem(parentId: referenceList.id, type: type)
         
         referenceList.addReference(newReference)
         referenceList.saveList(appDelegate.managedObjectContext!)
-        self.tableView.reloadData()
+        self.tableView.insertRows(at: [IndexPath(row: referenceList.getReferences().count, section: 0)], with: .automatic)
         
-        selected = (referenceList.getReferences() as NSArray).indexOfObject(newReference)
-        didAddReference = true
+        selected = (referenceList.getReferences() as NSArray).index(of: newReference)
+        performSegue(withIdentifier: "ShowReferenceItem", sender: self.tableView)
     }
     
-    @IBAction func unwindToList(unwindSegue: UIStoryboardSegue){}
+    @IBAction func newReference(_ sender: AnyObject)
+    {
+        let optionMenu = UIAlertController(title: nil, message: "Reference Type", preferredStyle: .actionSheet)
+        
+        let optionBook = UIAlertAction(title: "Book", style: .default) {
+            (alert: UIAlertAction) in
+            self.addReference(.book)
+        }
+        
+        let optionJournal = UIAlertAction(title: "Journal", style: .default){
+            (alert: UIAlertAction) in
+            self.addReference(.journal)
+        }
+        
+        let optionBookChapter = UIAlertAction(title: "Book Chapter", style: .default){
+            (alert: UIAlertAction) in
+            self.addReference(.bookChapter)
+        }
+        
+        let optionWeb = UIAlertAction(title: "Web Page", style: .default){
+            (alert: UIAlertAction) in
+            self.addReference(.webPage)
+        }
+        
+        optionMenu.addAction(optionBook)
+        optionMenu.addAction(optionJournal)
+        optionMenu.addAction(optionBookChapter)
+        optionMenu.addAction(optionWeb)
+        
+        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        optionMenu.popoverPresentationController?.sourceView = sender as? UIView
+        optionMenu.popoverPresentationController?.sourceRect = (sender as! UIView).bounds
+        
+        self.present(optionMenu, animated: true, completion: nil)
+
+    }
     
-    override func viewWillAppear(animated: Bool)
+    @IBAction func unwindToList(_ unwindSegue: UIStoryboardSegue){}
+    
+    override func viewWillAppear(_ animated: Bool)
     {
         if(animateList)
         {
             animateList = false
             tableView.reloadData()
         
-            let cells = tableView.visibleCells()
+            let cells = tableView.visibleCells
             let tableHeight: CGFloat = tableView.bounds.size.height
         
             for i in cells
             {
                 if let cell: UITableViewCell = i as? ReferenceListCell
                 {
-                    cell.transform = CGAffineTransformMakeTranslation(0, tableHeight)
+                    cell.transform = CGAffineTransform(translationX: 0, y: tableHeight)
                 }
             }
         
@@ -73,8 +105,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             {
                 if let cell: ReferenceListCell = a as? ReferenceListCell
                 {
-                    UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options:        nil, animations: {
-                            cell.transform = CGAffineTransformMakeTranslation(0, 0);},
+                    UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
+                            cell.transform = CGAffineTransform(translationX: 0, y: 0);},
                         completion: nil)
             
                     index += 1
@@ -85,8 +117,8 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     func showDeleteHint()
     {
-        var view = self.navigationController?.view
-        var shadow = Shadow(frame: CGRectMake(0, 0, view!.frame.width, view!.frame.height))
+        let view = self.navigationController?.view
+        let shadow = Shadow(frame: CGRect(x: 0, y: 0, width: view!.frame.width, height: view!.frame.height))
         shadow.finishDelegate = self
         view!.addSubview(shadow)
         
@@ -98,12 +130,12 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         hintCell.hideHint()
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
-        var indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        var headerCell: ReferenceListHeaderCell = self.tableView.cellForRowAtIndexPath(indexPath) as! ReferenceListHeaderCell
+        let indexPath = IndexPath(row: 0, section: 0)
+        let headerCell: ReferenceListHeaderCell = self.tableView.cellForRow(at: indexPath) as! ReferenceListHeaderCell
 
-        referenceList.name = headerCell.title.text
+        referenceList.name = headerCell.title.text!
         referenceList.save(appDelegate.managedObjectContext!)
         appDelegate.saveContext()
     }
@@ -112,27 +144,21 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     {
         super.viewDidLoad()
         
-        stretchyHeader = UIView(frame: CGRectMake(0, 0, self.tableView.frame.width, 4))
-        stretchyHeader.backgroundColor = UIColor.redColor()
+        stretchyHeader = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 4))
+        stretchyHeader.backgroundColor = UIColor.red
         
         tableView.addSubview(stretchyHeader)
         tableView.contentInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -60)
         
-        self.tableView.registerClass(ReferenceListCell.self, forCellReuseIdentifier: "cell")
-        self.tableView.registerNib(UINib(nibName: "ReferenceListHeaderCell", bundle: nil), forCellReuseIdentifier: "ReferenceListHeader")
+        self.tableView.register(ReferenceListCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.register(UINib(nibName: "ReferenceListHeaderCell", bundle: nil), forCellReuseIdentifier: "ReferenceListHeader")
         self.title = referenceList.name
         appDelegate.saveContext()
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
-        if(didAddReference)
-        {
-            didAddReference = false
-            performSegueWithIdentifier("ShowReferenceItem", sender: self.tableView)
-        }
-        
         if(showHint && !appDelegate.seenReferenceHint)
         {
             appDelegate.seenReferenceHint = true
@@ -155,7 +181,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         self.stretchyHeader.frame = stretchyRect
     }
     
-    func saveReference(reference: ReferenceItem)
+    func saveReference(_ reference: ReferenceItem)
     {
         showHint = true
         var references = referenceList.getReferences()
@@ -164,28 +190,22 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         self.tableView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "ShowReferenceItem")
         {
             self.navigationItem.title = "Save"
-            let editReferenceView: EditReferenceView = segue.destinationViewController.topViewController as! EditReferenceView
+            let editReferenceView: EditReferenceView = segue.destination as! EditReferenceView
             var references = referenceList.getReferences()
             editReferenceView.referenceItem = references[selected]
             editReferenceView.animateIn = true
             editReferenceView.saveReferenceDelegate = self
         }
-        else if(segue.identifier == "SelectReferenceType")
-        {
-            self.navigationItem.title = "Cancel"
-            let referenceTypeView: SelectReferenceTypeViewController = segue.destinationViewController.topViewController as! SelectReferenceTypeViewController
-            referenceTypeView.delegate = self
-        }
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
-        if(indexPath.row > 0)
+        if((indexPath as NSIndexPath).row > 0)
         {
             return true
         }
@@ -193,36 +213,36 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         return false
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if(editingStyle == UITableViewCellEditingStyle.Delete)
+        if(editingStyle == UITableViewCellEditingStyle.delete)
         {
-            referenceList.deleteReference(appDelegate.managedObjectContext!, row: indexPath.row - 1)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            referenceList.deleteReference(appDelegate.managedObjectContext!, row: (indexPath as NSIndexPath).row - 1)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?
+    private func tableView(_ tableView: UITableView, editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]?
     {
-        var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete") { (UITableViewRowAction, indexPath: NSIndexPath!) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.default, title: "Delete") { (UITableViewRowAction, indexPath: IndexPath!) -> Void in
                 self.referenceList.deleteReference(self.appDelegate.managedObjectContext!, row: indexPath.row - 1)
-                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+                self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
         }
-        deleteAction.backgroundColor = UIColor.redColor()
+        deleteAction.backgroundColor = UIColor.red
         
         return [deleteAction]
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if(indexPath.row == 0)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if((indexPath as NSIndexPath).row == 0)
         {
             return 60
         }
 
-        let label:UILabel = UILabel(frame: CGRectMake(0, 0, self.tableView.frame.width - 40, 9999))
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width - 40, height: 9999))
         
         var references = referenceList.getReferences()
-        var currentReference = references[indexPath.row - 1]
+        let currentReference = references[(indexPath as NSIndexPath).row - 1]
         var labelText = currentReference.getReferenceString()
         
         if(labelText.isEmpty)
@@ -230,7 +250,7 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
             labelText = "Click to edit!"
         }
         
-        label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.numberOfLines = 2
         
         label.text = labelText
@@ -245,21 +265,21 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         return size
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection: Int) -> Int
     {
-        var references = referenceList.getReferences()
-        var count = references.count + 1;
+        let references = referenceList.getReferences()
+        let count = references.count + 1;
         
         if(count <= 1)
         {
-            UIView.animateWithDuration(1, animations: { () -> Void in
+            UIView.animate(withDuration: 1, animations: { () -> Void in
                 self.emptyTitle.alpha = 1
                 self.emptySubtitle.alpha = 1
             })
         }
         else
         {
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, animations: { () -> Void in
                 self.emptyTitle.alpha = 0
                 self.emptySubtitle.alpha = 0
             })
@@ -268,52 +288,52 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
         return count
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-        selected = indexPath.row - 1
+        tableView.cellForRow(at: indexPath)?.isSelected = false
+        selected = (indexPath as NSIndexPath).row - 1
         
         if(selected != -1)
         {
-            performSegueWithIdentifier("ShowReferenceItem", sender: self)
+            performSegue(withIdentifier: "ShowReferenceItem", sender: self)
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
 
-    func scrollViewDidScroll(scrollView: UIScrollView)
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
     {
        updateStretchyHeader()
     }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation)
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation)
     {
         updateStretchyHeader()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if(indexPath.row == 0)
+        if((indexPath as NSIndexPath).row == 0)
         {
-            var cell = self.tableView.dequeueReusableCellWithIdentifier("ReferenceListHeader") as! ReferenceListHeaderCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "ReferenceListHeader") as! ReferenceListHeaderCell
             cell.title.text = referenceList.name
-            cell.title.returnKeyType = .Done
+            cell.title.returnKeyType = .done
             cell.title.delegate = self
-            cell.title.autocapitalizationType = .Words
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.title.autocapitalizationType = .words
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             return cell
         }
         else
         {
-            var cell: ReferenceListCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ReferenceListCell
+            let cell: ReferenceListCell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! ReferenceListCell
             
             var references = referenceList.getReferences()
-            var currentReference = references[indexPath.row - 1]
+            let currentReference = references[(indexPath as NSIndexPath).row - 1]
             var labelText = currentReference.getReferenceString()
         
             if(labelText.isEmpty)

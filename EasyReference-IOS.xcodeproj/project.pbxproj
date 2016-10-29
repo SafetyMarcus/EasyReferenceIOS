@@ -25,13 +25,8 @@
 		2CBE2F6D1AA1DD120095F95B /* ReferenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */; };
 		2CBE2F6F1AA1DD560095F95B /* ReferenceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */; };
 		2CC966E01ABAE1F900087CA2 /* ReferenceTypeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CC966DF1ABAE1F900087CA2 /* ReferenceTypeCell.xib */; };
-		2CC966E51ABAE82000087CA2 /* SelectReferenceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC966E41ABAE82000087CA2 /* SelectReferenceTypeViewController.swift */; };
 		2CCA0CAE1AB594FB005D3231 /* ReferenceListHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */; };
 		2CCA0CB01AB5969A005D3231 /* ReferenceListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */; };
-		2CD304131AD0D45800F5536A /* icon_book_chapter.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD304121AD0D45800F5536A /* icon_book_chapter.png */; };
-		2CD304151AD0D46300F5536A /* icon_book.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD304141AD0D46300F5536A /* icon_book.png */; };
-		2CD304171AD0D46A00F5536A /* icon_journal.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD304161AD0D46A00F5536A /* icon_journal.png */; };
-		2CD304191AD0D47100F5536A /* webpage.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CD304181AD0D47100F5536A /* webpage.png */; };
 		2CE6F8161AC65130005FB573 /* EditReferenceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE6F8151AC65130005FB573 /* EditReferenceCell.xib */; };
 		2CE6F8181AC65140005FB573 /* EditReferenceAuthorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CE6F8171AC65140005FB573 /* EditReferenceAuthorCell.xib */; };
 		2CE6F81B1AC658B1005FB573 /* EditReferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6F81A1AC658B1005FB573 /* EditReferenceCell.swift */; };
@@ -71,13 +66,8 @@
 		2CBE2F6C1AA1DD120095F95B /* ReferenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceList.swift; sourceTree = "<group>"; };
 		2CBE2F6E1AA1DD560095F95B /* ReferenceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceItem.swift; sourceTree = "<group>"; };
 		2CC966DF1ABAE1F900087CA2 /* ReferenceTypeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceTypeCell.xib; sourceTree = "<group>"; };
-		2CC966E41ABAE82000087CA2 /* SelectReferenceTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectReferenceTypeViewController.swift; sourceTree = "<group>"; };
 		2CCA0CAD1AB594FB005D3231 /* ReferenceListHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReferenceListHeaderCell.xib; sourceTree = "<group>"; };
 		2CCA0CAF1AB5969A005D3231 /* ReferenceListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceListHeaderCell.swift; sourceTree = "<group>"; };
-		2CD304121AD0D45800F5536A /* icon_book_chapter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_book_chapter.png; path = Images/icon_book_chapter.png; sourceTree = SOURCE_ROOT; };
-		2CD304141AD0D46300F5536A /* icon_book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_book.png; path = Images/icon_book.png; sourceTree = SOURCE_ROOT; };
-		2CD304161AD0D46A00F5536A /* icon_journal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_journal.png; path = Images/icon_journal.png; sourceTree = SOURCE_ROOT; };
-		2CD304181AD0D47100F5536A /* webpage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = webpage.png; path = Images/webpage.png; sourceTree = SOURCE_ROOT; };
 		2CE6F8151AC65130005FB573 /* EditReferenceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditReferenceCell.xib; sourceTree = "<group>"; };
 		2CE6F8171AC65140005FB573 /* EditReferenceAuthorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditReferenceAuthorCell.xib; sourceTree = "<group>"; };
 		2CE6F81A1AC658B1005FB573 /* EditReferenceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditReferenceCell.swift; sourceTree = "<group>"; };
@@ -140,10 +130,6 @@
 		2C51C6FA1AA184F1006C199A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2CD304181AD0D47100F5536A /* webpage.png */,
-				2CD304161AD0D46A00F5536A /* icon_journal.png */,
-				2CD304141AD0D46300F5536A /* icon_book.png */,
-				2CD304121AD0D45800F5536A /* icon_book_chapter.png */,
 				2C51C6FB1AA184F1006C199A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -181,7 +167,6 @@
 				2C51C7011AA184F2006C199A /* MainViewController.swift */,
 				2CB5CFB81AA2A244003A808A /* ReferenceListView.swift */,
 				2CB1B7C31AB6FFA40018E962 /* AddAuthorViewController.swift */,
-				2CC966E41ABAE82000087CA2 /* SelectReferenceTypeViewController.swift */,
 				2C09D2AA1AFDCF820005485E /* PDFViewController.swift */,
 			);
 			name = ViewControllers;
@@ -297,15 +282,18 @@
 		2C51C6EF1AA184F1006C199A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Marcus;
 				TargetAttributes = {
 					2C51C6F61AA184F1006C199A = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 82LCG483Z7;
+						LastSwiftMigration = 0800;
 					};
 					2C51C70E1AA184F2006C199A = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 2C51C6F61AA184F1006C199A;
 					};
 				};
@@ -334,14 +322,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD304171AD0D46A00F5536A /* icon_journal.png in Resources */,
 				2CCA0CAE1AB594FB005D3231 /* ReferenceListHeaderCell.xib in Resources */,
-				2CD304131AD0D45800F5536A /* icon_book_chapter.png in Resources */,
 				2CC966E01ABAE1F900087CA2 /* ReferenceTypeCell.xib in Resources */,
-				2CD304151AD0D46300F5536A /* icon_book.png in Resources */,
 				2C51C7051AA184F2006C199A /* Main.storyboard in Resources */,
 				2C51C70A1AA184F2006C199A /* LaunchScreen.xib in Resources */,
-				2CD304191AD0D47100F5536A /* webpage.png in Resources */,
 				2C51C7071AA184F2006C199A /* Images.xcassets in Resources */,
 				2CE6F8181AC65140005FB573 /* EditReferenceAuthorCell.xib in Resources */,
 				2CE6F8161AC65130005FB573 /* EditReferenceCell.xib in Resources */,
@@ -370,7 +354,6 @@
 				2C51C6FD1AA184F1006C199A /* AppDelegate.swift in Sources */,
 				2CBE07FE1AB9A5C300379611 /* ReferenceTypeCell.swift in Sources */,
 				2CB1B7C41AB6FFA40018E962 /* AddAuthorViewController.swift in Sources */,
-				2CC966E51ABAE82000087CA2 /* SelectReferenceTypeViewController.swift in Sources */,
 				2CCA0CB01AB5969A005D3231 /* ReferenceListHeaderCell.swift in Sources */,
 				2C09D2AB1AFDCF820005485E /* PDFViewController.swift in Sources */,
 				2C0624721AA2FB4400C902D6 /* EditReferenceView.swift in Sources */,
@@ -433,15 +416,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -476,8 +463,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -485,6 +474,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -494,6 +484,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -507,8 +498,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "EasyReference-IOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = au.com.easyreference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -520,8 +513,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "EasyReference-IOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = au.com.easyreference;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -539,7 +534,9 @@
 				);
 				INFOPLIST_FILE = "EasyReference-IOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "au.com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyReference-IOS.app/EasyReference-IOS";
 			};
 			name = Debug;
@@ -554,7 +551,9 @@
 				);
 				INFOPLIST_FILE = "EasyReference-IOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "au.com.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EasyReference-IOS.app/EasyReference-IOS";
 			};
 			name = Release;

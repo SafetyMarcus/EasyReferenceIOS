@@ -24,23 +24,23 @@ class Shadow: UILabel
         
         self.numberOfLines = 2
         self.text = "Slide left to delete references!"
-        self.textColor = UIColor.whiteColor()
-        self.textAlignment = NSTextAlignment.Center
+        self.textColor = UIColor.white
+        self.textAlignment = NSTextAlignment.center
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha:0.5)
         
-        self.userInteractionEnabled = true
-        var gestureRecogniser = UITapGestureRecognizer()
-        gestureRecogniser.addTarget(self, action: "tappedShadow")
+        self.isUserInteractionEnabled = true
+        let gestureRecogniser = UITapGestureRecognizer()
+        gestureRecogniser.addTarget(self, action: #selector(Shadow.tappedShadow))
         self.addGestureRecognizer(gestureRecogniser)
         
         self.alpha = 0
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.alpha = 1
         })
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     func tappedShadow()

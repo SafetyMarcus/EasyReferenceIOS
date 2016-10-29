@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddAuthorDelegate
 {
-    func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
+    func addAuthor(_ firstName: NSString, middleName: NSString, lastName: NSString)
 }
 
 protocol AddAuthorListener
@@ -18,70 +18,70 @@ protocol AddAuthorListener
     func clickedAddAuthor()
 }
 
-class EditReferenceView: UITableViewController, UITableViewDataSource, UITableViewDelegate, AddAuthorDelegate, AddAuthorListener, UITextFieldDelegate
+class EditReferenceView: UITableViewController, AddAuthorDelegate, AddAuthorListener, UITextFieldDelegate
 {
     var referenceItem: ReferenceItem! = nil
     var saveReferenceDelegate: SaveReferenceDelegate! = nil
     var animateIn = false
     
-    @IBAction func unwindToEditReference(unwindSegue: UIStoryboardSegue){}
+    @IBAction func unwindToEditReference(_ unwindSegue: UIStoryboardSegue){}
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.tableView.rowHeight = 80
         self.tableView.allowsSelection = false
-        self.tableView.registerNib(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
-        self.tableView.registerNib(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
+        self.tableView.register(UINib(nibName: "EditReferenceAuthorCell", bundle: nil), forCellReuseIdentifier: "authorCell")
+        self.tableView.register(UINib(nibName: "EditReferenceCell", bundle: nil), forCellReuseIdentifier: "referenceCell")
     }
     
     func save()
     {
-        referenceItem.save((UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!)
+        referenceItem.save((UIApplication.shared.delegate as! AppDelegate).managedObjectContext!)
         saveReferenceDelegate.saveReference(referenceItem)
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return referenceItem.getNumberOfCells()
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if(indexPath.row == 0)
+        if((indexPath as NSIndexPath).row == 0)
         {
-            var cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCellWithIdentifier("authorCell") as! EditReferenceAuthorCell
+            let cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCell(withIdentifier: "authorCell") as! EditReferenceAuthorCell
             cell.referenceText.text = referenceItem.author
             cell.delegate = self
             cell.referenceText.delegate = self
-            cell.referenceText.returnKeyType = .Done
+            cell.referenceText.returnKeyType = .done
             
             if((referenceItem.author as NSString).length > 0)
             {
-                cell.referenceText.enabled = true
+                cell.referenceText.isEnabled = true
             }
             else
             {
-                cell.referenceText.enabled = false
+                cell.referenceText.isEnabled = false
             }
             
             return cell
         }
         else
         {
-            var cell: EditReferenceCell = self.tableView.dequeueReusableCellWithIdentifier("referenceCell") as! EditReferenceCell
-            cell.referenceLabel.text = referenceItem.getLabelsForCells()[indexPath.row]
-            cell.referenceText.placeholder = referenceItem.getHintsForCells()[indexPath.row]
-            cell.referenceText.text = referenceItem.getValueForPosition(indexPath.row)
+            let cell: EditReferenceCell = self.tableView.dequeueReusableCell(withIdentifier: "referenceCell") as! EditReferenceCell
+            cell.referenceLabel.text = referenceItem.getLabelsForCells()[(indexPath as NSIndexPath).row]
+            cell.referenceText.placeholder = referenceItem.getHintsForCells()[(indexPath as NSIndexPath).row]
+            cell.referenceText.text = referenceItem.getValueForPosition((indexPath as NSIndexPath).row)
             cell.referenceText.delegate = self
-            cell.referenceText.returnKeyType = .Done
-            cell.referenceText.autocapitalizationType = referenceItem.getTextInputForCell(indexPath.row)
+            cell.referenceText.returnKeyType = .done
+            cell.referenceText.autocapitalizationType = referenceItem.getTextInputForCell((indexPath as NSIndexPath).row)
             
             return cell
         }
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -90,53 +90,49 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
             animateIn = false
             tableView.reloadData()
         
-            let cells = tableView.visibleCells()
+            let cells = tableView.visibleCells
             let tableWidth: CGFloat = tableView.bounds.size.width
         
             for i in cells
             {
-                if let cell: UITableViewCell = i as? UITableViewCell
-                {
-                    cell.transform = CGAffineTransformMakeTranslation(tableWidth, 0)
-                }
+                let cell: UITableViewCell = i
+                cell.transform = CGAffineTransform(translationX: tableWidth, y: 0)
             }
         
             var index = 0
         
             for a in cells
             {
-                if let cell: UITableViewCell = a as? UITableViewCell
-                {
-                    UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options:       nil, animations: {
-                        cell.transform = CGAffineTransformMakeTranslation(0, 0);},
-                        completion: nil)
+                let cell: UITableViewCell = a
+                UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
+                    cell.transform = CGAffineTransform(translationX: 0, y: 0);},
+                    completion: nil)
                 
-                    index += 1
-                }
+                index += 1
             }
         }
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         save()
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString replacement: String) -> Bool
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString replacement: String) -> Bool
     {
-        let original = (textField.text as NSString).substringWithRange(range)
+        let original = NSString(string: textField.text!).substring(with: range)
         let new = replacement
         if(original != new)
         {
-            var cell: UITableViewCell = textField.superview?.superview as! UITableViewCell
+            let cell: UITableViewCell = textField.superview?.superview as! UITableViewCell
             
-            var row: NSIndexPath = (self.tableView.indexPathForCell(cell) as NSIndexPath?)!
-            var position = row.row
+            let row: IndexPath = (self.tableView.indexPath(for: cell) as IndexPath?)!
+            let position = (row as NSIndexPath).row
             
-            var textFieldText: NSString = textField.text
-            var total = "\(textFieldText.substringToIndex(range.location))"
+            let textFieldText: NSString = NSString(string: textField.text!)
+            var total = "\(textFieldText.substring(to: range.location))"
             total += "\(replacement)"
-            total += "\(textFieldText.substringFromIndex(range.location + range.length))"
+            total += "\(textFieldText.substring(from: range.location + range.length))"
             
             referenceItem.saveValueForPosition(position, value: total)
 
@@ -146,63 +142,63 @@ class EditReferenceView: UITableViewController, UITableViewDataSource, UITableVi
         return false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         textField.resignFirstResponder()
         return true
     }
     
-    func getLabelForPosition(position: NSInteger) -> String
+    func getLabelForPosition(_ position: NSInteger) -> String
     {
         return referenceItem.getLabelsForCells()[position]
     }
     
     func clickedAddAuthor()
     {
-        performSegueWithIdentifier("ShowAddAuthor", sender: self)
+        performSegue(withIdentifier: "ShowAddAuthor", sender: self)
     }
     
-    func addAuthor(firstName: NSString, middleName: NSString, lastName: NSString)
+    func addAuthor(_ firstName: NSString, middleName: NSString, lastName: NSString)
     {
-        let authorCell: EditReferenceAuthorCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! EditReferenceAuthorCell
+        let authorCell: EditReferenceAuthorCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! EditReferenceAuthorCell
         var authors = ""
         
         if((referenceItem.author as NSString).length > 0)
         {
-            authors = referenceItem.author.stringByReplacingOccurrencesOfString(" &", withString: "")
+            authors = referenceItem.author.replacingOccurrences(of: " &", with: "")
             authors = "\(authors), & "
         }
         
         if(lastName.length > 0)
         {
-            authors += "\(lastName.substringToIndex(1).uppercaseString)\(lastName.substringFromIndex(1)), "
+            authors += "\(lastName.substring(to: 1).uppercased())\(lastName.substring(from: 1)), "
         }
         
         if(firstName.length > 0)
         {
-            authors += "\(firstName.substringToIndex(1).uppercaseString)."
+            authors += "\(firstName.substring(to: 1).uppercased())."
         }
         
         if(middleName.length > 0)
         {
-            authors += " \(middleName.substringToIndex(1).uppercaseString)."
+            authors += " \(middleName.substring(to: 1).uppercased())."
         }
         
         authorCell.referenceText.text = authors
         
         if((authors as NSString).length > 0)
         {
-            authorCell.referenceText.enabled = true
+            authorCell.referenceText.isEnabled = true
         }
 
         referenceItem.saveValueForPosition(0, value: authors)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if(segue.identifier == "ShowAddAuthor")
         {
-            let addAuthorView: AddAuthorViewController = segue.destinationViewController.topViewController as! AddAuthorViewController
+            let addAuthorView: AddAuthorViewController = segue.destination as! AddAuthorViewController
             addAuthorView.addAuthorDelegate = self
         }
     }

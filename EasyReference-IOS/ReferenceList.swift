@@ -13,7 +13,7 @@ class ReferenceList
 {
     var id = ""
     var name = ""
-    private var references: [ReferenceItem] = []
+    fileprivate var references: [ReferenceItem] = []
     
     init()
     {
@@ -21,27 +21,26 @@ class ReferenceList
     
     init(reference: NSManagedObject, context: NSManagedObjectContext)
     {
-        self.id = reference.valueForKey("id") as! String
-        self.name = reference.valueForKey("name") as! String
+        self.id = reference.value(forKey: "id") as! String
+        self.name = reference.value(forKey: "name") as! String
         
         getAllReferences(context)
     }
     
     func getLowercaseName() -> String
     {
-        return name.lowercaseString
+        return name.lowercased()
     }
     
-    private func getAllReferences(context: NSManagedObjectContext)
+    fileprivate func getAllReferences(_ context: NSManagedObjectContext)
     {
         references = [ReferenceItem]()
         
-        var error : NSError?
-        let fetchRequest = NSFetchRequest(entityName: "ReferenceItem")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ReferenceItem")
         let predicate = NSPredicate(format: "parent_id == %@", id)
         fetchRequest.predicate = predicate
         
-        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+        let fetchResults = try? context.fetch(fetchRequest)
         if(fetchResults == nil || fetchResults?.count == 0)
         {
             return
@@ -51,7 +50,7 @@ class ReferenceList
         {
             for index in 0...results.count - 1
             {
-                var referenceObject: NSManagedObject = results[index] as! NSManagedObject
+                let referenceObject: NSManagedObject = results[index] as! NSManagedObject
                 references.append(ReferenceItem(referenceItem: referenceObject))
             }
         }
@@ -61,11 +60,11 @@ class ReferenceList
     
     func getReferences() -> [ReferenceItem]
     {
-        references.sort({$0.author < $1.author})
+        references.sorted(by: {$0.author < $1.author})
         return references
     }
     
-    func addReference(reference: ReferenceItem)
+    func addReference(_ reference: ReferenceItem)
     {
         references.append(reference)
     }
@@ -81,13 +80,13 @@ class ReferenceList
         return reference
     }
     
-    func deleteReference(context: NSManagedObjectContext, row: NSInteger)
+    func deleteReference(_ context: NSManagedObjectContext, row: NSInteger)
     {
         references[row].delete(context)
-        references.removeAtIndex(row)
+        references.remove(at: row)
     }
     
-    func saveList(context: NSManagedObjectContext)
+    func saveList(_ context: NSManagedObjectContext)
     {
         if(references.isEmpty)
         {
@@ -100,14 +99,13 @@ class ReferenceList
         }
     }
     
-    func save(context: NSManagedObjectContext)
+    func save(_ context: NSManagedObjectContext)
     {
-        var error: NSError?
-        let fetchRequest = NSFetchRequest(entityName: "ReferenceList")
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ReferenceList")
         let predicate = NSPredicate(format: "id == %@", id)
         fetchRequest.predicate = predicate
         
-        let fetchResults = context.executeFetchRequest(fetchRequest, error: &error)
+        let fetchResults = try? context.fetch(fetchRequest)
         if(fetchResults == nil || fetchResults?.count == 0)
         {
             return
@@ -117,7 +115,7 @@ class ReferenceList
         {
             if(results.count > 0)
             {
-                var referenceList: AnyObject = results[0]
+                let referenceList: AnyObject = results[0] as AnyObject
                 referenceList.setValue(id, forKey: "id")
                 referenceList.setValue(name, forKey: "name")
             }

@@ -17,9 +17,9 @@ class AddAuthorViewController: UIViewController
     
     var addAuthorDelegate: AddAuthorDelegate! = nil
     
-    @IBAction func saveAuthor(sender: AnyObject)
+    @IBAction func saveAuthor(_ sender: AnyObject)
     {
-        addAuthorDelegate.addAuthor(firstName.text, middleName: middleName.text, lastName: lastName.text)
-        performSegueWithIdentifier("UnwindToReference", sender: self)
+        addAuthorDelegate.addAuthor(NSString(string: firstName.text!), middleName: NSString(string: middleName.text!), lastName: NSString(string: lastName.text!))
+        performSegue(withIdentifier: "UnwindToReference", sender: self)
     }
 }
