@@ -48,7 +48,7 @@ class EditReferenceView: UITableViewController, AddAuthorDelegate, AddAuthorList
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        if((indexPath as NSIndexPath).row == 0)
+        if(indexPath.row == 0)
         {
             let cell: EditReferenceAuthorCell = self.tableView.dequeueReusableCell(withIdentifier: "authorCell") as! EditReferenceAuthorCell
             cell.referenceText.text = referenceItem.author
@@ -64,6 +64,11 @@ class EditReferenceView: UITableViewController, AddAuthorDelegate, AddAuthorList
             cell.referenceLabel.text = referenceItem.getLabelsForCells()[(indexPath as NSIndexPath).row]
             cell.referenceText.placeholder = referenceItem.getHintsForCells()[(indexPath as NSIndexPath).row]
             cell.referenceText.text = referenceItem.getValueForPosition((indexPath as NSIndexPath).row)
+            
+            if(indexPath.row == 1)
+            {
+                cell.referenceText.keyboardType = .numberPad
+            }
             cell.referenceText.delegate = self
             cell.referenceText.returnKeyType = .done
             cell.referenceText.autocapitalizationType = referenceItem.getTextInputForCell((indexPath as NSIndexPath).row)
