@@ -88,7 +88,6 @@ class ReferenceItem
     
     func delete(_ context: NSManagedObjectContext)
     {
-        let entity = NSEntityDescription.entity(forEntityName: "ReferenceItem", in: context)
         let predicate = NSPredicate(format: "id == %@", id)
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "ReferenceItem")

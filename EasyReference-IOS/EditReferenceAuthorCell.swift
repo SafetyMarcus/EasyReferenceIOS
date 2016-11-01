@@ -21,4 +21,12 @@ class EditReferenceAuthorCell: UITableViewCell
     {
         self.delegate.clickedAddAuthor()
     }
+    
+    @IBAction func clickedReferenceText(_ sender: Any)
+    {
+        if self.referenceText.text?.characters.count == 0
+        {
+            self.delegate.clickedAddAuthor()
+        }
+    }
 }

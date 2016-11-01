@@ -56,15 +56,6 @@ class EditReferenceView: UITableViewController, AddAuthorDelegate, AddAuthorList
             cell.referenceText.delegate = self
             cell.referenceText.returnKeyType = .done
             
-            if((referenceItem.author as NSString).length > 0)
-            {
-                cell.referenceText.isEnabled = true
-            }
-            else
-            {
-                cell.referenceText.isEnabled = false
-            }
-            
             return cell
         }
         else
