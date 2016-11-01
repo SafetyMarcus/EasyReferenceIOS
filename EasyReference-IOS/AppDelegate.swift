@@ -46,15 +46,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let appSettings: AnyObject = results[0] as AnyObject
 
                 let mainHint: AnyObject? = appSettings.value(forKey: "seenMainHint") as AnyObject
-                if mainHint != nil
+                if let hint = mainHint as? Bool
                 {
-                    seenMainHint = mainHint as! Bool
+                    seenMainHint = hint
                 }
                 
                 let referenceHint: AnyObject? = appSettings.value(forKey: "seenReferenceHint") as AnyObject
-                if referenceHint != nil
+                if let seenReference = referenceHint as? Bool
                 {
-                    seenReferenceHint = referenceHint as! Bool
+                    seenReferenceHint = seenReference
                 }
             }
         }

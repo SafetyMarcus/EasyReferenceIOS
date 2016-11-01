@@ -83,6 +83,9 @@ class ReferenceListView: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool)
     {
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.tableFooterView = UIView()
+        
         if(animateList)
         {
             animateList = false

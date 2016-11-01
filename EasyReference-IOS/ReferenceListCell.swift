@@ -12,7 +12,6 @@ import UIKit
 class ReferenceListCell: UITableViewCell
 {
     var title: UILabel!
-    var divider: UILabel!
     var swipeLabel: UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?)
@@ -29,7 +28,6 @@ class ReferenceListCell: UITableViewCell
     fileprivate func setUpView()
     {
         setUpTitle()
-        setUpDivider()
     }
     
     fileprivate func setUpTitle()
@@ -40,13 +38,6 @@ class ReferenceListCell: UITableViewCell
         title.lineBreakMode = .byTruncatingTail
         title.numberOfLines = 2
         self.contentView.addSubview(title)
-    }
-    
-    fileprivate func setUpDivider()
-    {
-        divider = UILabel(frame: CGRect(x: self.frame.origin.y + 20, y: self.frame.height + 15, width: self.frame.width + 35, height: 1))
-        divider.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
-        self.contentView.addSubview(divider)
     }
     
     func showHint()

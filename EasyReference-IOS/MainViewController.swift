@@ -49,10 +49,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return count
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
-    }
-    
     func tableView(_ tableView: UITableView, editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]?
     {
         selected = (indexPath as NSIndexPath).row
@@ -83,6 +79,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         })
             
         return [deleteAction, sendAction]
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.tableView.separatorStyle = .singleLine
+        self.tableView.tableFooterView = UIView()
     }
     
     override func viewDidAppear(_ animated: Bool)

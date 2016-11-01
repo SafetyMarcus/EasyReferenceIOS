@@ -44,9 +44,12 @@ class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate
         var html = "\(style) <h1>References</h1>"
         
         var references = referenceList.getReferences()
-        for index in 0...references.count - 1
+        if references.count > 0
         {
-            html = "\(html)<p>\(references[index].getHtmlReferenceString())</p>"
+            for index in 0...references.count - 1
+            {
+                html = "\(html)<p>\(references[index].getHtmlReferenceString())</p>"
+            }
         }
         
         html = "\(html)</body>"
